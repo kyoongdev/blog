@@ -1,0 +1,39 @@
+@use "src/styles/mixins" as m;
+.dropdown {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 60;
+  right: 4px;
+  z-index: 20;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 50px;
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  list-style: none;
+  visibility: hidden;
+
+  transition: max-height 0.2s, visibility 0.2s;
+  transition-timing-function: linear;
+  &.isOpen {
+    visibility: visible;
+    max-height: 200px;
+  }
+}
+
+.dropdownItem {
+  text-align: center;
+  line-height: 32px;
+  min-height: 32px;
+
+  @include m.fontH2("medium");
+}

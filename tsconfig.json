@@ -19,14 +19,18 @@
         "name": "next"
       }
     ],
-    "baseUrl": "src"
+    "baseUrl": "./src",
+    "paths": {
+      "@assets": ["public/assets"]
+    }
   },
   "include": [
     "src",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "public"
   ],
   "exclude": ["node_modules"]
 }

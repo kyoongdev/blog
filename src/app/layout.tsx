@@ -1,18 +1,18 @@
 import React from "react";
-import "../styles/global.scss";
 import { NextLayout } from "types";
 import Header from "components/Header";
-console.log(Header);
+import styles from "./layout.module.scss";
+import "../styles/global.scss";
 
 const RootLayout: NextLayout = ({ children }) => {
   return (
     <html>
       <head>
-        <title>KyoongDev Logs</title>
+        <title>KyoongDev Notes</title>
       </head>
       <body>
         <Header />
-        {children}
+        <main className={styles.main}>{children}</main>
       </body>
     </html>
   );

@@ -6,8 +6,18 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+  height: 72px;
 
+  padding: 16px 0px;
+  @include m.flex(space-between);
   @include m.desktopOnly {
-    max-width: 1280px;
+    max-width: 1200px;
+  }
+  @include m.tabletOnly {
+    padding: 16px 12px;
+  }
+
+  > h1 {
+    @include m.fontH1("medium");
   }
 }

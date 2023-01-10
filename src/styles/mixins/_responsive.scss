@@ -58,6 +58,12 @@
   }
 }
 
+@mixin tabletOnly() {
+  @media only screen and (max-width: getMaxBreakpoint(LD)) {
+    @content;
+  }
+}
+
 @mixin mobileOnly() {
   @media only screen and (max-width: getMaxBreakpoint(SD)) {
     @content;
