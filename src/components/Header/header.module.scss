@@ -1,0 +1,13 @@
+@use "src/styles/mixins" as m;
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @include m.desktopOnly {
+    max-width: 1280px;
+  }
+}

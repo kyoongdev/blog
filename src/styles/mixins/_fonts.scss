@@ -1,0 +1,62 @@
+@use 'src/styles/constants' as c;
+
+$FONT_WEIGHT_MAP: (
+  'thin': 100,
+  'light': 300,
+  'regular': 400,
+  'medium': 500,
+  'bold': 700,
+  'black': 900,
+);
+
+@function _getFontWeightValue($key) {
+  @return map-get($FONT_WEIGHT_MAP, $key);
+}
+
+@mixin fontH1($fw) {
+  font-size: 26px;
+  font-weight: _getFontWeightValue($fw);
+  color: c.$C_PRIMARY_DARKER;
+}
+
+@mixin fontH2($fw) {
+  font-size: 18px;
+  font-weight: _getFontWeightValue($fw);
+  color: c.$C_PRIMARY_DARKER;
+}
+
+@mixin fontH3($fw) {
+  font-size: 17px;
+  font-weight: _getFontWeightValue($fw);
+  color: c.$C_PRIMARY_DARKER;
+}
+
+@mixin fontB16($fw) {
+  font-size: 16px;
+  font-weight: _getFontWeightValue($fw);
+  color: c.$C_PRIMARY_DARKER;
+}
+
+@mixin fontB15($fw) {
+  font-size: 15px;
+  font-weight: _getFontWeightValue($fw);
+  color: c.$C_PRIMARY_DARKER;
+}
+
+@mixin fontB14($fw) {
+  font-size: 14px;
+  font-weight: _getFontWeightValue($fw);
+  color: c.$C_PRIMARY_DARKER;
+}
+
+@mixin fontB13($fw) {
+  font-size: 13px;
+  font-weight: _getFontWeightValue($fw);
+  color: c.$C_PRIMARY_DARKER;
+}
+
+@mixin fontB12($fw) {
+  font-size: 12px;
+  font-weight: _getFontWeightValue($fw);
+  color: c.$C_PRIMARY_DARKER;
+}
