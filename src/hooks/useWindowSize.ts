@@ -1,20 +1,17 @@
 import { useWindowSize as reactUseWindowSize } from "react-use";
 
 type TuseWindowSize = {
-  width: number | string;
-  height: number | string;
+  width: string;
+  height: string;
 };
 
 const useWindowSize = (): TuseWindowSize => {
   const window = reactUseWindowSize();
 
-  let width: number | string = window.width;
-  let height: number | string = window.height;
-
-  if (height === Infinity) {
-    width = "100vw";
-    height = "100vh";
-  }
+  const width: string =
+    typeof window.width === "number" ? `${window.width}px` : "100vw";
+  const height: string =
+    window.height === Infinity ? "100vh" : `${window.height}px`;
 
   return {
     width,
