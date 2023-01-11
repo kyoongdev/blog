@@ -46,8 +46,15 @@
 
   @include m.fontH2('medium');
 
+  > a {
+    color: c.$C_PRIMARY_DARK;
+    text-decoration: none;
+  }
+
   &:hover {
-    color: c.$C_WHITE;
+    > a {
+      color: c.$C_WHITE;
+    }
     background-color: c.$C_PRIMARY_DARK;
   }
 }
