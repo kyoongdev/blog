@@ -7,35 +7,46 @@
   left: 50%;
   width: 100%;
   height: 72px;
-  padding: 16px 12%;
   color: c.$C_WHITE;
-  background-color: c.$C_PRIMARY_DARK;
+  background-color: c.$C_BLACK;
   transform: translateX(-50%);
-  @include m.flex(space-between);
 
-  @include m.tabletOnly {
-    padding: 16px 12px;
-  }
+  > div {
+    width: 100%;
+    height: 72px;
+    padding: 16px 0;
+    margin: 0 auto;
 
-  > h1 {
-    flex-basis: 0;
-    flex-grow: 1;
-    font-size: 24px;
-    font-weight: 600;
-  }
+    @include m.flex(space-between);
 
-  > h1:last-of-type {
-    flex-basis: 0;
-    flex-grow: 1;
-    font-size: 36px;
-    font-weight: 600;
-  }
+    @include m.tabletOnly {
+      padding: 16px 12px;
+    }
 
-  .logo {
-    flex-basis: 0;
-    flex-grow: 1;
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
+    @include m.desktopOnly {
+      max-width: 1200px;
+    }
+
+    > h1 {
+      flex-basis: 0;
+      flex-grow: 1;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    > h1:last-of-type {
+      flex-basis: 0;
+      flex-grow: 1;
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    .logo {
+      flex-basis: 0;
+      flex-grow: 1;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+    }
   }
 }

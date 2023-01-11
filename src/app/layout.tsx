@@ -15,7 +15,7 @@ const RootLayout: NextLayout = ({ children }) => {
         <title>KyoongDev Notes</title>
       </head>
       <body>
-        <main className={styles.main} style={{ minHeight: `${height}` }}>
+        <main className={styles.main} style={{ minHeight: `calc(${height} - 72px )` }}>
           <Header />
           {children}
         </main>

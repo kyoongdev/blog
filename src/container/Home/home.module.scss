@@ -1,15 +1,37 @@
+@use 'src/styles/constants' as c;
 @use 'src/styles/mixins' as m;
 
-.mainInfo {
-  margin: 40px 0 0 20px;
+.container {
+  height: 200px;
 
-  > h2 {
-    font-size: 36px;
-    font-weight: 500;
+  @include m.flex(center, center, column);
+}
+
+.mainInfo {
+  @include m.flex(center, center, column);
+
+  > div {
+    @include m.flex(center, center, row);
+
+    > span {
+      flex-basis: 0;
+      flex-grow: 1;
+      font-size: 42px;
+      font-weight: 600;
+      color: c.$C_BLACK;
+      text-align: center;
+    }
   }
 
-  > p {
-    margin-top: 12px;
-    font-weight: 500;
+  > div > span + span {
+    margin-left: 72px;
+  }
+
+  > hr {
+    width: 120px;
+    height: 5px;
+    margin-top: 24px;
+    background-color: rgba(0, 0, 0, 87%);
+    border: none;
   }
 }
