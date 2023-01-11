@@ -8,12 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install",
-    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
-    "prettier:fix": "prettier **/*.ts **/*.tsx --write",
-    "stylelint:fix": "stylelint '**/*.scss' --fix",
-    "pre-commit": "lint-staged",
-    "deploy": "next build && touch out/.nojekyll && git add -f out/ && git commit -m 'deploy to gh-pages' && git subtree push --prefix out origin gh-pages"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@next/font": "13.1.1",
@@ -47,20 +42,6 @@
     "stylelint-config-recess-order": "^3.0.0",
     "stylelint-config-standard-scss": "^6.1.0",
     "stylelint-declaration-strict-value": "^1.9.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "yarn prettier:fix",
-      "yarn lint:fix"
-    ],
-    "src/**/*.scss": [
-      "yarn stylelint:fix"
-    ]
   },
   "eslintConfig": {
     "extends": [

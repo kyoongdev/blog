@@ -1,10 +1,11 @@
+import RootLayout from 'components/Layout';
 import React from 'react';
 import Categorires from './Categories';
 import styles from './home.module.scss';
 
 const HomePage = () => {
   return (
-    <>
+    <RootLayout>
       <section className={styles.container}>
         <article className={styles.mainInfo}>
           <div>
@@ -17,7 +18,7 @@ const HomePage = () => {
         </article>
       </section>
       <Categorires />
-    </>
+    </RootLayout>
   );
 };
 
