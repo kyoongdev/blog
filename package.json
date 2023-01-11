@@ -2,6 +2,7 @@
   "name": "blog",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://kyoongdev.github.io/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,7 +12,8 @@
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "prettier:fix": "prettier **/*.ts **/*.tsx --write",
     "stylelint:fix": "stylelint '**/*.scss' --fix",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "deploy": "next build && touch out/.nojekyll && git add -f out/ && git commit -m 'deploy to gh-pages' && git subtree push --prefix out origin gh-pages"
   },
   "dependencies": {
     "@next/font": "13.1.1",
