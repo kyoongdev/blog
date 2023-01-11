@@ -1,9 +1,7 @@
+import { HomePage } from 'container';
+
 const Page = () => {
-  return (
-    <section>
-      <h1>title</h1>
-    </section>
-  );
+  return <HomePage />;
 };
 
 export default Page;

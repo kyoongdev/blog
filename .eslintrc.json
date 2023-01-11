@@ -1,13 +1,6 @@
 {
-  "@next/next/no-document-import-in-page": "off",
   "parser": "@typescript-eslint/parser",
-  "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "react-app",
-    "react-app/jest",
-    "next/core-web-vitals"
-  ],
+  "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
   "plugins": ["@typescript-eslint"],
   "ignorePatterns": ["node_modules/"],
   "env": {
@@ -19,6 +12,8 @@
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-empty-interface": "off"
+    "@typescript-eslint/no-empty-interface": "off",
+    "@next/next/no-document-import-in-page": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }

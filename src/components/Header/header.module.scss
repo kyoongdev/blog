@@ -1,36 +1,39 @@
-@use "src/styles/mixins" as m;
-@use "src/styles/constants" as c;
+@use 'src/styles/mixins' as m;
+@use 'src/styles/constants' as c;
 
 .header {
   position: fixed;
-  width: 100%;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
   height: 72px;
-
-  padding: 16px 0px;
+  padding: 16px 12%;
+  color: c.$C_WHITE;
+  background-color: c.$C_PRIMARY_DARK;
+  transform: translateX(-50%);
   @include m.flex(space-between);
-  background-color: c.$C_WHITE;
-  @include m.desktopOnly {
-    max-width: 1200px;
-  }
+
   @include m.tabletOnly {
     padding: 16px 12px;
   }
 
   > h1 {
+    flex-basis: 0;
+    flex-grow: 1;
     font-size: 24px;
     font-weight: 600;
-    color: c.$C_PRIMARY_DARK;
   }
 
   > h1:last-of-type {
+    flex-basis: 0;
+    flex-grow: 1;
     font-size: 36px;
     font-weight: 600;
-    color: c.$C_PRIMARY_DARK;
   }
+
   .logo {
+    flex-basis: 0;
+    flex-grow: 1;
     width: 120px;
     height: 120px;
     object-fit: cover;

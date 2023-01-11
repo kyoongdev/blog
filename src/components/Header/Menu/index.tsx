@@ -1,14 +1,18 @@
-import React, { useState } from "react";
-import cx from "classnames";
-import styles from "./menu.module.scss";
-import MenuIcon from "../../../../public/assets/svg/menu.svg";
+import React from 'react';
+import cx from 'classnames';
+import styles from './menu.module.scss';
+import MenuIcon from '../../../../public/assets/svg/menu.svg';
+import useClickOutside from 'hooks/useClickOutside';
 
 const Menu: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>();
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+
+  const dropdownRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false), isOpen);
 
   const onClickIcon = () => setIsOpen((isOpen) => !isOpen);
+
   return (
-    <div className={styles.dropdown}>
+    <div className={styles.dropdown} ref={dropdownRef}>
       <div onClick={onClickIcon}>
         <MenuIcon />
       </div>

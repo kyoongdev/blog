@@ -1,39 +1,53 @@
-@use "src/styles/mixins" as m;
+@use 'src/styles/mixins' as m;
+@use 'src/styles/constants' as c;
+
 .dropdown {
   position: relative;
   width: 40px;
   height: 40px;
+
+  > div {
+    width: 40px;
+    height: 40px;
+    @include m.flex(center, center, column);
+  }
 }
 
 .dropdownMenu {
   position: absolute;
-  top: 60;
-  right: 4px;
-  z-index: 20;
+  top: 44px;
+  right: 6px;
+  z-index: 9999;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 50px;
+  width: 120px;
   max-height: 0;
-  padding: 0;
-  margin: 0;
   overflow-x: hidden;
-  overflow-y: scroll;
   list-style: none;
   visibility: hidden;
-
+  background-color: c.$C_WHITE;
+  border-radius: 4px;
+  box-shadow: 0 0 12px 2px rgba(0, 0, 0, 100%);
   transition: max-height 0.2s, visibility 0.2s;
   transition-timing-function: linear;
+
   &.isOpen {
-    visibility: visible;
     max-height: 200px;
+    visibility: visible;
   }
 }
 
 .dropdownItem {
-  text-align: center;
+  min-height: 40px;
   line-height: 32px;
-  min-height: 32px;
+  text-align: center;
+  cursor: pointer;
 
-  @include m.fontH2("medium");
+  @include m.fontH2('medium');
+
+  &:hover {
+    color: c.$C_WHITE;
+    background-color: c.$C_PRIMARY_DARK;
+  }
 }
