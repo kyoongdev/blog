@@ -29,8 +29,8 @@ const nextConfig = {
     return conf;
   },
   exportPathMap: () => ({
-    '/': { page: '/' },
-    '/blogs': { page: '/blogs' },
+    '/': { page: 'app/pages.tsx' },
+    '/blogs': { page: 'app/blogs/page.tsx' },
   }),
 };
 
