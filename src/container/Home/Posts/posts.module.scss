@@ -1,0 +1,17 @@
+@use 'src/styles/mixins' as m;
+@use 'src/styles/constants' as c;
+
+.container {
+  margin-top: 40px;
+}
+
+.listWrapper {
+  @include m.flex(center, center, column);
+  gap: 12px;
+}
+
+.listItem {
+  cursor: pointer;
+  border: 1px solid c.$C_GRAY_7;
+  border-radius: 8px;
+}

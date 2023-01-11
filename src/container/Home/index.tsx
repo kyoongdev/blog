@@ -2,6 +2,7 @@ import RootLayout from 'components/Layout';
 import React from 'react';
 import Categorires from './Categories';
 import styles from './home.module.scss';
+import Posts from './Posts';
 
 const HomePage = () => {
   return (
@@ -18,6 +19,7 @@ const HomePage = () => {
         </article>
       </section>
       <Categorires />
+      <Posts />
     </RootLayout>
   );
 };

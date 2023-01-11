@@ -14,17 +14,36 @@
     @include m.flex(center, center, row);
 
     > span {
-      flex-basis: 0;
-      flex-grow: 1;
       font-size: 42px;
       font-weight: 600;
       color: c.$C_BLACK;
       text-align: center;
+
+      @include m.desktopOnly {
+        flex-basis: 0;
+        flex-grow: 1;
+      }
+
+      @include m.tabletOnly {
+        font-size: 32px;
+      }
+
+      @include m.mobileOnly {
+        font-size: 20px;
+      }
     }
   }
 
   > div > span + span {
     margin-left: 72px;
+
+    @include m.tabletOnly {
+      margin-left: 36px;
+    }
+
+    @include m.mobileOnly {
+      margin-left: 20px;
+    }
   }
 
   > hr {
