@@ -31,7 +31,10 @@
   max-width: 1200px;
   margin: 0 auto;
   margin-top: 42px;
-  @include m.mobileOnly {
+  @include m.tabletOnly {
+    display: flex;
     flex-direction: column-reverse;
+    align-items: center;
+    width: 100%;
   }
 }
