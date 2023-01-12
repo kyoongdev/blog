@@ -15,22 +15,21 @@
 
 .categories {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 12px;
   width: 100%;
   margin-top: 12px;
   overflow-x: scroll;
 
   > li {
-    width: 100%;
-    height: 42px;
-    font-size: 20px;
-    line-height: 42px;
-    color: c.$C_GRAY_4;
+    padding: 8px 12px;
+    color: c.$C_WHITE;
     text-align: center;
     cursor: pointer;
-    border: 1px solid c.$C_GRAY_7;
-    border-radius: 8px;
+    background-color: c.$C_GRAY_7;
+    border-radius: 12px;
+
+    @include m.fontB16(medium);
 
     @include m.tabletOnly {
       @include m.fontB16(medium);
@@ -38,11 +37,6 @@
 
     @include m.mobileOnly {
       @include m.fontB12(medium);
-    }
-
-    &:hover {
-      color: c.$C_WHITE;
-      background-color: c.$C_GRAY_7;
     }
   }
 }
