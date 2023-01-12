@@ -8,7 +8,6 @@ const Header: React.FC = () => {
     <header className={styles.header}>
       <div>
         <h1>KyoongDev Notes</h1>
-        <h1>KY</h1>
         <Menu />
       </div>
     </header>

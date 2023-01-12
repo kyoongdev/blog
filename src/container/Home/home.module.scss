@@ -1,56 +1,37 @@
 @use 'src/styles/constants' as c;
 @use 'src/styles/mixins' as m;
 
-.container {
+.mainInfo {
+  @include m.flex(flex-start, center, column);
+  max-width: 1200px;
   height: 200px;
+  padding: 0 20px;
+  margin: 0 auto;
+  border-bottom: 1px solid c.$C_GRAY_7;
 
-  @include m.flex(center, center, column);
+  > p:first-of-type {
+    @include m.fontB18(medium);
+    color: c.$C_GRAY_4;
+  }
+
+  > p:last-of-type {
+    @include m.fontH2(bold);
+    margin-top: 4px;
+    color: c.$C_BLACK;
+  }
+
+  @include m.flex(center, flex-start, column);
 }
 
-.mainInfo {
-  @include m.flex(center, center, column);
-
-  > div {
-    @include m.flex(center, center, row);
-
-    > span {
-      font-size: 42px;
-      font-weight: 600;
-      color: c.$C_BLACK;
-      text-align: center;
-
-      @include m.desktopOnly {
-        flex-basis: 0;
-        flex-grow: 1;
-      }
-
-      @include m.tabletOnly {
-        font-size: 32px;
-      }
-
-      @include m.mobileOnly {
-        font-size: 28px;
-      }
-    }
-  }
-
-  > div > span + span {
-    margin-left: 72px;
-
-    @include m.tabletOnly {
-      margin-left: 36px;
-    }
-
-    @include m.mobileOnly {
-      margin-left: 20px;
-    }
-  }
-
-  > hr {
-    width: 120px;
-    height: 5px;
-    margin-top: 24px;
-    background-color: rgba(0, 0, 0, 87%);
-    border: none;
+.body {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  gap: 20px;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 42px;
+  @include m.mobileOnly {
+    flex-direction: column-reverse;
   }
 }
