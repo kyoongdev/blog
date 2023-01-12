@@ -2,7 +2,12 @@
 @use 'src/styles/constants' as c;
 
 .container {
-  margin-top: 40px;
+  max-width: 720px;
+  margin: 40px auto 0;
+
+  @include m.mobileOnly {
+    max-width: 340px;
+  }
 }
 
 .listWrapper {
@@ -11,7 +16,58 @@
 }
 
 .listItem {
+  position: relative;
+  width: 100%;
+  padding: 16px;
   cursor: pointer;
-  border: 1px solid c.$C_GRAY_7;
+  border: 1px solid c.$C_GRAY_4;
   border-radius: 8px;
+
+  .listTitle {
+    @include m.fontB18('medium');
+  }
+
+  .tags {
+    @include m.flex(flex-start, center);
+    gap: 8px;
+
+    > li {
+      padding: 4px 8px;
+      margin-top: 8px;
+      color: c.$C_WHITE;
+      background-color: c.$C_PRIMARY;
+      border-radius: 12px;
+    }
+  }
+
+  .description {
+    max-width: 65%;
+    margin-top: 12px;
+    line-height: 24px;
+    color: c.$C_GRAY_4;
+    @include m.mobileOnly {
+      max-width: 100%;
+    }
+  }
+
+  .thumbnail {
+    @include m.desktopOnly {
+      position: absolute;
+      top: 50%;
+      right: 32px;
+      transform: translateY(-50%);
+    }
+
+    @include m.mobileOnly {
+      display: block;
+      width: 100%;
+      object-fit: contain;
+      margin: 0 auto 12px;
+    }
+  }
+
+  > footer {
+    margin-top: 12px;
+    color: c.$C_GRAY_6;
+  }
 }

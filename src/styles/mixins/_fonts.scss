@@ -28,6 +28,16 @@ $FONT_WEIGHT_MAP: (
   font-weight: _getFontWeightValue($fw);
 }
 
+@mixin fontB20($fw) {
+  font-size: 20px;
+  font-weight: _getFontWeightValue($fw);
+}
+
+@mixin fontB18($fw) {
+  font-size: 18px;
+  font-weight: _getFontWeightValue($fw);
+}
+
 @mixin fontB16($fw) {
   font-size: 16px;
   font-weight: _getFontWeightValue($fw);

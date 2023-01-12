@@ -1,14 +1,6 @@
 @use 'src/styles/mixins' as m;
 
 .main {
-  padding: 72px 0 0;
+  padding: 72px 0;
   margin: 0 auto;
-
-  // @include m.desktopOnly {
-  //   max-width: 1200px;
-  // }
-
-  // @include m.tabletOnly {
-  //   padding: 80px 12px 0;
-  // }
 }
