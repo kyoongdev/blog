@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './categories.module.scss';
 
 const Categorires: React.FC = () => {

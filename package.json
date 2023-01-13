@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "lint:fix": "eslint --fix --ext .ts.tsx",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx",
     "prettier:fix": "prettier src/**/*.ts src/**/*.tsx --write",
     "stylelint:fix": "stylelint 'src/**/*.scss' --fix",
     "pre-commit": "lint-staged"

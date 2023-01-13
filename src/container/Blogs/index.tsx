@@ -1,6 +1,8 @@
 import React from 'react';
-import { blogs } from 'data';
+
 import styles from './blogs.module.scss';
+
+import { blogs } from 'data';
 
 interface Props {
   id: string;
