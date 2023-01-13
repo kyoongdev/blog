@@ -21,6 +21,10 @@
   margin-top: 12px;
   border-bottom: 1px solid c.$C_GRAY_7;
 
+  li {
+    list-style: none;
+  }
+
   .title {
     @include m.flex(flex-start, flex-end);
 
