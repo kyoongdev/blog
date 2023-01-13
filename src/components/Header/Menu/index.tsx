@@ -1,9 +1,11 @@
-import React from 'react';
 import cx from 'classnames';
+import Link from 'next/link';
+import React from 'react';
+
 import styles from './menu.module.scss';
 import MenuIcon from '../../../../public/assets/svg/menu.svg';
+
 import useClickOutside from 'hooks/useClickOutside';
-import Link from 'next/link';
 
 const Menu: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);

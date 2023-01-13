@@ -1,10 +1,13 @@
-import React from 'react';
-import styles from './posts.module.scss';
+import dayjs from 'dayjs';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import React from 'react';
+
+import styles from './posts.module.scss';
+
 import { blogs } from 'data';
 import { TBlog } from 'data/type';
-import dayjs from 'dayjs';
-import { useRouter } from 'next/router';
+
 interface PostProps extends TBlog {
   onRoute: () => void;
 }
