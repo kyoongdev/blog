@@ -6,7 +6,7 @@ import Posts from './Posts';
 
 const HomePage = () => {
   return (
-    <RootLayout>
+    <>
       <article className={styles.mainInfo}>
         <p>Be Curious and Inspired</p>
         <p>KyoongDev의 기술 블로그</p>
@@ -15,7 +15,7 @@ const HomePage = () => {
         <Posts />
         <Categorires />
       </section>
-    </RootLayout>
+    </>
   );
 };
 

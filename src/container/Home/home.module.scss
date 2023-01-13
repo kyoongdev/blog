@@ -3,7 +3,6 @@
 
 .mainInfo {
   @include m.flex(flex-start, center, column);
-  max-width: 1200px;
   height: 200px;
   padding: 0 20px;
   margin: 0 auto;
@@ -28,7 +27,6 @@
   grid-template-columns: 4fr 1fr;
   gap: 20px;
   align-items: flex-start;
-  max-width: 1200px;
   margin: 0 auto;
   margin-top: 42px;
   @include m.tabletOnly {

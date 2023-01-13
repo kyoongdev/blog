@@ -1,9 +1,14 @@
 @use 'src/styles/mixins' as m;
 @use 'src/styles/constants' as c;
 
+.container {
+  width: 100%;
+}
+
 .listWrapper {
-  @include m.flex(center, center, column);
   gap: 12px;
+  width: 100%;
+  @include m.flex(center, center, column);
 }
 
 .listItem {

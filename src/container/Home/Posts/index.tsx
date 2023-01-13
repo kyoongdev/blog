@@ -1,40 +1,50 @@
 import React from 'react';
 import styles from './posts.module.scss';
-import exampleImage from '../../../../public/assets/images/logo.png';
 import Image from 'next/image';
+import { blogs } from 'data';
+import { TBlog } from 'data/type';
+import dayjs from 'dayjs';
+import { useRouter } from 'next/router';
+interface PostProps extends TBlog {
+  onRoute: () => void;
+}
 
-const Post: React.FC = () => {
-  return (
-    <li className={styles.listItem}>
-      <Image className={styles.thumbnail} src={exampleImage} alt='asdf' width={120} height={120} />
-      <header className={styles.listTitle}>
-        오늘 공부하면서 느낀 점
-        <ul className={styles.tags}>
-          <li>프런트엔드</li>
-          <li>인간관계</li>
-        </ul>
-      </header>
-      <p className={styles.description}>
-        아 개발 정말 재밌다...아 개발 정말 재밌다...아 개발 정말 재밌다...아 개발 정말 재밌다...아
-        개발 정말 재밌다...아 개발 정말 재밌다...
-      </p>
-      <footer>2023.01.12</footer>
-    </li>
-  );
-};
+const Post: React.FC<PostProps> = React.memo(
+  ({ title, date, thumbnail, description, tags, onRoute }) => {
+    return (
+      <li className={styles.listItem} onClick={onRoute}>
+        <Image
+          className={styles.thumbnail}
+          src={`${thumbnail}`}
+          alt='asdf'
+          width={120}
+          height={120}
+        />
+        <header className={styles.listTitle}>
+          {title}
+          <ul className={styles.tags}>
+            {tags.map((tag) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        </header>
+        <p className={styles.description}>{description}</p>
+        <footer>{dayjs(date).format('YYYY.MM.DD')}</footer>
+      </li>
+    );
+  },
+);
 
 const Posts: React.FC = () => {
+  const router = useRouter();
+
+  const onRoute = (id: string) => () => router.push(`/blogs/${id}`);
   return (
-    <section>
+    <section className={styles.container}>
       <ul className={styles.listWrapper}>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {blogs.map((blog) => (
+          <Post {...blog} onRoute={onRoute(blog.id)} />
+        ))}
       </ul>
     </section>
   );
