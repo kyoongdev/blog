@@ -27,7 +27,7 @@ const Post: React.FC<PostProps> = React.memo(
           {title}
           <ul className={styles.tags}>
             {tags.map((tag) => (
-              <li>{tag}</li>
+              <li key={tag}>{tag}</li>
             ))}
           </ul>
         </header>
@@ -45,8 +45,8 @@ const Posts: React.FC = () => {
   return (
     <section className={styles.container}>
       <ul className={styles.listWrapper}>
-        {blogs.map((blog) => (
-          <Post key={`blog-${blog.id}`} {...blog} onRoute={onRoute(blog.id)} />
+        {blogs.map((blog, index) => (
+          <Post key={`blog-${blog.id}-${index}`} {...blog} onRoute={onRoute(blog.id)} />
         ))}
       </ul>
     </section>
