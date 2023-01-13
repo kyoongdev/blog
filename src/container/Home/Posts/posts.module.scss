@@ -17,10 +17,19 @@
     @include m.fontH2(medium);
     @include m.flex(flex-start, center, row);
 
+    @include m.mobileOnly {
+      @include m.flex(flex-start, flex-start, column);
+      font-size: 20px;
+    }
+
     .tags {
       gap: 8px;
       margin-left: 24px;
       @include m.flex(flex-start, center);
+      @include m.mobileOnly {
+        margin-top: 8px;
+        margin-left: 0;
+      }
 
       > li {
         padding: 4px 8px;
@@ -28,6 +37,10 @@
         background-color: c.$C_PRIMARY;
         border-radius: 12px;
         @include m.fontB16('regular');
+
+        @include m.mobileOnly {
+          @include m.fontB12('regular');
+        }
       }
     }
   }
@@ -39,6 +52,7 @@
     color: c.$C_GRAY_4;
     @include m.mobileOnly {
       max-width: 100%;
+      margin-top: 8px;
     }
   }
 

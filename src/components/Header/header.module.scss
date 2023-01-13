@@ -34,13 +34,10 @@
       flex-grow: 1;
       font-size: 24px;
       font-weight: 600;
-    }
 
-    > h1:last-of-type {
-      flex-basis: 0;
-      flex-grow: 1;
-      font-size: 36px;
-      font-weight: 600;
+      @include m.mobileOnly {
+        font-size: 20px;
+      }
     }
 
     .logo {

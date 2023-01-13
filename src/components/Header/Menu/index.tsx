@@ -17,14 +17,16 @@ const Menu: React.FC = () => {
       <div onClick={onClickIcon}>
         <MenuIcon />
       </div>
-      <menu className={cx(styles.dropdownMenu, { [styles.isOpen]: isOpen })}>
-        <li className={styles.dropdownItem}>
-          <Link href={'/'}>Home</Link>
-        </li>
-        <li className={styles.dropdownItem}>
-          <Link href={'/blogs'}>Blogs</Link>
-        </li>
-      </menu>
+      <nav className={cx(styles.dropdownMenu, { [styles.isOpen]: isOpen })}>
+        <ul>
+          <li className={styles.dropdownItem}>
+            <Link href={'/'}>Home</Link>
+          </li>
+          <li className={styles.dropdownItem}>
+            <Link href={'/blogs'}>Blogs</Link>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };

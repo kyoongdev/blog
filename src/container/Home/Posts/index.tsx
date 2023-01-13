@@ -14,7 +14,6 @@ const Post: React.FC = () => {
           <li>인간관계</li>
         </ul>
       </header>
-
       <p className={styles.description}>
         아 개발 정말 재밌다...아 개발 정말 재밌다...아 개발 정말 재밌다...아 개발 정말 재밌다...아
         개발 정말 재밌다...아 개발 정말 재밌다...
