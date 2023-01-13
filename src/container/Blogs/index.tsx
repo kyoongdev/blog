@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './blogs.module.scss';
+// import styles from './blogs.module.scss';
 
 import { blogs } from 'data';
 

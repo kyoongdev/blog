@@ -7,11 +7,16 @@
     "plugin:import/recommended"
   ],
   "plugins": ["@typescript-eslint"],
-  "ignorePatterns": ["node_modules/"],
+  "ignorePatterns": ["node_modules/", "out/", "public/", ".vscode", "next.config.js"],
   "env": {
     "browser": true,
     "node": true
   },
+  "parserOptions": {
+    "tsconfigRootDir": ".",
+    "project": ["./tsconfig.json"]
+  },
+  "root": true,
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/ban-types": "off",
