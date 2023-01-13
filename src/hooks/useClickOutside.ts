@@ -10,9 +10,7 @@ const useClickOutside = <T extends HTMLElement>(
     if (!detectCondition) return;
 
     const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        func();
-      }
+      if (ref.current && !ref.current.contains(event.target as Node)) func();
     };
 
     document.addEventListener('mousedown', handleClickOutside);
