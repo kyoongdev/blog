@@ -44,7 +44,7 @@ const Posts: React.FC = () => {
   const onRoute = (id: string) => () => router.push(`/blogs/${id}`);
   return (
     <section className={styles.container}>
-      <ul className={styles.listWrapper}>
+      <ul key={'blogs'} className={styles.listWrapper}>
         {blogs.map((blog, index) => (
           <Post key={`blog-${blog.id}-${index}`} {...blog} onRoute={onRoute(blog.id)} />
         ))}
