@@ -1,2 +1,51 @@
 @use 'src/styles/mixins' as m;
 @use 'src/styles/constants' as c;
+
+.container {
+  max-width: 900px;
+  margin: 24px auto 0;
+
+  @include m.mobileOnly {
+    padding: 0 20px;
+  }
+}
+
+.thumbnail {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+}
+
+.header {
+  padding-bottom: 28px;
+  margin-top: 12px;
+  border-bottom: 1px solid c.$C_GRAY_7;
+
+  .title {
+    @include m.flex(flex-start, flex-end);
+
+    > p {
+      margin-left: 12px;
+      color: c.$C_GRAY_6;
+      @include m.fontB16('light');
+    }
+
+    > h1 {
+      font-size: 40px;
+      font-weight: 700;
+    }
+  }
+
+  .tags {
+    @include m.flex(flex-start);
+    gap: 12px;
+    margin-top: 12px;
+
+    > li {
+      padding: 4px 8px;
+      color: c.$C_WHITE;
+      background-color: c.$C_PRIMARY;
+      border-radius: 12px;
+    }
+  }
+}

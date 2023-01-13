@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const withFonts = require('next-fonts');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -27,4 +28,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withFonts(nextConfig);

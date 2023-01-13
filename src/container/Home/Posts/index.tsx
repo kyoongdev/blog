@@ -46,7 +46,7 @@ const Posts: React.FC = () => {
     <section className={styles.container}>
       <ul className={styles.listWrapper}>
         {blogs.map((blog) => (
-          <Post {...blog} onRoute={onRoute(blog.id)} />
+          <Post key={`blog-${blog.id}`} {...blog} onRoute={onRoute(blog.id)} />
         ))}
       </ul>
     </section>

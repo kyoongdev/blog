@@ -5,7 +5,9 @@ class MyDocument extends Document {
     return (
       // html 태그에 언어 설정
       <Html lang='ko'>
-        <Head />
+        <Head>
+          <link rel='stylesheet' href='github-markdown.css' />
+        </Head>
         <body>
           <Main />
           <NextScript />
