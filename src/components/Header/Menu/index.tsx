@@ -5,6 +5,7 @@ import React from 'react';
 import styles from './menu.module.scss';
 import MenuIcon from '../../../../public/assets/svg/menu.svg';
 
+import DrawerEventEmitter from 'components/Drawer/DrawerEventEmitter';
 import useClickOutside from 'hooks/useClickOutside';
 
 const Menu: React.FC = () => {
@@ -12,14 +13,17 @@ const Menu: React.FC = () => {
 
   const dropdownRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false), isOpen);
 
-  const onClickIcon = () => setIsOpen((isOpen) => !isOpen);
+  const onClickIcon = React.useCallback(() => {
+    console.log('ASDF');
+    DrawerEventEmitter.add();
+  }, []);
 
   return (
     <div className={styles.dropdown} ref={dropdownRef}>
       <div onClick={onClickIcon}>
         <MenuIcon />
       </div>
-      <nav className={cx(styles.dropdownMenu, { [styles.isOpen]: isOpen })}>
+      {/* <nav className={cx(styles.dropdownMenu, { [styles.isOpen]: isOpen })}>
         <ul>
           <li className={styles.dropdownItem}>
             <Link href={'/'}>Home</Link>
@@ -28,7 +32,7 @@ const Menu: React.FC = () => {
             <Link href={'/blogs'}>Blogs</Link>
           </li>
         </ul>
-      </nav>
+      </nav> */}
     </div>
   );
 };

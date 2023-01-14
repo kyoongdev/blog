@@ -1,0 +1,38 @@
+@use 'src/styles/mixins' as m;
+@use 'src/styles/constants' as c;
+
+.wrapper {
+  z-index: c.$Z_MODAL;
+  @include m.fixed(0 0 0 0);
+  @include m.flex;
+  transition: all 200ms;
+
+  &:not(.isOpen) {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .isOpen {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.overlay {
+  @include m.absoluteZero;
+  background-color: rgba(0, 0, 0, 30%);
+}
+
+.drawer {
+  .title {
+    @include m.fontH1(medium);
+  }
+
+  .nav {
+    .navItemWrapper {
+      @include m.flex(flex-start, flex-start, column);
+      padding: 0 12px;
+      margin-top: 24px;
+    }
+  }
+}
