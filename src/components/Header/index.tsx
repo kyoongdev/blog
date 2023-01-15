@@ -10,7 +10,7 @@ const Header: React.FC = () => {
     <header className={styles.header}>
       <div>
         <h1>
-          <Link href='/'>KyoongDev Notes</Link>
+          <Link href='/'>Kyoongdev Village</Link>
         </h1>
         <Menu />
       </div>

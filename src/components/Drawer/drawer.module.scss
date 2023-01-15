@@ -32,19 +32,69 @@
 .drawer {
   position: absolute;
   right: 0;
+  padding-top: 72px;
   background-color: c.$C_WHITE;
   transition: width 0.2s;
   transition-timing-function: linear;
 
   .title {
+    color: c.$C_DARK_GRAY;
+    text-align: center;
+    cursor: pointer;
     @include m.fontH1(medium);
+
+    > a {
+      color: c.$C_DARK_GRAY;
+    }
   }
 
   .nav {
+    margin-top: 72px;
+
     .navItemWrapper {
       @include m.flex(flex-start, flex-start, column);
-      padding: 0 12px;
-      margin-top: 24px;
+
+      .ripple {
+        position: relative;
+        width: 100%;
+        height: 56px;
+        padding: 0 32px;
+        overflow: hidden;
+        color: #000000;
+        text-decoration: none;
+        list-style: none;
+        cursor: pointer;
+
+        > a {
+          line-height: 56px;
+          @include m.fontB20(regular);
+          color: c.$C_BLACK;
+        }
+
+        &:hover {
+          background-color: c.$C_GRAY_9;
+        }
+
+        .animate {
+          position: absolute;
+          width: 100%;
+          height: 56px;
+          background-color: c.$C_GRAY_7;
+          border-radius: 100%;
+          animation: ripple 0.5s linear;
+        }
+      }
     }
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(4);
   }
 }
