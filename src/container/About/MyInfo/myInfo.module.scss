@@ -4,6 +4,7 @@
 .container {
   display: grid;
   grid-template-columns: 2fr 1fr;
+  row-gap: 12px;
   align-items: center;
   padding: 102px 0 72px;
   border-bottom: 1px solid c.$C_GRAY_7;
@@ -29,8 +30,6 @@
 }
 
 .aboutMe {
-  // padding: 36px 0;
-
   li {
     @include m.flex(flex-start, center);
     gap: 8px;
@@ -46,5 +45,21 @@
         margin-left: 12px;
       }
     }
+  }
+}
+
+.description {
+  > p {
+    @include m.fontB16(regular);
+    line-height: 24px;
+    color: c.$C_GRAY_3;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  .values > strong {
+    margin-left: 6px;
   }
 }
