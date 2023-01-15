@@ -1,12 +1,14 @@
+import React from 'react';
+
 import Categorires from './Categories';
 import styles from './home.module.scss';
 import Posts from './Posts';
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <>
       <article className={styles.mainInfo}>
-        <p>Be Curious and Inspired</p>
+        <p>보이지 않는 가치를 찾는 개발자</p>
         <p>KyoongDev의 기술 블로그</p>
       </article>
       <section className={styles.body}>

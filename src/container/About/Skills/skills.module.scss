@@ -1,0 +1,71 @@
+@use 'src/styles/mixins' as m;
+@use 'src/styles/constants' as c;
+
+.container {
+  margin-top: 32px;
+
+  > h1 {
+    @include m.fontH1(medium);
+  }
+
+  .skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 24px;
+  }
+}
+
+.skill {
+  padding: 12px 12px 24px;
+  border-radius: 4px;
+  box-shadow: 0 0 12px 4px c.$C_GRAY_7;
+  transition: transform ease-in-out 0.3s;
+
+  > div {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    gap: 24px;
+    margin-top: 16px;
+  }
+
+  > h1 {
+    @include m.fontH2(medium);
+    padding-bottom: 12px;
+    color: c.$C_GRAY_2;
+    border-bottom: 1px solid c.$C_GRAY_7;
+  }
+
+  .main {
+    gap: 8px;
+    border-right: 1px solid c.$C_GRAY_7;
+
+    li {
+      @include m.flex;
+      list-style: none;
+
+      > img {
+        object-fit: contain;
+      }
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+  }
+
+  .sub {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    > li {
+      @include m.fontB18(medium);
+      color: c.$C_GRAY_2;
+      list-style: none;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+  }
+}

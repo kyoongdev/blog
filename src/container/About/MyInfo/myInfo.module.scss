@@ -1,0 +1,50 @@
+@use 'src/styles/mixins' as m;
+@use 'src/styles/constants' as c;
+
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  padding: 102px 0 72px;
+  border-bottom: 1px solid c.$C_GRAY_7;
+}
+
+.myInfo {
+  width: 100%;
+
+  h1 {
+    @include m.fontH1(regular);
+    color: c.$C_DARK_GRAY;
+  }
+
+  > div {
+    @include m.flex(flex-start);
+    margin-top: 8px;
+
+    .name {
+      margin: 0 12px;
+      font-weight: 700;
+    }
+  }
+}
+
+.aboutMe {
+  // padding: 36px 0;
+
+  li {
+    @include m.flex(flex-start, center);
+    gap: 8px;
+    height: 32px;
+    line-height: 32px;
+    list-style: none;
+    cursor: pointer;
+
+    > p {
+      @include m.fontB16(medium);
+
+      > span {
+        margin-left: 12px;
+      }
+    }
+  }
+}

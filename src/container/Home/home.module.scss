@@ -9,12 +9,12 @@
   border-bottom: 1px solid c.$C_GRAY_7;
 
   > p:first-of-type {
-    @include m.fontB18(medium);
+    @include m.fontB20(medium);
     color: c.$C_GRAY_4;
   }
 
   > p:last-of-type {
-    @include m.fontH2(bold);
+    @include m.fontH1(bold);
     margin-top: 4px;
     color: c.$C_BLACK;
   }

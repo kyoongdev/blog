@@ -11,14 +11,14 @@
   &.enterDone,
   &.exit {
     .drawer {
-      width: 320px;
+      right: 0;
     }
   }
 
   &.exitActive,
   &.enter {
     .drawer {
-      width: 0;
+      right: -100%;
     }
   }
 }
@@ -31,11 +31,13 @@
 
 .drawer {
   position: absolute;
-  right: 0;
+  top: 0;
+  right: -100%;
+  width: 320px;
   padding-top: 72px;
   background-color: c.$C_WHITE;
-  transition: width 0.2s;
-  transition-timing-function: linear;
+  transition: right ease-out 0s;
+  transition: right ease-in 0.3s;
 
   .title {
     color: c.$C_DARK_GRAY;
@@ -66,9 +68,10 @@
         cursor: pointer;
 
         > a {
+          margin-left: 12px;
           line-height: 56px;
-          @include m.fontB20(regular);
           color: c.$C_BLACK;
+          @include m.fontB20(regular);
         }
 
         &:hover {

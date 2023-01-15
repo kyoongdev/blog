@@ -48,7 +48,7 @@ const DrawerComponent: React.FC = () => {
   return (
     <CSSTransition
       in={isOpen}
-      timeout={200}
+      timeout={100}
       classNames={{
         enterDone: styles.enterDone,
         exitActive: styles.exitActive,
@@ -56,6 +56,7 @@ const DrawerComponent: React.FC = () => {
         enter: styles.enter,
       }}
       unmountOnExit
+      mountOnEnter
     >
       <div className={styles.wrapper}>
         <div className={styles.overlay} role='button' tabIndex={0} onClick={onClose} />
@@ -72,6 +73,7 @@ const DrawerComponent: React.FC = () => {
                   tabIndex={index}
                   className={styles.ripple}
                 >
+                  <span>{menu.icon}</span>
                   <Link href={menu.path}>{menu.name}</Link>
                 </li>
               ))}
