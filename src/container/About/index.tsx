@@ -1,6 +1,7 @@
 import React from 'react';
 
 import MyInfo from './MyInfo';
+import Projects from './Projects';
 import Skills from './Skills';
 
 const AboutPage: React.FC = () => {
@@ -8,6 +9,7 @@ const AboutPage: React.FC = () => {
     <>
       <MyInfo />
       <Skills />
+      <Projects />
     </>
   );
 };

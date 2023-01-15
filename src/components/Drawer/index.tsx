@@ -1,5 +1,6 @@
 import cx from 'classnames';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -14,10 +15,17 @@ import { MENU } from 'utils';
 const DrawerComponent: React.FC = () => {
   const rippleRef = React.useRef<HTMLLIElement[]>([]);
 
+  const router = useRouter();
   const { height } = useWindowSize();
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   const onClose = () => setIsOpen(false);
+
+  const onClickLink = (path: string) => {
+    return () => {
+      if (router.pathname !== path) setIsOpen(false);
+    };
+  };
 
   React.useEffect(() => {
     const handleClicked = (e: MouseEvent) => {
@@ -74,7 +82,9 @@ const DrawerComponent: React.FC = () => {
                   className={styles.ripple}
                 >
                   <span>{menu.icon}</span>
-                  <Link href={menu.path}>{menu.name}</Link>
+                  <Link href={menu.path} onClick={onClickLink(menu.path)}>
+                    {menu.name}
+                  </Link>
                 </li>
               ))}
             </ul>

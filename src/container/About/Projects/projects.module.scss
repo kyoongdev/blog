@@ -1,0 +1,122 @@
+@use 'src/styles/mixins' as m;
+@use 'src/styles/constants' as c;
+
+.container {
+  margin-top: 24px;
+
+  @include m.tabletOnly {
+    padding: 0 12px;
+  }
+
+  > h1 {
+    @include m.fontH1(medium);
+  }
+}
+
+.projects {
+  margin-top: 24px;
+}
+
+.project {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px;
+  list-style: none;
+  border-radius: 4px;
+  box-shadow: 0 0 12px 4px c.$C_GRAY_7;
+
+  .header {
+    @include m.flex(flex-start, flex-end);
+    padding-bottom: 12px;
+    border-bottom: 1px solid c.$C_GRAY_7;
+
+    > h1 {
+      @include m.fontH2(bold);
+      color: c.$C_GRAY_2;
+    }
+
+    .date {
+      margin-left: 8px;
+
+      > span {
+        font-size: 14px;
+        color: c.$C_GRAY_5;
+      }
+
+      > span + span {
+        margin-left: 4px;
+      }
+    }
+  }
+
+  .skillWrapper {
+    margin-top: 12px;
+    @include m.flex(flex-start);
+
+    @include m.tabletOnly {
+      display: block;
+    }
+
+    > h2 {
+      @include m.fontH3(medium);
+      color: c.$C_GRAY_2;
+    }
+
+    .skills {
+      @include m.flex(flex-start);
+      gap: 4px;
+      margin-left: 8px;
+
+      > li {
+        height: 20px;
+        padding: 0 8px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        color: c.$C_WHITE;
+        text-align: center;
+        list-style: none;
+        cursor: pointer;
+        background-color: c.$C_PRIMARY;
+        border-radius: 12px;
+      }
+
+      @include m.tabletOnly {
+        flex-wrap: wrap;
+        margin: 8px 0 0;
+      }
+    }
+  }
+
+  .description {
+    margin-top: 8px;
+
+    > h2 {
+      margin-bottom: 8px;
+      color: c.$C_GRAY_2;
+
+      @include m.fontH3(medium);
+      @include m.flex(flex-start);
+
+      > p {
+        height: 20px;
+        padding: 0 8px;
+        margin-left: 8px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        color: c.$C_WHITE;
+        text-align: center;
+        cursor: pointer;
+        background-color: c.$C_PRIMARY_DARK;
+        border-radius: 12px;
+      }
+    }
+
+    > p {
+      font-size: 16px;
+      line-height: 20px;
+      color: c.$C_GRAY_2;
+    }
+  }
+}

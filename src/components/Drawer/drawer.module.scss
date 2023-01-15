@@ -37,7 +37,10 @@
   padding-top: 72px;
   background-color: c.$C_WHITE;
   transition: right ease-out 0s;
-  transition: right ease-in 0.3s;
+  transition: right ease-in 0.2s;
+  @include m.tabletOnly {
+    width: 200px;
+  }
 
   .title {
     color: c.$C_DARK_GRAY;

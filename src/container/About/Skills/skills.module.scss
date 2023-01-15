@@ -2,7 +2,13 @@
 @use 'src/styles/constants' as c;
 
 .container {
+  padding-bottom: 52px;
   margin-top: 32px;
+  border-bottom: 1px solid c.$C_GRAY_7;
+
+  @include m.tabletOnly {
+    padding: 0 12px 32px;
+  }
 
   > h1 {
     @include m.fontH1(medium);
@@ -13,6 +19,10 @@
     grid-template-columns: 1fr 1fr;
     gap: 12px;
     margin-top: 24px;
+
+    @include m.tabletOnly {
+      @include m.flex(flex-start, flex-start, column);
+    }
   }
 }
 
@@ -21,12 +31,18 @@
   border-radius: 4px;
   box-shadow: 0 0 12px 4px c.$C_GRAY_7;
   transition: transform ease-in-out 0.3s;
+  @include m.tabletOnly {
+    width: 100%;
+  }
 
   > div {
     display: grid;
     grid-template-columns: 1fr 2.5fr;
     gap: 24px;
     margin-top: 16px;
+    @include m.tabletOnly {
+      gap: 12px;
+    }
   }
 
   > h1 {
@@ -62,6 +78,10 @@
       @include m.fontB18(medium);
       color: c.$C_GRAY_2;
       list-style: none;
+
+      @include m.tabletOnly {
+        font-size: 16px;
+      }
     }
   }
 
