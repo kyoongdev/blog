@@ -4,7 +4,7 @@ const useCSR = () => {
   const [isCSR, setIsCSR] = React.useState<boolean>(false);
 
   React.useEffect(() => setIsCSR(true), []);
-  console.log({ isCSR });
+
   return isCSR;
 };
 

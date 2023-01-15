@@ -9,7 +9,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <div id='#drawer' />
+          <div id='drawer' />
         </body>
       </Html>
     );

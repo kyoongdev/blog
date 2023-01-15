@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import React from 'react';
 
 import styles from './header.module.scss';
@@ -8,7 +9,9 @@ const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div>
-        <h1>KyoongDev Notes</h1>
+        <h1>
+          <Link href='/'>KyoongDev Notes</Link>
+        </h1>
         <Menu />
       </div>
     </header>

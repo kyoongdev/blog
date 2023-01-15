@@ -2,28 +2,40 @@
 @use 'src/styles/constants' as c;
 
 .wrapper {
+  position: relative;
   z-index: c.$Z_MODAL;
+
   @include m.fixed(0 0 0 0);
   @include m.flex;
-  transition: all 200ms;
 
-  &:not(.isOpen) {
-    visibility: hidden;
-    opacity: 0;
+  &.enterDone,
+  &.exit {
+    .drawer {
+      width: 320px;
+    }
   }
 
-  .isOpen {
-    visibility: visible;
-    opacity: 1;
+  &.exitActive,
+  &.enter {
+    .drawer {
+      width: 0;
+    }
   }
 }
 
 .overlay {
-  @include m.absoluteZero;
   background-color: rgba(0, 0, 0, 30%);
+
+  @include m.absoluteZero;
 }
 
 .drawer {
+  position: absolute;
+  right: 0;
+  background-color: c.$C_WHITE;
+  transition: width 0.2s;
+  transition-timing-function: linear;
+
   .title {
     @include m.fontH1(medium);
   }

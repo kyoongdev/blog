@@ -3,8 +3,8 @@ import Link from 'next/link';
 import React from 'react';
 
 import styles from './menu.module.scss';
-import MenuIcon from '../../../../public/assets/svg/menu.svg';
 
+import MenuIcon from 'assets/svg/menu.svg';
 import DrawerEventEmitter from 'components/Drawer/DrawerEventEmitter';
 import useClickOutside from 'hooks/useClickOutside';
 
