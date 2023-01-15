@@ -1,38 +1,18 @@
-import cx from 'classnames';
-import Link from 'next/link';
 import React from 'react';
 
 import styles from './menu.module.scss';
 
 import MenuIcon from 'assets/svg/menu.svg';
 import DrawerEventEmitter from 'components/Drawer/DrawerEventEmitter';
-import useClickOutside from 'hooks/useClickOutside';
 
 const Menu: React.FC = () => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
-
-  const dropdownRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false), isOpen);
-
-  const onClickIcon = React.useCallback(() => {
-    console.log('ASDF');
-    DrawerEventEmitter.add();
-  }, []);
+  const onClickIcon = React.useCallback(() => DrawerEventEmitter.add(), []);
 
   return (
-    <div className={styles.dropdown} ref={dropdownRef}>
+    <div className={styles.dropdown}>
       <div onClick={onClickIcon}>
         <MenuIcon />
       </div>
-      {/* <nav className={cx(styles.dropdownMenu, { [styles.isOpen]: isOpen })}>
-        <ul>
-          <li className={styles.dropdownItem}>
-            <Link href={'/'}>Home</Link>
-          </li>
-          <li className={styles.dropdownItem}>
-            <Link href={'/blogs'}>Blogs</Link>
-          </li>
-        </ul>
-      </nav> */}
     </div>
   );
 };

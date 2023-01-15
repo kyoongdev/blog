@@ -46,7 +46,9 @@
     margin-top: 12px;
 
     > li {
-      padding: 4px 8px;
+      height: 20px;
+      padding: 0 8px;
+      line-height: 20px;
       color: c.$C_WHITE;
       background-color: c.$C_PRIMARY;
       border-radius: 12px;

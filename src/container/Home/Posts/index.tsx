@@ -19,7 +19,7 @@ const Post: React.FC<PostProps> = React.memo(
         <Image
           className={styles.thumbnail}
           src={`${thumbnail}`}
-          alt='asdf'
+          alt='thumbnail'
           width={120}
           height={120}
         />

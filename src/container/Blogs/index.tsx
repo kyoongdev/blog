@@ -15,7 +15,7 @@ const Page: React.FC<Props> = ({ id }) => {
   const blog = blogs.find((blog) => blog.id === id);
 
   if (!blog) return <div>Not Found</div>;
-  console.log(blog.body);
+
   return (
     <section className={styles.container}>
       <Image

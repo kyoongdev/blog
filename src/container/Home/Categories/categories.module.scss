@@ -35,7 +35,9 @@
   }
 
   > li {
-    padding: 8px 12px;
+    height: 32px;
+    padding: 0 8px;
+    line-height: 32px;
     color: c.$C_WHITE;
     text-align: center;
     cursor: pointer;
@@ -44,10 +46,14 @@
     @include m.fontB16(medium);
 
     @include m.tabletOnly {
+      height: 24px;
+      line-height: 24px;
       @include m.fontB16(medium);
     }
 
     @include m.mobileOnly {
+      height: 24px;
+      line-height: 24px;
       @include m.fontB12(medium);
     }
   }
