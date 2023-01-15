@@ -7,7 +7,7 @@ export default {
     '아 개발 정말 재밌다...아 개발 정말 재밌다...아 개발 정말 재밌다...아 개발 정말 재밌다...아 개발 정말 재밌다...아 개발 정말 재밌다...',
   tags: ['프런트엔드', '인간관계'],
   date: '2023-01-01',
-  thumbnail: '/assets/images/logo.png',
+  thumbnail: '/assets/logo.png',
   body: `[공통] 마크다운 markdown 작성법
 ======================
 
