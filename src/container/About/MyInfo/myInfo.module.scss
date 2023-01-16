@@ -10,6 +10,10 @@
   border-bottom: 1px solid c.$C_GRAY_7;
 
   @include m.tabletOnly {
+    padding: 72px 12px 48px;
+  }
+
+  @include m.mobileOnly {
     padding: 32px 12px;
     @include m.flex(flex-start, flex-start, column);
   }
@@ -23,15 +27,25 @@
   h1 {
     @include m.fontH1(regular);
     color: c.$C_DARK_GRAY;
+
     @include m.tabletOnly {
+      font-size: 24px;
+    }
+
+    @include m.mobileOnly {
+      margin-bottom: 8px;
       @include m.fontH2(regular);
+    }
+
+    @include m.mini {
+      font-size: 18px;
     }
   }
 
   > div {
     @include m.flex(flex-start);
     margin-top: 8px;
-    @include m.tabletOnly {
+    @include m.mobileOnly {
       display: block;
 
       > h1:last-of-type {
@@ -42,7 +56,7 @@
     .name {
       margin: 0 12px;
       font-weight: 700;
-      @include m.tabletOnly {
+      @include m.mobileOnly {
         display: inline;
         margin: 0;
       }
@@ -88,5 +102,24 @@
 
   .values > strong {
     margin-left: 6px;
+  }
+
+  @include m.mini {
+    span {
+      display: block;
+    }
+
+    > p {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  @include m.mobileOnly {
+    margin-top: 12px;
+
+    .values > strong:first-of-type {
+      margin-left: 0;
+    }
   }
 }

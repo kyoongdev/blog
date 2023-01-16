@@ -43,6 +43,11 @@
     @include m.tabletOnly {
       gap: 12px;
     }
+
+    @include m.mobileOnly {
+      @include m.flex(center, center, column);
+      padding: 0 24px;
+    }
   }
 
   > h1 {
@@ -55,6 +60,12 @@
   .main {
     gap: 8px;
     border-right: 1px solid c.$C_GRAY_7;
+
+    @include m.mobileOnly {
+      width: 100%;
+      @include m.flex(space-between, center, row);
+      border: unset;
+    }
 
     li {
       @include m.flex;
@@ -73,6 +84,12 @@
   .sub {
     display: grid;
     grid-template-columns: 1fr 1fr;
+
+    @include m.mobileOnly {
+      row-gap: 12px;
+      column-gap: 28px;
+      width: 100%;
+    }
 
     > li {
       @include m.fontB18(medium);

@@ -33,6 +33,14 @@
     > h1 {
       @include m.fontH2(bold);
       color: c.$C_GRAY_2;
+
+      @include m.mobileOnly {
+        font-size: 20px;
+      }
+
+      @include m.mini {
+        font-size: 18px;
+      }
     }
 
     .date {
@@ -41,6 +49,10 @@
       > span {
         font-size: 14px;
         color: c.$C_GRAY_5;
+
+        @include m.mobileOnly {
+          font-size: 12px;
+        }
       }
 
       > span + span {
@@ -50,16 +62,20 @@
   }
 
   .skillWrapper {
-    margin-top: 12px;
+    margin-top: 16px;
     @include m.flex(flex-start);
 
-    @include m.tabletOnly {
+    @include m.mobileOnly {
       display: block;
     }
 
     > h2 {
       @include m.fontH3(medium);
       color: c.$C_GRAY_2;
+
+      @include m.mobileOnly {
+        font-size: 16px;
+      }
     }
 
     .skills {
@@ -81,22 +97,33 @@
         border-radius: 12px;
       }
 
-      @include m.tabletOnly {
+      @include m.mobileOnly {
         flex-wrap: wrap;
         margin: 8px 0 0;
+
+        > li {
+          height: 18px;
+          font-size: 12px;
+          line-height: 18px;
+        }
       }
     }
   }
 
   .description {
-    margin-top: 8px;
+    margin-top: 16px;
 
     > h2 {
-      margin-bottom: 8px;
+      margin-bottom: 16px;
       color: c.$C_GRAY_2;
 
       @include m.fontH3(medium);
       @include m.flex(flex-start);
+
+      @include m.mobileOnly {
+        font-size: 16px;
+        @include m.flex(flex-start, flex-start, column);
+      }
 
       > p {
         height: 20px;
@@ -110,6 +137,13 @@
         cursor: pointer;
         background-color: c.$C_PRIMARY_DARK;
         border-radius: 12px;
+
+        @include m.mobileOnly {
+          height: 18px;
+          margin: 8px 0 0;
+          font-size: 12px;
+          line-height: 18px;
+        }
       }
     }
 
