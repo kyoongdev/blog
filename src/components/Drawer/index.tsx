@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { createPortal } from 'react-dom';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import { useMount } from 'react-use';
 
 import styles from './drawer.module.scss';
@@ -18,6 +18,7 @@ const DrawerComponent: React.FC = () => {
   const router = useRouter();
   const { height } = useWindowSize();
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const [isSettled, setIsSettled] = React.useState<boolean>(false);
 
   const onClose = () => setIsOpen(false);
 
@@ -28,6 +29,8 @@ const DrawerComponent: React.FC = () => {
   };
 
   React.useEffect(() => {
+    if (rippleRef.current.length === 0 || !isSettled) return;
+
     const handleClicked = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const ripple = document.createElement('div');
@@ -45,7 +48,7 @@ const DrawerComponent: React.FC = () => {
     return () => {
       rippleRef.current.forEach((ref) => ref.removeEventListener('click', handleClicked));
     };
-  }, []);
+  }, [isSettled]);
 
   useMount(() => {
     const handleClick = () => setIsOpen(true);
@@ -56,15 +59,13 @@ const DrawerComponent: React.FC = () => {
   return (
     <CSSTransition
       in={isOpen}
-      timeout={100}
+      timeout={200}
       classNames={{
         enterDone: styles.enterDone,
         exitActive: styles.exitActive,
-        exit: styles.exit,
         enter: styles.enter,
       }}
       unmountOnExit
-      mountOnEnter
     >
       <div className={styles.wrapper}>
         <div className={styles.overlay} role='button' tabIndex={0} onClick={onClose} />
@@ -75,17 +76,20 @@ const DrawerComponent: React.FC = () => {
           <nav className={styles.nav}>
             <ul className={styles.navItemWrapper}>
               {MENU.map((menu, index) => (
-                <li
-                  key={`${menu.name}-${index}`}
-                  ref={(el) => (rippleRef.current[index] = el as HTMLLIElement)}
-                  tabIndex={index}
-                  className={styles.ripple}
-                >
-                  <span>{menu.icon}</span>
-                  <Link href={menu.path} onClick={onClickLink(menu.path)}>
-                    {menu.name}
-                  </Link>
-                </li>
+                <Link href={menu.path} onClick={onClickLink(menu.path)}>
+                  <li
+                    key={`${menu.name}-${index}`}
+                    ref={(el) => {
+                      rippleRef.current[index] = el as HTMLLIElement;
+                      index === MENU.length - 1 && setIsSettled(true);
+                    }}
+                    tabIndex={index}
+                    className={styles.ripple}
+                  >
+                    {menu.icon}
+                    <p>{menu.name}</p>
+                  </li>
+                </Link>
               ))}
             </ul>
           </nav>
