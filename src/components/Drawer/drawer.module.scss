@@ -8,16 +8,17 @@
   @include m.fixed(0 0 0 0);
   @include m.flex;
 
+  &.exit,
   &.enterDone {
     .drawer {
-      transform: translateX(-320px);
+      transform: translateX(0);
     }
   }
 
   &.enter,
   &.exitActive {
     .drawer {
-      transform: translateX(120px);
+      transform: translateX(100%);
     }
   }
 
@@ -39,11 +40,12 @@
 .drawer {
   position: absolute;
   top: 0;
-  right: -320px;
+  right: 0;
   width: 320px;
   padding-top: 72px;
   background-color: c.$C_WHITE;
   transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  transform: translateX(100%);
 
   @include m.tabletOnly {
     width: 200px;

@@ -35,15 +35,16 @@
   }
 
   > li {
-    height: 32px;
+    height: 24px;
     padding: 0 8px;
-    line-height: 32px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
     color: c.$C_WHITE;
     text-align: center;
     cursor: pointer;
     background-color: c.$C_PRIMARY_DARK;
     border-radius: 12px;
-    @include m.fontB16(medium);
 
     @include m.tabletOnly {
       height: 24px;

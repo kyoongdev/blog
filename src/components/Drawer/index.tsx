@@ -14,6 +14,7 @@ import { MENU } from 'utils';
 
 const DrawerComponent: React.FC = () => {
   const rippleRef = React.useRef<HTMLLIElement[]>([]);
+  const nodeRef = React.useRef<HTMLDivElement>(null);
 
   const router = useRouter();
   const { height } = useWindowSize();
@@ -65,15 +66,17 @@ const DrawerComponent: React.FC = () => {
   return (
     <CSSTransition
       in={isOpen}
-      timeout={200}
+      timeout={100}
+      nodeRef={nodeRef}
       classNames={{
         enterDone: styles.enterDone,
         exitActive: styles.exitActive,
+        exit: styles.exit,
         enter: styles.enter,
       }}
       unmountOnExit
     >
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} ref={nodeRef}>
         <div className={styles.overlay} role='button' tabIndex={0} onClick={onClose} />
         <aside className={styles.drawer} aria-label='menu' style={{ height }}>
           <h1 className={styles.title}>
