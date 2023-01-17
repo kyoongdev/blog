@@ -61,7 +61,6 @@ const DrawerComponent: React.FC = () => {
     DrawerEventEmitter.addChangeListner(handleClick);
     return () => DrawerEventEmitter.removeChangeListner(handleClick);
   });
-  console.log({ isOpen, isSettled });
 
   return (
     <CSSTransition
