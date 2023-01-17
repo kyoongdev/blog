@@ -8,7 +8,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       <article className={styles.mainInfo}>
-        <p>보이지 않는 가치를 찾는 개발자</p>
+        <p>보이는 것, 그 이상을 찾는 개발자</p>
         <p>KyoongDev의 기술 블로그</p>
       </article>
       <section className={styles.body}>
