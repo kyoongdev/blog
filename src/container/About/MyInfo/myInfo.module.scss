@@ -100,7 +100,7 @@
     font-weight: 700;
   }
 
-  .values > strong {
+  .values > strong:not(:first-of-type) {
     margin-left: 6px;
   }
 

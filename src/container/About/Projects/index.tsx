@@ -38,7 +38,7 @@ const Project: React.FC<ProjectProps> = ({
         <h2>Skills</h2>
         <ul className={styles.skills}>
           {skills.map((skill) => (
-            <li>{skill}</li>
+            <li key={skill}>{skill}</li>
           ))}
         </ul>
       </article>
@@ -58,6 +58,7 @@ const Projects: React.FC = () => {
       <h1>Projects</h1>
       <ul className={styles.projects}>
         <Project
+          key='ID'
           title={'(주) 빗썸라이브'}
           startedAt='2022.08'
           endedAt='2022.10'

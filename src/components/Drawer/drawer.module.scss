@@ -66,22 +66,18 @@
     .navItemWrapper {
       @include m.flex(flex-start, flex-start, column);
 
-      > a {
-        width: 100%;
-        height: 56px;
-        color: c.$C_BLACK;
-        @include m.fontB20(regular);
-      }
-
       .ripple {
         position: relative;
-        height: 100%;
+        width: 100%;
+        height: 56px;
         padding: 0 32px;
         overflow: hidden;
+        color: c.$C_BLACK;
         color: #000000;
         text-decoration: none;
         list-style: none;
         cursor: pointer;
+        @include m.fontB20(regular);
         @include m.flex(flex-start);
 
         &:hover {

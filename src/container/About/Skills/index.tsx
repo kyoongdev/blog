@@ -21,14 +21,14 @@ const Skill: React.FC<SkillProps> = ({ title, main, sub }) => {
       <div>
         <ul className={styles.main}>
           {main.map((item) => (
-            <li>
+            <li key={item.src}>
               <Image src={item} alt={'logo'} width={120} height={50} />
             </li>
           ))}
         </ul>
         <ul className={styles.sub}>
           {sub.map((item) => (
-            <li>{item}</li>
+            <li key={item}>{item}</li>
           ))}
         </ul>
       </div>

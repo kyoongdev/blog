@@ -22,16 +22,19 @@ const DrawerComponent: React.FC = () => {
 
   const onClose = () => setIsOpen(false);
 
-  const onClickLink = (path: string) => {
-    return () => {
-      if (router.pathname !== path) setIsOpen(false);
-    };
-  };
-
   React.useEffect(() => {
-    if (rippleRef.current.length === 0 || !isSettled) return;
+    if (rippleRef.current.length === 0 || !isSettled || !isOpen) return;
 
     const handleClicked = (e: MouseEvent) => {
+      e.stopPropagation();
+      e.preventDefault();
+      const id = (e.target as HTMLElement).id;
+
+      if (id !== router.pathname) {
+        setIsOpen(false);
+        setIsSettled(false);
+        router.push(id);
+      }
       const target = e.target as HTMLElement;
       const ripple = document.createElement('div');
       const rect = target.getBoundingClientRect();
@@ -44,17 +47,21 @@ const DrawerComponent: React.FC = () => {
         ripple.parentNode?.removeChild(ripple);
       }, 500);
     };
-    rippleRef.current.forEach((ref) => ref.addEventListener('click', handleClicked));
+    rippleRef.current.forEach((ref) => ref?.addEventListener('click', handleClicked));
     return () => {
-      rippleRef.current.forEach((ref) => ref.removeEventListener('click', handleClicked));
+      rippleRef.current.forEach((ref) => ref?.removeEventListener('click', handleClicked));
     };
-  }, [isSettled]);
+  }, [isSettled, isOpen]);
 
   useMount(() => {
-    const handleClick = () => setIsOpen(true);
+    const handleClick = () => {
+      setIsOpen(true);
+      setIsSettled(true);
+    };
     DrawerEventEmitter.addChangeListner(handleClick);
     return () => DrawerEventEmitter.removeChangeListner(handleClick);
   });
+  console.log({ isOpen, isSettled });
 
   return (
     <CSSTransition
@@ -76,20 +83,21 @@ const DrawerComponent: React.FC = () => {
           <nav className={styles.nav}>
             <ul className={styles.navItemWrapper}>
               {MENU.map((menu, index) => (
-                <Link href={menu.path} onClick={onClickLink(menu.path)}>
-                  <li
-                    key={`${menu.name}-${index}`}
-                    ref={(el) => {
-                      rippleRef.current[index] = el as HTMLLIElement;
-                      index === MENU.length - 1 && setIsSettled(true);
-                    }}
-                    tabIndex={index}
-                    className={styles.ripple}
-                  >
-                    {menu.icon}
-                    <p>{menu.name}</p>
-                  </li>
-                </Link>
+                <li
+                  key={`${menu.name}-${index}`}
+                  ref={(el) => {
+                    if (!isOpen) return;
+
+                    rippleRef.current[index] = el as HTMLLIElement;
+                    index === MENU.length - 1 && setIsSettled(true);
+                  }}
+                  tabIndex={index}
+                  id={menu.path}
+                  className={styles.ripple}
+                >
+                  {menu.icon}
+                  <p>{menu.name}</p>
+                </li>
               ))}
             </ul>
           </nav>
