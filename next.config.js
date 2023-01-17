@@ -5,6 +5,9 @@ const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
+  images: {
+    domains: ['sgp1.vultrobjects.com'],
+  },
   webpack(conf) {
     conf.optimization.splitChunks.cacheGroups = {};
     conf.optimization.minimize = true;

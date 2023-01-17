@@ -62,8 +62,9 @@
     border-right: 1px solid c.$C_GRAY_7;
 
     @include m.mobileOnly {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       width: 100%;
-      @include m.flex(space-between, center, row);
       border: unset;
     }
 
@@ -73,6 +74,10 @@
 
       > img {
         object-fit: contain;
+
+        @include m.mini {
+          width: 84px;
+        }
       }
     }
 
