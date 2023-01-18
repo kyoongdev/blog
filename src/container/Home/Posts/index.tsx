@@ -5,6 +5,7 @@ import React from 'react';
 
 import styles from './posts.module.scss';
 
+import { Tags } from 'components';
 import { blogs } from 'data';
 import { TBlog } from 'data/type';
 
@@ -25,11 +26,7 @@ const Post: React.FC<PostProps> = React.memo(
         />
         <header className={styles.listTitle}>
           {title}
-          <ul className={styles.tags}>
-            {tags.map((tag) => (
-              <li key={tag}>{tag}</li>
-            ))}
-          </ul>
+          <Tags className={styles.tags} tags={tags} />
         </header>
         <p className={styles.description}>{description}</p>
         <footer>{dayjs(date).format('YYYY.MM.DD')}</footer>

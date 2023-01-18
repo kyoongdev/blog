@@ -8,6 +8,7 @@ import { type TProject, projects } from './data';
 import styles from './projects.module.scss';
 
 import LinkIcon from 'assets/svg/link.svg';
+import { Tags } from 'components';
 
 const Project: React.FC<TProject> = ({
   title,
@@ -44,20 +45,12 @@ const Project: React.FC<TProject> = ({
         </header>
         <article className={styles.skillWrapper}>
           <h2>Skills</h2>
-          <ul className={styles.skills}>
-            {skills.map((skill) => (
-              <li key={skill}>{skill}</li>
-            ))}
-          </ul>
+          <Tags className={styles.tags} tags={skills} />
         </article>
         <article className={styles.description}>
           <div>
             <h2>ROLE</h2>
-            <ul>
-              {roles.map((role) => (
-                <li key={role}>{role}</li>
-              ))}
-            </ul>
+            <Tags className={styles.tags} tags={roles} isDark />
           </div>
           {ReactHTMLParser(description)}
         </article>

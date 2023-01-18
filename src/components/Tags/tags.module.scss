@@ -1,0 +1,38 @@
+@use 'src/styles/mixins' as m;
+@use 'src/styles/constants' as c;
+
+.tags {
+  @include m.flex(flex-start, center);
+  @include m.mobileOnly {
+    margin-top: 8px;
+    margin-left: 0;
+  }
+
+  > li {
+    padding: 4px 8px 3px;
+    font-size: 14px;
+    font-weight: 500;
+    color: c.$C_WHITE;
+    list-style: none;
+    background-color: c.$C_PRIMARY;
+    border-radius: 12px;
+
+    @include m.mobileOnly {
+      @include m.fontB12('regular');
+    }
+  }
+
+  &.isDark {
+    > li {
+      background-color: c.$C_PRIMARY_DARK;
+    }
+  }
+
+  &.isSecondary {
+    > li {
+      color: c.$C_PRIMARY;
+      background-color: c.$C_WHITE;
+      border: 1px solid c.$C_PRIMARY;
+    }
+  }
+}

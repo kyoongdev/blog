@@ -53,6 +53,15 @@
     flex-direction: column;
   }
 
+  .tags {
+    gap: 4px;
+    margin-left: 8px;
+
+    @include m.mobileOnly {
+      margin: 8px 0 0;
+    }
+  }
+
   .mainInfo {
     flex-grow: 1;
     width: 100%;
@@ -133,26 +142,12 @@
     }
 
     > h2 {
+      width: 40px;
       @include m.fontH3(medium);
       color: c.$C_GRAY_2;
 
       @include m.mobileOnly {
         font-size: 16px;
-      }
-    }
-
-    .skills {
-      @include m.flex(flex-start);
-      gap: 4px;
-      margin-left: 8px;
-
-      > li {
-        @include tag(c.$C_PRIMARY);
-      }
-
-      @include m.mobileOnly {
-        flex-wrap: wrap;
-        margin: 8px 0 0;
       }
     }
   }
@@ -169,6 +164,7 @@
       }
 
       > h2 {
+        width: 40px;
         color: c.$C_GRAY_2;
 
         @include m.fontH3(medium);
@@ -177,21 +173,6 @@
         @include m.mobileOnly {
           font-size: 16px;
           @include m.flex(flex-start, flex-start, column);
-        }
-      }
-
-      > ul {
-        @include m.flex(flex-start);
-        gap: 4px;
-        margin-left: 8px;
-
-        li {
-          @include tag(c.$C_PRIMARY_DARK);
-        }
-
-        @include m.mobileOnly {
-          flex-wrap: wrap;
-          margin: 8px 0 0;
         }
       }
     }

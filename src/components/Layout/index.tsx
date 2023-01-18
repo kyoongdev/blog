@@ -10,11 +10,10 @@ import { NextLayout } from 'types';
 
 const RootLayout: NextLayout = ({ children }) => {
   const { height } = useWindowSize();
-
   return (
-    <main className={styles.main} style={{ minHeight: `calc(${height} - 72px )` }}>
+    <main style={{ minHeight: `${height}px` }}>
       <Header />
-      {children}
+      <div className={styles.container}>{children}</div>
       <Drawer />
     </main>
   );

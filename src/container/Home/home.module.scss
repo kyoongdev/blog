@@ -1,6 +1,10 @@
 @use 'src/styles/constants' as c;
 @use 'src/styles/mixins' as m;
 
+.container {
+  padding: 72px 102px 0;
+}
+
 .mainInfo {
   @include m.flex(flex-start, center, column);
   height: 200px;

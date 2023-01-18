@@ -9,11 +9,9 @@ const Menu: React.FC = () => {
   const onClickIcon = React.useCallback(() => DrawerEventEmitter.add(), []);
 
   return (
-    <div className={styles.dropdown}>
-      <button type='button' onClick={onClickIcon}>
-        <MenuIcon />
-      </button>
-    </div>
+    <button className={styles.dropdown} type='button' onClick={onClickIcon}>
+      <MenuIcon />
+    </button>
   );
 };
 
