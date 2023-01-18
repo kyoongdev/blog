@@ -10,9 +10,9 @@ const Menu: React.FC = () => {
 
   return (
     <div className={styles.dropdown}>
-      <div onClick={onClickIcon}>
+      <button type='button' onClick={onClickIcon}>
         <MenuIcon />
-      </div>
+      </button>
     </div>
   );
 };

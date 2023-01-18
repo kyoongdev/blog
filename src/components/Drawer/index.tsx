@@ -29,7 +29,7 @@ const DrawerComponent: React.FC = () => {
     const handleClicked = (e: MouseEvent) => {
       e.stopPropagation();
       e.preventDefault();
-      const id = (e.target as HTMLElement).id;
+      const id = (e.currentTarget as HTMLElement).id;
 
       if (id !== router.pathname) {
         setIsOpen(false);
