@@ -32,23 +32,23 @@ const MyInfo: React.FC = () => {
       </section>
       <article className={styles.aboutMe}>
         <ul>
-          <li>
+          <li className={styles.career}>
             <School />
             <p>Konkuk Univ. Industrial Engineerging & Smart ICT Convergence</p>
           </li>
-          <li>
+          <li className={styles.career}>
             <Building />
             <p>Huemonelab - FE/BE (2020.09 ~ 2021.04)</p>
           </li>
-          <li>
+          <li className={styles.career}>
             <Building />
             <p>Fuseble (with Freelancer) - FE/BE / Co-Founder (2021.11 ~ 2022.10)</p>
           </li>
-          <li>
+          <li className={styles.career}>
             <Building />
-            <p>MayB (Sole Proprietorship) - BE / BE Tutor (2022.10 ~)</p>
+            <p>MayB (Sole Proprietorship) - BE / BE Tutor (2022.10 ~ )</p>
           </li>
-          <li>
+          <li className={styles.career}>
             <Building />
             <p>CodeStates - FE Tutor (2023.01 ~ 2023.04)</p>
           </li>

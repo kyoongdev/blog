@@ -62,20 +62,43 @@
 }
 
 .aboutMe {
-  min-width: 320px;
+  @include m.mobileOnly {
+    margin-top: 20px;
+  }
 
   hr {
     margin: 8px 0;
     border-top: 1px solid c.$C_GRAY_7;
   }
+  @include m.mobileOnly {
+    @include m.flex(flex-start, flex-start, column);
+  }
+
+  .career {
+    @include m.mobileOnly {
+      > svg {
+        display: none;
+      }
+
+      > p {
+        font-size: 12px;
+      }
+
+      & + li {
+        margin-top: 12px;
+      }
+    }
+  }
 
   li {
     @include m.flex(flex-start, center);
     gap: 8px;
-    height: 32px;
-    line-height: 32px;
     list-style: none;
     cursor: pointer;
+
+    @include m.mobileOnly {
+      flex-wrap: wrap;
+    }
 
     > p {
       @include m.fontB16(medium);
