@@ -2,4 +2,7 @@
 
 .container {
   padding: 72px 102px 52px;
+  @include m.mobileOnly {
+    padding: 72px 12px 52px;
+  }
 }

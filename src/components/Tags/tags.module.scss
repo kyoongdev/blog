@@ -3,6 +3,7 @@
 
 .tags {
   @include m.flex(flex-start, center);
+  flex-wrap: wrap;
   @include m.mobileOnly {
     margin-top: 8px;
     margin-left: 0;
