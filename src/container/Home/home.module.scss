@@ -8,7 +8,6 @@
 .mainInfo {
   @include m.flex(flex-start, center, column);
   height: 200px;
-  padding: 0 20px;
   margin: 0 auto;
   border-bottom: 1px solid c.$C_GRAY_7;
 

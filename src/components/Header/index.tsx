@@ -1,4 +1,5 @@
 'use client';
+import cx from 'classnames';
 import Link from 'next/link';
 import React from 'react';
 
@@ -6,8 +7,28 @@ import styles from './header.module.scss';
 import Menu from './Menu';
 
 const Header: React.FC = () => {
+  const [visible, setVisible] = React.useState<boolean>(true);
+  const beforeScroll = React.useRef<number>(0);
+
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const onFitAnimation = (): FrameRequestCallback => () => {
+      const currentScrollY = window.scrollY;
+
+      if (beforeScroll.current < currentScrollY) {
+        setVisible(false);
+      } else {
+        setVisible(true);
+      }
+      beforeScroll.current = currentScrollY;
+    };
+
+    const onScroll = () => requestAnimationFrame(onFitAnimation());
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   return (
-    <header className={styles.header}>
+    <header className={cx(styles.header, { [styles.visible]: visible })}>
       <div>
         <h1>
           <Link href='/'>Kyoongdev Village</Link>

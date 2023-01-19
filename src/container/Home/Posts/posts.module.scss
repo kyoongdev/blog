@@ -49,6 +49,7 @@
   }
 
   .thumbnail {
+    object-fit: contain;
     @include m.desktopOnly {
       position: absolute;
       top: 50%;
@@ -59,7 +60,6 @@
     @include m.mobileOnly {
       display: block;
       width: 100%;
-      object-fit: contain;
       margin: 0 auto 12px;
     }
   }
