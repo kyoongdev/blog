@@ -4,6 +4,7 @@ import React from 'react';
 
 import styles from './blogs.module.scss';
 
+import { Tags } from 'components';
 import Markdown from 'components/Markdown';
 import { blogs } from 'data';
 
@@ -30,11 +31,7 @@ const Page: React.FC<Props> = ({ id }) => {
           <h1>{blog.title}</h1>
           <p>{dayjs(blog.date).format('YYYY.MM.DD')}</p>
         </div>
-        <ul className={styles.tags}>
-          {blog.tags.map((tag) => (
-            <li>{tag}</li>
-          ))}
-        </ul>
+        <Tags className={styles.tags} tags={blog.tags} />
       </header>
       <Markdown content={blog.body} />
     </section>

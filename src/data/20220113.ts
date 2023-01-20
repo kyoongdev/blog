@@ -157,7 +157,7 @@ export default {
 4개의 공백 또는 하나의 탭으로 들여쓰기를 만나면 변환되기 시작하여 들여쓰지 않은 행을 만날때까지 변환이 계속된다.
 
 ### 2.4.1. 들여쓰기
-~~~
+~~~javascript
 This is a normal paragraph:
 
     This is a code block.
@@ -169,13 +169,13 @@ end code block.
 
 적용예:
 
-*****
+
 This is a normal paragraph:
-
-    This is a code block.
-
+~~~javascript
+const a = 1;
+~~~
 end code block.
-*****
+
 
 > 한줄 띄어쓰지 않으면 인식이 제대로 안되는 문제가 발생합니다.
 

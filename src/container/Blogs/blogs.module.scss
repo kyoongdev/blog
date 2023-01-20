@@ -41,17 +41,7 @@
   }
 
   .tags {
-    @include m.flex(flex-start);
     gap: 12px;
     margin-top: 12px;
-
-    > li {
-      height: 20px;
-      padding: 0 8px;
-      line-height: 20px;
-      color: c.$C_WHITE;
-      background-color: c.$C_PRIMARY;
-      border-radius: 12px;
-    }
   }
 }

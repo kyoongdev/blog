@@ -71,6 +71,9 @@
     width: 220px;
     height: 160px;
     @include m.flex;
+    @include m.mobileOnly {
+      margin-bottom: 12px;
+    }
 
     > img {
       object-fit: contain;
@@ -181,7 +184,7 @@
       font-size: 16px;
       line-height: 20px;
       color: c.$C_GRAY_2;
-      word-break: keep-all;
+      word-break: break-all;
     }
   }
 }

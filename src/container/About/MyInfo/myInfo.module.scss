@@ -10,6 +10,7 @@
 
   @include m.tabletOnly {
     padding: 72px 12px 48px;
+    @include m.flex(flex-start, flex-start, column);
   }
 
   @include m.mobileOnly {
@@ -26,7 +27,7 @@
     color: c.$C_DARK_GRAY;
 
     @include m.tabletOnly {
-      font-size: 24px;
+      font-size: 32px;
     }
 
     @include m.mobileOnly {
@@ -62,7 +63,8 @@
 }
 
 .aboutMe {
-  @include m.mobileOnly {
+  @include m.tabletOnly {
+    width: 100%;
     margin-top: 20px;
   }
 
