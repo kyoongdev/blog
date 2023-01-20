@@ -2,8 +2,10 @@ import dayjs from 'dayjs';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { useRecoilValue } from 'recoil';
 
 import styles from './posts.module.scss';
+import { tags } from '../state';
 
 import { Tags } from 'components';
 import { blogs } from 'data';
@@ -36,13 +38,22 @@ const Post: React.FC<PostProps> = React.memo(
 );
 
 const Posts: React.FC = () => {
+  const selectedTags = useRecoilValue(tags);
   const router = useRouter();
 
+  const rows =
+    selectedTags.length > 0
+      ? blogs.filter(
+          (blog) => blog.tags.filter((tag) => selectedTags.indexOf(tag) !== -1).length !== 0,
+        )
+      : blogs;
+
   const onRoute = (id: string) => () => router.push(`/blogs/${id}`);
+
   return (
     <section className={styles.container}>
       <ul key={'blogs'} className={styles.listWrapper}>
-        {blogs.map((blog, index) => (
+        {rows.map((blog, index) => (
           <Post key={`blog-${blog.id}-${index}`} {...blog} onRoute={onRoute(blog.id)} />
         ))}
       </ul>

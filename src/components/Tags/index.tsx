@@ -8,9 +8,11 @@ interface Props {
   isSecondary?: boolean;
   isDark?: boolean;
   tags: string[];
+  selectedTags?: string[];
+  onClick?(tag: string): () => void;
 }
 
-const Tags: React.FC<Props> = ({ tags, className, isDark, isSecondary }) => {
+const Tags: React.FC<Props> = ({ tags, className, isDark, isSecondary, selectedTags, onClick }) => {
   return (
     <ul
       className={cx(styles.tags, className, {
@@ -19,10 +21,18 @@ const Tags: React.FC<Props> = ({ tags, className, isDark, isSecondary }) => {
       })}
     >
       {tags.map((tag, index) => (
-        <li key={`${tag}-${index}`}>{tag}</li>
+        <li
+          className={cx({
+            [styles.selected]: selectedTags && selectedTags.indexOf(tag) !== -1,
+          })}
+          key={`${tag}-${index}`}
+          onClick={onClick?.(tag)}
+        >
+          {tag}
+        </li>
       ))}
     </ul>
   );
 };
 
-export default Tags;
+export default React.memo(Tags);

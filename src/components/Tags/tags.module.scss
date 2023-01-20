@@ -34,6 +34,11 @@
       color: c.$C_PRIMARY;
       background-color: c.$C_WHITE;
       border: 1px solid c.$C_PRIMARY;
+
+      &.selected {
+        color: c.$C_WHITE;
+        background-color: c.$C_PRIMARY;
+      }
     }
   }
 }

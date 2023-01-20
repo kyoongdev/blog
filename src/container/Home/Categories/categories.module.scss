@@ -23,13 +23,15 @@
 }
 
 .categories {
-  display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  width: 100%;
-  margin-top: 12px;
-  overflow-x: scroll;
+  gap: 8px;
+  margin-top: 8px;
+
   @include m.mobileOnly {
     justify-content: center;
+  }
+
+  > li {
+    cursor: pointer;
   }
 }
