@@ -69,8 +69,10 @@
   }
 
   hr {
+    height: 1px;
     margin: 8px 0;
-    border-top: 1px solid c.$C_GRAY_7;
+    background-color: c.$C_GRAY_7;
+    border: 0;
   }
   @include m.mobileOnly {
     @include m.flex(flex-start, flex-start, column);
