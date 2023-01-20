@@ -9,6 +9,8 @@ import HeadMeta from 'components/HeadMeta';
 import Markdown from 'components/Markdown';
 import { blogs } from 'data';
 
+const URL_PREFIX = 'https://kyoongdev.github.io';
+
 interface Props {
   id: string;
 }
@@ -20,7 +22,12 @@ const Page: React.FC<Props> = ({ id }) => {
 
   return (
     <section className={styles.container}>
-      <HeadMeta title={blog.title} description={blog.description} />
+      <HeadMeta
+        title={blog.title}
+        url={`${URL_PREFIX}/blogs/${blog.id}`}
+        description={blog.description}
+        keywords={blog.keywords}
+      />
       <Image
         className={styles.thumbnail}
         src={`${blog.thumbnail}`}
