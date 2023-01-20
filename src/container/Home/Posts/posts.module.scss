@@ -51,11 +51,14 @@
 
   .thumbnail {
     object-fit: contain;
+    aspect-ratio: 1 / 1;
     @include m.desktopOnly {
       position: absolute;
-      top: 50%;
+      top: 0;
       right: 32px;
-      transform: translateY(-50%);
+      width: 200px;
+      height: 100%;
+      padding: 20px;
     }
 
     @include m.mobileOnly {

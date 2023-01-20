@@ -20,7 +20,7 @@ const Page: React.FC<Props> = ({ id }) => {
 
   return (
     <section className={styles.container}>
-      <HeadMeta description={blog.description} />
+      <HeadMeta title={blog.title} description={blog.description} />
       <Image
         className={styles.thumbnail}
         src={`${blog.thumbnail}`}
