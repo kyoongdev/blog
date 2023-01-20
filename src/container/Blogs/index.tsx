@@ -5,6 +5,7 @@ import React from 'react';
 import styles from './blogs.module.scss';
 
 import { Tags } from 'components';
+import HeadMeta from 'components/HeadMeta';
 import Markdown from 'components/Markdown';
 import { blogs } from 'data';
 
@@ -19,6 +20,7 @@ const Page: React.FC<Props> = ({ id }) => {
 
   return (
     <section className={styles.container}>
+      <HeadMeta description={blog.description} />
       <Image
         className={styles.thumbnail}
         src={`${blog.thumbnail}`}

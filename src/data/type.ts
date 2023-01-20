@@ -6,4 +6,5 @@ export type TBlog = {
   tags: string[];
   date: string;
   body: string;
+  keywords: string[];
 };

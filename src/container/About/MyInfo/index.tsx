@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 import styles from './myInfo.module.scss';
@@ -54,18 +55,24 @@ const MyInfo: React.FC = () => {
           </li>
           <hr />
           <li>
-            <Github />
-            <p>Github</p>
+            <Link target={'_blank'} href={'https://github.com/kyoongdev'}>
+              <Github />
+              <p>Github</p>
+            </Link>
           </li>
           <li>
-            <Gmail />
-            <p>Gmail</p>
+            <Link href={'mailto:9898junjun2@gmail.com'}>
+              <Gmail />
+              <p>Gmail</p>
+            </Link>
           </li>
           <li>
-            <Phone />
-            <p>
-              Phone<span>010-4059-7883</span>
-            </p>
+            <Link href={'tel:010-4059-7883'}>
+              <Phone />
+              <p>
+                Phone<span>010-4059-7883</span>
+              </p>
+            </Link>
           </li>
         </ul>
       </article>

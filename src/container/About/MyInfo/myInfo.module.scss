@@ -17,6 +17,10 @@
     padding: 32px 12px;
     @include m.flex(flex-start, flex-start, column);
   }
+
+  > section:first-of-type {
+    min-width: 600px;
+  }
 }
 
 .myInfo {
@@ -104,10 +108,16 @@
       flex-wrap: wrap;
     }
 
-    > p {
+    > a {
+      @include m.flex(flex-start, center);
+      gap: 8px;
+      color: c.$C_DARK_GRAY;
+    }
+
+    p {
       @include m.fontB16(medium);
 
-      > span {
+      span {
         margin-left: 12px;
       }
     }

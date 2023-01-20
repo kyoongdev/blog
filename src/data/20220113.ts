@@ -1,10 +1,11 @@
 import { TBlog } from './type';
 
-export default {
+const data: TBlog = {
   id: '20220113',
   title: '오늘 공부하면서 느낀점',
   description:
     '아 개발 정말 재밌다...아 개발 정말 재밌다...아 개발 정말 재밌다...아 개발 정말 재밌다...아 개발 정말 재밌다...아 개발 정말 재밌다...',
+  keywords: [],
   tags: ['프런트엔드', '인간관계'],
   date: '2023-01-01',
   thumbnail: '/assets/logo.png',
@@ -188,4 +189,6 @@ end code block.
 
 적용예:
   `,
-} as TBlog;
+};
+
+export default data;
