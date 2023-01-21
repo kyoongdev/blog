@@ -5,7 +5,8 @@
   "homepage": "http://kyoongdev.github.io/",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "rimraf public/robots.txt public/sitemap*.xml & next build",
+    "postbuild": "next-sitemap --config sitemap.config.js",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
@@ -54,6 +55,7 @@
     "eslint-plugin-storybook": "^0.6.8",
     "husky": "^8.0.2",
     "lint-staged": "^13.0.4",
+    "next-sitemap": "^3.1.47",
     "prettier": "^2.8.0",
     "prop-types": "^15.8.1",
     "stylelint": "^14.15.0",
