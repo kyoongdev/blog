@@ -20,6 +20,11 @@
 
   > section:first-of-type {
     min-width: 600px;
+
+    @include m.tabletOnly {
+      width: 100%;
+      min-width: 0;
+    }
   }
 }
 
