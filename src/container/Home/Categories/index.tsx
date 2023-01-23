@@ -10,6 +10,7 @@ const TAGS = ['프런트엔드', '백엔드', '인프라', '라이프스타일',
 
 const Categorires: React.FC = () => {
   const [selectedTags, setSelectedTags] = useRecoilState(tags);
+
   const onClick = React.useCallback((tag: string) => {
     return () => {
       setSelectedTags((prev) => {
