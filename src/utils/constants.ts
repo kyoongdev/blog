@@ -15,4 +15,13 @@ export const MENU: Array<Menu> = [
     name: 'About',
     path: '/about',
   },
+  ...(process.env.NODE_ENV === 'development'
+    ? [
+        {
+          icon: '📃',
+          name: 'Post',
+          path: '/post',
+        },
+      ]
+    : []),
 ];
