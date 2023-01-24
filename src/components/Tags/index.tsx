@@ -7,7 +7,7 @@ interface Props {
   className?: string;
   isSecondary?: boolean;
   isDark?: boolean;
-  tags: string[];
+  tags: readonly string[];
   selectedTags?: string[];
   onClick?(tag: string): () => void;
 }

@@ -25,3 +25,5 @@ export const MENU: Array<Menu> = [
       ]
     : []),
 ];
+
+export const TAGS = ['프런트엔드', '백엔드', '인프라', '라이프스타일', '인간관계'] as const;
