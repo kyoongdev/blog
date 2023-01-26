@@ -403,10 +403,12 @@
 
   code,
   tt {
-    padding: 0 5px;
+    padding: 4px 6px;
     margin: 0 2px;
     white-space: nowrap;
-    background-color: #f8f8f8;
+
+    background-color: #d3d3d3;
+    color: #505050;
 
     border-radius: 3px;
   }

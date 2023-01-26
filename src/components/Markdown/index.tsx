@@ -3,14 +3,14 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 
 interface Props {
+  className?: string;
   content: string;
 }
 
-const Markdown: React.FC<Props> = ({ content }) => {
+const Markdown: React.FC<Props> = ({ className, content }) => {
   const CodeBlock: any = {
     code({
       inline,
@@ -37,9 +37,9 @@ const Markdown: React.FC<Props> = ({ content }) => {
   };
   return (
     <ReactMarkdown
-      className={cx('markdown')}
+      className={cx('markdown', className)}
       components={CodeBlock}
-      remarkPlugins={[remarkGfm, remarkBreaks]}
+      remarkPlugins={[remarkGfm]}
     >
       {content}
     </ReactMarkdown>
