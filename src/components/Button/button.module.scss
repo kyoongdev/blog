@@ -1,0 +1,28 @@
+@use 'src/styles/mixins' as m;
+@use 'src/styles/constants' as c;
+
+.button {
+  padding: 8px 12px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 8px;
+  @include m.fontB16('medium');
+
+  &.primary {
+    color: c.$C_WHITE;
+    background-color: c.$C_PRIMARY;
+  }
+
+  &.secondary {
+    color: c.$C_PRIMARY;
+    background-color: c.$C_WHITE;
+    border: 1px solid c.$C_PRIMARY;
+  }
+
+  &:disabled {
+    color: c.$C_WHITE;
+    cursor: not-allowed;
+    background-color: c.$C_DARK_GRAY;
+    opacity: 0.5;
+  }
+}

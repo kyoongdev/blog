@@ -18,6 +18,6 @@ export interface IGetPostsQuery extends PagingQuery {
   tags?: string[];
 }
 
-export interface ICreatePostReq extends Omit<IGetPostsRes, 'id' | 'createdAt'> {}
+export interface ICreatePostReq extends Omit<IGetPostRes, 'id' | 'createdAt' | 'updatedAt'> {}
 
 export interface IUpdatePostReq extends Partial<ICreatePostReq> {}
