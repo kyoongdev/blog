@@ -66,6 +66,9 @@ const PostPage: React.FC = () => {
   return (
     <section className={styles.wrapper}>
       <form onSubmit={onSubmit}>
+        <Button className={styles.submitButton} type='submit'>
+          제출하기
+        </Button>
         <input
           className={styles.title}
           type='input'
@@ -114,9 +117,6 @@ const PostPage: React.FC = () => {
           />
           <Markdown className={styles.markdown} content={content} />
         </section>
-        <Button className={styles.submitButton} type='submit'>
-          제출하기
-        </Button>
       </form>
     </section>
   );
