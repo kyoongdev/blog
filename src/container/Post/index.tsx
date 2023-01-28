@@ -8,8 +8,9 @@ import styles from './post.module.scss';
 import '@uiw/react-md-editor/markdown-editor.css';
 import { Tags, Button } from 'components';
 import Markdown from 'components/Markdown';
+import { uploadFile } from 'services/File';
 import { ICreatePostReq } from 'services/Posts/type';
-import { TAGS } from 'utils';
+import { getEditor, TAGS } from 'utils';
 
 const Editor = dynamic(() => import('@uiw/react-md-editor'), {
   ssr: false,
@@ -24,13 +25,17 @@ const initForm: IForm = {
 
 const PostPage: React.FC = () => {
   const [inView, setInView] = React.useState<boolean>(true);
-  const [thumbnail, setThumbnail] = React.useState<string | null>(null);
+  const [thumbnail, setThumbnail] = React.useState<File | null>(null);
   const [content, setContent] = React.useState<string>('');
   const [tags, setTags] = React.useState<string[]>([]);
 
-  const { register, handleSubmit, getValues, setValue } = useForm<IForm>({
+  const commands = React.useMemo(() => getEditor('italic', 'bold', 'image'), []);
+
+  const { register, handleSubmit } = useForm<IForm>({
     defaultValues: initForm,
   });
+
+  const preview = thumbnail && URL.createObjectURL(thumbnail);
 
   const onFocus = () => setInView(false);
   const onBlur = () => setInView(true);
@@ -45,22 +50,19 @@ const PostPage: React.FC = () => {
       title,
       description,
       content,
-      thumbnail: thumbnail || '',
+      thumbnail: '',
       tags,
     };
-    console.log(req);
   });
 
   const onAddThumbnail: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const { files } = e.currentTarget;
     const file = files && files[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = (e) => {
-      const result = e.target?.result;
-      setThumbnail(result as string);
-    };
+    setThumbnail(file);
+    uploadFile({ file }).then((url) => {
+      console.log(url);
+    });
   };
 
   return (
@@ -86,7 +88,7 @@ const PostPage: React.FC = () => {
           <label>
             <h2>썸네일</h2>
             <input type='file' onChange={onAddThumbnail} />
-            {thumbnail ? <img src={thumbnail} alt='thumbnail' /> : <p>썸네일을 등록해주세요.</p>}
+            {preview ? <img src={preview} alt='thumbnail' /> : <p>썸네일을 등록해주세요.</p>}
           </label>
         </div>
         <div className={styles.tagWrapper}>
@@ -110,10 +112,11 @@ const PostPage: React.FC = () => {
           <Editor
             className={styles.body}
             preview={'edit'}
-            onChange={(value) => value && setContent(value)}
+            onChange={(value) => setContent(value ?? '')}
             value={content}
             onFocus={onFocus}
             onBlur={onBlur}
+            commands={commands}
           />
           <Markdown className={styles.markdown} content={content} />
         </section>

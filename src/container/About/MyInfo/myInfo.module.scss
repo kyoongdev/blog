@@ -101,6 +101,10 @@
         margin-top: 12px;
       }
     }
+
+    & + li {
+      margin-top: 8px;
+    }
   }
 
   li {

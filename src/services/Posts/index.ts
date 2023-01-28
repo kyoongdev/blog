@@ -8,10 +8,9 @@ export const getPosts = (params: IGetPostsQuery) =>
 
 export const getPost = (id: string) => apiClient.get<IGetPostRes>(`posts/${id}`);
 
-export const createPost = (body: ICreatePostReq) =>
-  apiClient.post<IResponseWithId>('posts', { body });
+export const createPost = (body: ICreatePostReq) => apiClient.post<IResponseWithId>('posts', body);
 
 export const updatePost = (id: string, body: IUpdatePostReq) =>
-  apiClient.patch(`posts/${id}`, { body });
+  apiClient.patch(`posts/${id}`, body);
 
 export const deletePost = (id: string) => apiClient.delete(`posts/${id}`);
