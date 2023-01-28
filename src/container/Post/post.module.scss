@@ -13,7 +13,7 @@
     width: 80px;
     height: 10px;
     margin-bottom: 12px;
-    background-color: c.$C_GRAY_6;
+    background-color: c.$C_PRIMARY;
     border: 0;
   }
 }
@@ -60,7 +60,7 @@
 
   .placeholder {
     position: absolute;
-    top: 12px;
+    top: 72px;
     left: 12px;
     z-index: 10;
     color: c.$C_GRAY_6;
@@ -69,6 +69,12 @@
 
     &:not(.view) {
       visibility: hidden;
+    }
+  }
+
+  > div > div:first-of-type {
+    > ul:last-of-type {
+      display: none;
     }
   }
 

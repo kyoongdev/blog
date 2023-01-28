@@ -17,12 +17,8 @@ const PostPage: React.FC = () => {
   const [inView, setInView] = React.useState<boolean>(true);
   const [value, setValue] = React.useState<string>('');
 
-  const onFocus = () => {
-    setInView(false);
-  };
-  const onBlur = () => {
-    setInView(true);
-  };
+  const onFocus = () => setInView(false);
+  const onBlur = () => setInView(true);
 
   return (
     <section className={styles.wrapper}>
@@ -43,7 +39,6 @@ const PostPage: React.FC = () => {
           preview={'edit'}
           value={value}
           onChange={(e) => setValue(e!)}
-          hideToolbar={true}
           onFocus={onFocus}
           onBlur={onBlur}
         />
