@@ -6,9 +6,8 @@ import { useForm } from 'react-hook-form';
 import styles from './post.module.scss';
 
 import '@uiw/react-md-editor/markdown-editor.css';
-import { Tags, Button } from 'components';
+import { Button, Tags } from 'components';
 import Markdown from 'components/Markdown';
-import { uploadFile } from 'services/File';
 import { ICreatePostReq } from 'services/Posts/type';
 import { getEditor, TAGS } from 'utils';
 
@@ -16,22 +15,22 @@ const Editor = dynamic(() => import('@uiw/react-md-editor'), {
   ssr: false,
 });
 
-interface IForm extends Omit<ICreatePostReq, 'content' | 'thumbnail' | 'tags'> {}
+interface IForm extends Omit<ICreatePostReq, 'thumbnail' | 'tags'> {}
 
 const initForm: IForm = {
   title: '',
   description: '',
+  content: '',
 };
 
 const PostPage: React.FC = () => {
   const [inView, setInView] = React.useState<boolean>(true);
   const [thumbnail, setThumbnail] = React.useState<File | null>(null);
-  const [content, setContent] = React.useState<string>('');
   const [tags, setTags] = React.useState<string[]>([]);
 
   const commands = React.useMemo(() => getEditor('italic', 'bold', 'image'), []);
 
-  const { register, handleSubmit } = useForm<IForm>({
+  const { register, handleSubmit, watch, setValue } = useForm<IForm>({
     defaultValues: initForm,
   });
 
@@ -49,7 +48,7 @@ const PostPage: React.FC = () => {
     const req: ICreatePostReq = {
       title,
       description,
-      content,
+      content: '',
       thumbnail: '',
       tags,
     };
@@ -60,9 +59,6 @@ const PostPage: React.FC = () => {
     const file = files && files[0];
     if (!file) return;
     setThumbnail(file);
-    uploadFile({ file }).then((url) => {
-      console.log(url);
-    });
   };
 
   return (
@@ -104,7 +100,7 @@ const PostPage: React.FC = () => {
         <section className={styles.edit}>
           <p
             className={cx(styles.placeholder, {
-              [styles.view]: content.length === 0 && inView,
+              [styles.view]: watch('content').length === 0 && inView,
             })}
           >
             내용을 입력해주세요.
@@ -112,13 +108,13 @@ const PostPage: React.FC = () => {
           <Editor
             className={styles.body}
             preview={'edit'}
-            onChange={(value) => setContent(value ?? '')}
-            value={content}
+            onChange={(value) => setValue('content', value || '')}
+            value={watch('content')}
             onFocus={onFocus}
             onBlur={onBlur}
             commands={commands}
           />
-          <Markdown className={styles.markdown} content={content} />
+          <Markdown className={styles.markdown} content={watch('content')} />
         </section>
       </form>
     </section>
