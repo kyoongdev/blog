@@ -1,10 +1,12 @@
 import { ICreatePostReq, IGetPostRes, IGetPostsQuery, IGetPostsRes, IUpdatePostReq } from './type';
 
 import apiClient from 'services/apiClient';
-import { IResponseWithId } from 'services/type';
+import { IResponseWithId, PagingRes } from 'services/type';
 
-export const getPosts = (params: IGetPostsQuery) =>
-  apiClient.get<IGetPostsRes>('posts', { params });
+export const getPosts = (params: IGetPostsQuery) => {
+  console.log(params);
+  return apiClient.get<PagingRes<IGetPostsRes>>('posts', { params });
+};
 
 export const getPost = (id: string) => apiClient.get<IGetPostRes>(`posts/${id}`);
 
