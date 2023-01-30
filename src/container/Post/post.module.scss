@@ -127,8 +127,10 @@
   }
 
   .markdown {
+    height: 720px;
     padding: 10px;
     margin-top: 0;
+    overflow-y: scroll;
     border-left: 1px solid c.$C_GRAY_7;
   }
 }

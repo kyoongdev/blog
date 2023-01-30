@@ -1,13 +1,17 @@
 import cx from 'classnames';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
 
 import styles from './post.module.scss';
 
 import '@uiw/react-md-editor/markdown-editor.css';
 import { Button, Tags } from 'components';
 import Markdown from 'components/Markdown';
+import { uploadFile } from 'services/File';
+import { createPost } from 'services/Posts';
 import { ICreatePostReq } from 'services/Posts/type';
 import { getEditor, TAGS } from 'utils';
 
@@ -24,6 +28,12 @@ const initForm: IForm = {
 };
 
 const PostPage: React.FC = () => {
+  const router = useRouter();
+  const { mutate: createPostApi } = useMutation(createPost, {
+    onSuccess: () => {
+      router.push('/');
+    },
+  });
   const [inView, setInView] = React.useState<boolean>(true);
   const [thumbnail, setThumbnail] = React.useState<File | null>(null);
   const [tags, setTags] = React.useState<string[]>([]);
@@ -43,15 +53,18 @@ const PostPage: React.FC = () => {
     setTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
   };
 
-  const onSubmit = handleSubmit((data) => {
-    const { title, description } = data;
+  const onSubmit = handleSubmit(async (data) => {
+    if (!thumbnail) return;
+    const { title, description, content } = data;
+    const thumbnailUrl = await uploadFile({ file: thumbnail });
     const req: ICreatePostReq = {
       title,
       description,
-      content: '',
-      thumbnail: '',
+      content,
+      thumbnail: thumbnailUrl,
       tags,
     };
+    createPostApi(req);
   });
 
   const onAddThumbnail: React.ChangeEventHandler<HTMLInputElement> = (e) => {
