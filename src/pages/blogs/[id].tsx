@@ -1,27 +1,26 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { useRouter } from 'next/router';
+import axios from 'axios';
+import { GetServerSideProps, NextPage } from 'next';
 
+import { API_URL } from 'config';
 import { BlogsPage } from 'container';
-import { blogs } from 'data';
+import { IGetPostRes } from 'services/Posts/type';
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    fallback: false,
-    paths: blogs.map((blog) => ({ params: { id: blog.id } })),
-  };
-};
+interface Props {
+  blog: IGetPostRes | null;
+}
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const id = params?.id;
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { data: blog } = await axios.get(`${API_URL}/posts/${ctx.query.id as string}`);
+
   return {
     props: {
-      id,
+      blog,
     },
   };
 };
 
-const Page = ({ id }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  return <BlogsPage id={id} />;
+const Page: NextPage<Props> = ({ blog }) => {
+  return <BlogsPage blog={blog} />;
 };
 
 export default Page;

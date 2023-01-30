@@ -5,16 +5,21 @@ import styles from './categories.module.scss';
 import { tags } from '../state';
 
 import { Tags } from 'components';
+import { IGetTagsRes, ITags } from 'services/Tags/type';
 import { TAGS } from 'utils';
 
-const Categorires: React.FC = () => {
+interface Props {
+  data: IGetTagsRes;
+}
+
+const Categorires: React.FC<Props> = ({ data }) => {
   const [selectedTags, setSelectedTags] = useRecoilState(tags);
 
-  const onClick = React.useCallback((tag: string) => {
+  const onClick = React.useCallback((tag: ITags) => {
     return () => {
       setSelectedTags((prev) => {
-        if (prev.indexOf(tag) === -1) return [...prev, tag];
-        return prev.filter((t) => t !== tag);
+        if (prev.indexOf(tag.id) === -1) return [...prev, tag.id];
+        return prev.filter((t) => t !== tag.id);
       });
     };
   }, []);
@@ -23,7 +28,7 @@ const Categorires: React.FC = () => {
       <h2>Topics</h2>
       <Tags
         className={styles.categories}
-        tags={TAGS}
+        tags={data}
         selectedTags={selectedTags}
         isSecondary
         onClick={onClick}

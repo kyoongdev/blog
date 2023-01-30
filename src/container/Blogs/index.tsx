@@ -7,17 +7,15 @@ import styles from './blogs.module.scss';
 import { Tags } from 'components';
 import HeadMeta from 'components/HeadMeta';
 import Markdown from 'components/Markdown';
-import { blogs } from 'data';
+import { IGetPostRes } from 'services/Posts/type';
 
 const URL_PREFIX = 'https://kyoongdev.github.io';
 
 interface Props {
-  id: string;
+  blog: IGetPostRes | null;
 }
 
-const Page: React.FC<Props> = ({ id }) => {
-  const blog = blogs.find((blog) => blog.id === id);
-
+const Page: React.FC<Props> = ({ blog }) => {
   if (!blog) return <div>Not Found</div>;
 
   return (
@@ -26,7 +24,7 @@ const Page: React.FC<Props> = ({ id }) => {
         title={blog.title}
         url={`${URL_PREFIX}/blogs/${blog.id}`}
         description={blog.description}
-        keywords={blog.keywords}
+        keywords={[]}
       />
       <Image
         className={styles.thumbnail}
@@ -38,11 +36,11 @@ const Page: React.FC<Props> = ({ id }) => {
       <header className={styles.header}>
         <div className={styles.title}>
           <h1>{blog.title}</h1>
-          <p>{dayjs(blog.date).format('YYYY.MM.DD')}</p>
+          <p>{dayjs(blog.createdAt).format('YYYY.MM.DD')}</p>
         </div>
         <Tags className={styles.tags} tags={blog.tags} />
       </header>
-      <Markdown content={blog.body} />
+      <Markdown content={blog.content} />
     </section>
   );
 };

@@ -7,12 +7,14 @@ import Posts from './Posts';
 import { HeadMeta } from 'components';
 import { PagingRes } from 'services';
 import { IGetPostsRes } from 'services/Posts/type';
+import { IGetTagsRes } from 'services/Tags/type';
 
 interface Props {
-  data: PagingRes<IGetPostsRes>;
+  posts: PagingRes<IGetPostsRes>;
+  tags: IGetTagsRes;
 }
 
-const HomePage: React.FC<Props> = ({ data }) => {
+const HomePage: React.FC<Props> = ({ posts, tags }) => {
   return (
     <>
       <HeadMeta />
@@ -21,8 +23,8 @@ const HomePage: React.FC<Props> = ({ data }) => {
         <p>KyoongDev의 기술 블로그</p>
       </article>
       <section className={styles.body}>
-        <Posts data={data} />
-        <Categories />
+        <Posts data={posts} />
+        <Categories data={tags} />
       </section>
     </>
   );
