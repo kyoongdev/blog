@@ -3,15 +3,14 @@
 const isProd = process.env.NODE_ENV === 'production';
 
 const removeImports = require('next-remove-imports')();
+const withImages = require('next-images');
 
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
 
   images: {
-    loader: 'akamai',
     domains: ['sgp1.vultrobjects.com'],
-    path: '/',
   },
   webpack(conf) {
     conf.optimization.splitChunks.cacheGroups = {};
