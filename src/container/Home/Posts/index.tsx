@@ -3,18 +3,16 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useInfiniteQuery, useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import { useRecoilValue } from 'recoil';
 
 import styles from './posts.module.scss';
 import { tags } from '../state';
 
 import { Tags } from 'components';
-import { blogs } from 'data';
-import { TBlog } from 'data/type';
 import { PagingRes } from 'services';
 import { getPosts } from 'services/Posts';
-import { IGetPostsQuery, IGetPostsRes } from 'services/Posts/type';
+import { IGetPostsRes } from 'services/Posts/type';
 
 interface PostProps extends IGetPostsRes {
   onRoute: () => void;
