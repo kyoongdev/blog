@@ -8,7 +8,7 @@ export const getPosts = (params: IGetPostsQuery) => {
   return apiClient.get<PagingRes<IGetPostsRes>>('posts', { params });
 };
 
-export const getPost = (id: string) => apiClient.get<IGetPostRes>(`posts/${id}`);
+export const getPost = (id: string) => apiClient.get<IGetPostRes>(`posts/${id}/detail`);
 
 export const createPost = (body: ICreatePostReq) => apiClient.post<IResponseWithId>('posts', body);
 
