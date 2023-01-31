@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 
 import styles from './post.module.scss';
 
@@ -13,6 +13,8 @@ import Markdown from 'components/Markdown';
 import { uploadFile } from 'services/File';
 import { createPost } from 'services/Posts';
 import { ICreatePostReq } from 'services/Posts/type';
+import { getTags } from 'services/Tags';
+import { ITags } from 'services/Tags/type';
 import { getEditor, TAGS } from 'utils';
 
 const Editor = dynamic(() => import('@uiw/react-md-editor'), {
@@ -29,6 +31,8 @@ const initForm: IForm = {
 
 const PostPage: React.FC = () => {
   const router = useRouter();
+  const { data: tagData } = useQuery(['getTags'], getTags);
+
   const { mutate: createPostApi } = useMutation(createPost, {
     onSuccess: () => {
       router.push('/');
@@ -49,8 +53,10 @@ const PostPage: React.FC = () => {
   const onFocus = () => setInView(false);
   const onBlur = () => setInView(true);
 
-  const onClickTags = (tag: string) => () => {
-    setTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
+  const onClickTags = (tag: ITags) => () => {
+    setTags((prev) =>
+      prev.includes(tag.id) ? prev.filter((t) => t !== tag.id) : [...prev, tag.id],
+    );
   };
 
   const onSubmit = handleSubmit(async (data) => {
@@ -104,7 +110,7 @@ const PostPage: React.FC = () => {
           <h2>Tags</h2>
           <Tags
             className={styles.tags}
-            tags={TAGS}
+            tags={tagData?.data ?? []}
             isSecondary
             onClick={onClickTags}
             selectedTags={tags}
