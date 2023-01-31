@@ -12,7 +12,6 @@ const nextConfig = {
   images: {
     loader: 'imgix',
     domains: ['sgp1.vultrobjects.com'],
-    path: '/',
   },
   webpack(conf) {
     conf.optimization.splitChunks.cacheGroups = {};
