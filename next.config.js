@@ -8,9 +8,7 @@ const withImages = require('next-images');
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
-
   images: {
-    loader: 'imgix',
     domains: ['sgp1.vultrobjects.com'],
   },
   webpack(conf) {
