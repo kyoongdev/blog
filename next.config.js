@@ -9,6 +9,7 @@ const nextConfig = {
   trailingSlash: true,
 
   images: {
+    loader: 'imgix',
     domains: ['sgp1.vultrobjects.com'],
   },
   webpack(conf) {
