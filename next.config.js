@@ -10,6 +10,7 @@ const nextConfig = {
   trailingSlash: true,
   images: {
     domains: ['sgp1.vultrobjects.com'],
+    unoptimized: true,
   },
   webpack(conf) {
     conf.optimization.splitChunks.cacheGroups = {};
