@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 
@@ -15,13 +15,17 @@ import { createPost } from 'services/Posts';
 import { ICreatePostReq } from 'services/Posts/type';
 import { getTags } from 'services/Tags';
 import { ITags } from 'services/Tags/type';
-import { getEditor, TAGS } from 'utils';
+import { getEditor, getTextWidth } from 'utils';
 
 const Editor = dynamic(() => import('@uiw/react-md-editor'), {
   ssr: false,
 });
 
 interface IForm extends Omit<ICreatePostReq, 'thumbnail' | 'tags'> {}
+interface IKeywords {
+  name: string;
+  width: number;
+}
 
 const initForm: IForm = {
   title: '',
@@ -41,8 +45,11 @@ const PostPage: React.FC = () => {
   const [inView, setInView] = React.useState<boolean>(true);
   const [thumbnail, setThumbnail] = React.useState<File | null>(null);
   const [tags, setTags] = React.useState<string[]>([]);
+  const [keywords, setKeywords] = React.useState<IKeywords[]>([]);
 
   const commands = React.useMemo(() => getEditor('italic', 'bold', 'image'), []);
+
+  const keywordsWidth = keywords.reduce<number>((acc, cur) => (acc += cur.width), 0);
 
   const { register, handleSubmit, watch, setValue } = useForm<IForm>({
     defaultValues: initForm,
@@ -57,6 +64,17 @@ const PostPage: React.FC = () => {
     setTags((prev) =>
       prev.includes(tag.id) ? prev.filter((t) => t !== tag.id) : [...prev, tag.id],
     );
+  };
+
+  const onKeywordInputKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
+      const { value: name } = e.currentTarget;
+
+      setKeywords((prev) => [...prev, { name, width: getTextWidth(name) + 24 }]);
+      e.currentTarget.value = '';
+    } else if (e.key === 'Backspace' && keywords.length !== 0) {
+      setKeywords((prev) => prev.slice(0, prev.length - 1));
+    }
   };
 
   const onSubmit = handleSubmit(async (data) => {
@@ -115,6 +133,26 @@ const PostPage: React.FC = () => {
             onClick={onClickTags}
             selectedTags={tags}
           />
+        </div>
+        <div className={styles.keywordWrapper}>
+          <h2>Keywords</h2>
+          <div
+            className={styles.keywords}
+            style={
+              { '--count': `${keywordsWidth + (keywords.length - 1) * 4 + 4}px` } as CSSProperties
+            }
+          >
+            <ul>
+              {keywords.map(({ name }) => (
+                <li>{name}</li>
+              ))}
+            </ul>
+            <input
+              name='keyword'
+              placeholder='키워드를 입력해주세요.'
+              onKeyDown={onKeywordInputKeyDown}
+            />
+          </div>
         </div>
         <section className={styles.edit}>
           <p
