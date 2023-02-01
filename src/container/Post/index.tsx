@@ -48,7 +48,6 @@ const PostPage: React.FC = () => {
   const [keywords, setKeywords] = React.useState<IKeywords[]>([]);
 
   const commands = React.useMemo(() => getEditor('italic', 'bold', 'image'), []);
-
   const keywordsWidth = keywords.reduce<number>((acc, cur) => (acc += cur.width), 0);
 
   const { register, handleSubmit, watch, setValue } = useForm<IForm>({
@@ -57,14 +56,17 @@ const PostPage: React.FC = () => {
 
   const preview = thumbnail && URL.createObjectURL(thumbnail);
 
-  const onFocus = () => setInView(false);
-  const onBlur = () => setInView(true);
+  const onFocus = React.useCallback(() => setInView(false), []);
+  const onBlur = React.useCallback(() => setInView(true), []);
 
-  const onClickTags = (tag: ITags) => () => {
-    setTags((prev) =>
-      prev.includes(tag.id) ? prev.filter((t) => t !== tag.id) : [...prev, tag.id],
-    );
-  };
+  const onClickTags = React.useCallback(
+    (tag: ITags) => () => {
+      setTags((prev) =>
+        prev.includes(tag.id) ? prev.filter((t) => t !== tag.id) : [...prev, tag.id],
+      );
+    },
+    [],
+  );
 
   const onKeywordInputKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
@@ -79,12 +81,9 @@ const PostPage: React.FC = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     if (!thumbnail) return;
-    const { title, description, content } = data;
     const thumbnailUrl = await uploadFile({ file: thumbnail });
     const req: ICreatePostReq = {
-      title,
-      description,
-      content,
+      ...data,
       thumbnail: thumbnailUrl,
       tags,
     };
