@@ -7,6 +7,7 @@ const removeImports = require('next-remove-imports')();
 const nextConfig = {
   images: {
     domains: ['sgp1.vultrobjects.com'],
+    unoptimized: true,
   },
   reactStrictMode: true,
   trailingSlash: true,
