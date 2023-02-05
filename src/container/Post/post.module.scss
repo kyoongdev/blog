@@ -96,23 +96,22 @@
   }
 
   .keywords {
-    position: relative;
     width: 100%;
-    content: var(--count);
-    counter-reset: --count var(--count);
+    @include m.flex(flex-start);
 
     > ul {
-      position: absolute;
-      top: 50%;
-      left: 0;
       column-gap: 4px;
       margin-left: 4px;
-      transform: translateY(-50%);
+
       @include m.flex(flex-start, center);
 
       > li {
-        padding: 2px 12px;
+        flex-grow: 1;
+        padding: 4px 8px 3px;
+        font-size: 14px;
+        font-weight: 500;
         color: c.$C_PRIMARY;
+        white-space: nowrap;
         list-style: none;
         cursor: pointer;
         border: 1px solid c.$C_PRIMARY;
@@ -123,7 +122,6 @@
     input {
       width: 100%;
       padding: 8px 12px;
-      padding-left: calc(var(--count) + 12px);
       font-size: 16px;
       border: 0;
       border-radius: 4px;
@@ -174,7 +172,7 @@
 
   .markdown {
     height: 720px;
-    padding: 10px;
+    padding: 10px 10px 72px;
     margin-top: 0;
     overflow-y: scroll;
     border-left: 1px solid c.$C_GRAY_7;

@@ -1,4 +1,4 @@
-import { ICreatePostReq, IGetPostRes, IGetPostsQuery, IGetPostsRes, IUpdatePostReq } from './type';
+import { CreatePostReq, IGetPostRes, IGetPostsQuery, IGetPostsRes, IUpdatePostReq } from './type';
 
 import apiClient from 'services/apiClient';
 import { IResponseWithId, PagingRes } from 'services/type';
@@ -10,7 +10,7 @@ export const getPosts = (params: IGetPostsQuery) => {
 
 export const getPost = (id: string) => apiClient.get<IGetPostRes>(`posts/${id}/detail`);
 
-export const createPost = (body: ICreatePostReq) => apiClient.post<IResponseWithId>('posts', body);
+export const createPost = (body: CreatePostReq) => apiClient.post<IResponseWithId>('posts', body);
 
 export const updatePost = (id: string, body: IUpdatePostReq) =>
   apiClient.patch(`posts/${id}`, body);

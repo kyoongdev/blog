@@ -11,6 +11,7 @@ export interface IGetPostsRes {
 
 export interface IGetPostRes extends IGetPostsRes {
   content: string;
+  keywords: Array<string>;
   updatedAt: Date;
 }
 
@@ -18,6 +19,6 @@ export interface IGetPostsQuery extends PagingQuery {
   tags?: string[];
 }
 
-export interface ICreatePostReq extends Omit<IGetPostRes, 'id' | 'createdAt' | 'updatedAt'> {}
+export interface CreatePostReq extends Omit<IGetPostRes, 'id' | 'createdAt' | 'updatedAt'> {}
 
-export interface IUpdatePostReq extends Partial<ICreatePostReq> {}
+export interface IUpdatePostReq extends Partial<CreatePostReq> {}

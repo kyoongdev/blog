@@ -12,7 +12,7 @@ import { Button, Tags } from 'components';
 import Markdown from 'components/Markdown';
 import { uploadFile } from 'services/File';
 import { createPost } from 'services/Posts';
-import { ICreatePostReq } from 'services/Posts/type';
+import { CreatePostReq } from 'services/Posts/type';
 import { getTags } from 'services/Tags';
 import { ITags } from 'services/Tags/type';
 import { getEditor, getTextWidth } from 'utils';
@@ -21,16 +21,17 @@ const Editor = dynamic(() => import('@uiw/react-md-editor'), {
   ssr: false,
 });
 
-interface IForm extends Omit<ICreatePostReq, 'thumbnail' | 'tags'> {}
-interface IKeywords {
+interface Form extends Omit<CreatePostReq, 'thumbnail' | 'tags'> {}
+interface Keywords {
   name: string;
   width: number;
 }
 
-const initForm: IForm = {
+const initForm: Form = {
   title: '',
   description: '',
   content: '',
+  keywords: [],
 };
 
 const PostPage: React.FC = () => {
@@ -45,12 +46,11 @@ const PostPage: React.FC = () => {
   const [inView, setInView] = React.useState<boolean>(true);
   const [thumbnail, setThumbnail] = React.useState<File | null>(null);
   const [tags, setTags] = React.useState<string[]>([]);
-  const [keywords, setKeywords] = React.useState<IKeywords[]>([]);
+  const [keywords, setKeywords] = React.useState<Keywords[]>([]);
 
   const commands = React.useMemo(() => getEditor('italic', 'bold', 'image'), []);
-  const keywordsWidth = keywords.reduce<number>((acc, cur) => (acc += cur.width), 0);
 
-  const { register, handleSubmit, watch, setValue } = useForm<IForm>({
+  const { register, handleSubmit, watch, setValue } = useForm<Form>({
     defaultValues: initForm,
   });
 
@@ -69,12 +69,11 @@ const PostPage: React.FC = () => {
   );
 
   const onKeywordInputKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+    const { value: name } = e.currentTarget;
     if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
-      const { value: name } = e.currentTarget;
-
       setKeywords((prev) => [...prev, { name, width: getTextWidth(name) + 24 }]);
       e.currentTarget.value = '';
-    } else if (e.key === 'Backspace' && keywords.length !== 0) {
+    } else if (e.key === 'Backspace' && name.length === 0) {
       setKeywords((prev) => prev.slice(0, prev.length - 1));
     }
   };
@@ -82,10 +81,11 @@ const PostPage: React.FC = () => {
   const onSubmit = handleSubmit(async (data) => {
     if (!thumbnail) return;
     const thumbnailUrl = await uploadFile({ file: thumbnail });
-    const req: ICreatePostReq = {
+    const req: CreatePostReq = {
       ...data,
       thumbnail: thumbnailUrl,
       tags,
+      keywords: keywords.map(({ name }) => name),
     };
     createPostApi(req);
   });
@@ -135,12 +135,7 @@ const PostPage: React.FC = () => {
         </div>
         <div className={styles.keywordWrapper}>
           <h2>Keywords</h2>
-          <div
-            className={styles.keywords}
-            style={
-              { '--count': `${keywordsWidth + (keywords.length - 1) * 4 + 4}px` } as CSSProperties
-            }
-          >
+          <div className={styles.keywords}>
             <ul>
               {keywords.map(({ name }) => (
                 <li>{name}</li>

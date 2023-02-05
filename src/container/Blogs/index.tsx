@@ -24,7 +24,7 @@ const Page: React.FC<Props> = ({ blog }) => {
         title={blog.title}
         url={`${URL_PREFIX}/blogs/${blog.id}`}
         description={blog.description}
-        keywords={[]}
+        keywords={blog.keywords}
       />
       <Image
         className={styles.thumbnail}
