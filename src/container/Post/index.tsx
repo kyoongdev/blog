@@ -2,7 +2,7 @@ import cx from 'classnames';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import React, { CSSProperties } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 
 import styles from './post.module.scss';
@@ -71,6 +71,7 @@ const PostPage: React.FC = () => {
   const onKeywordInputKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     const { value: name } = e.currentTarget;
     if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
+      e.preventDefault();
       setKeywords((prev) => [...prev, { name, width: getTextWidth(name) + 24 }]);
       e.currentTarget.value = '';
     } else if (e.key === 'Backspace' && name.length === 0) {
@@ -78,7 +79,7 @@ const PostPage: React.FC = () => {
     }
   };
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit: SubmitHandler<Form> = async (data, e) => {
     if (!thumbnail) return;
     const thumbnailUrl = await uploadFile({ file: thumbnail });
     const req: CreatePostReq = {
@@ -88,7 +89,7 @@ const PostPage: React.FC = () => {
       keywords: keywords.map(({ name }) => name),
     };
     createPostApi(req);
-  });
+  };
 
   const onAddThumbnail: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const { files } = e.currentTarget;
@@ -99,7 +100,7 @@ const PostPage: React.FC = () => {
 
   return (
     <section className={styles.wrapper}>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Button className={styles.submitButton} type='submit'>
           제출하기
         </Button>

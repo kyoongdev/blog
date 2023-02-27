@@ -25,14 +25,22 @@
     @include m.flex(flex-start, flex-end);
 
     > p {
+      @include m.fontB16('light');
       margin-left: 12px;
       color: c.$C_GRAY_6;
-      @include m.fontB16('light');
     }
 
     > h1 {
       font-size: 40px;
       font-weight: 700;
+    }
+
+    @include m.mobileOnly {
+      @include m.flex(flex-start, flex-start, column);
+
+      > p {
+        margin-left: 0;
+      }
     }
   }
 

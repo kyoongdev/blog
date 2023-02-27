@@ -43,11 +43,11 @@
 
   p {
     font-size: 20px;
-    line-height: 26px;
+    line-height: 32px;
 
     @media screen and (max-width: 768px) {
       font-size: 18px;
-      line-height: 24px;
+      line-height: 32px;
     }
   }
 
@@ -139,7 +139,7 @@
   li,
   table,
   pre {
-    margin: 15px 0;
+    margin: 20px 0;
   }
 
   li > pre {
