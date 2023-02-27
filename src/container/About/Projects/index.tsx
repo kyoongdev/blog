@@ -4,13 +4,13 @@ import Link from 'next/link';
 import React from 'react';
 import ReactHTMLParser from 'react-html-parser';
 
-import { type TProject, projects } from './data';
+import { type Project as ProjectData, projects } from './data';
 import styles from './projects.module.scss';
 
 import LinkIcon from 'assets/svg/link.svg';
 import { Tags } from 'components';
 
-const Project: React.FC<TProject> = ({
+const Project: React.FC<ProjectData> = ({
   title,
   startedAt,
   endedAt,

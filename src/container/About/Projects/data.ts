@@ -1,6 +1,6 @@
 type ProjectType = 'AGENCY' | 'PERSONAL' | 'COMPANY';
 
-export type TProject = {
+export type Project = {
   title: string;
   type: ProjectType;
   startedAt: string;
@@ -12,7 +12,7 @@ export type TProject = {
   thumbnail?: string;
 };
 
-export const projects: Array<TProject> = [
+export const projects: Array<Project> = [
   {
     title: '(주)빗썸라이브',
     type: 'AGENCY',

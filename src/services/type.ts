@@ -17,6 +17,6 @@ export interface PagingRes<T> {
   paging: Paging;
 }
 
-export interface IResponseWithId {
+export interface ResponseWithId {
   id: string;
 }

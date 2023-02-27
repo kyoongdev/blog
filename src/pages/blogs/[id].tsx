@@ -3,10 +3,10 @@ import { GetStaticProps, NextPage } from 'next';
 
 import { API_URL } from 'config';
 import { BlogsPage } from 'container';
-import { IGetPostRes } from 'services/Posts/type';
+import { GetPostResponse } from 'services/Posts/type';
 
 interface Props {
-  blog: IGetPostRes | null;
+  blog: GetPostResponse | null;
 }
 
 export const getStaticPaths = async () => {

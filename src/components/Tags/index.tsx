@@ -3,15 +3,15 @@ import React from 'react';
 
 import styles from './tags.module.scss';
 
-import { IGetTagsRes, ITags } from 'services/Tags/type';
+import { GetTagsResponse, TagsResponse } from 'services/Tags/type';
 
 interface Props {
   className?: string;
   isSecondary?: boolean;
   isDark?: boolean;
-  tags: IGetTagsRes | string[];
+  tags: GetTagsResponse | string[];
   selectedTags?: string[];
-  onClick?(tag: ITags): () => void;
+  onClick?(tag: TagsResponse): () => void;
 }
 
 const Tags: React.FC<Props> = ({ tags, className, isDark, isSecondary, selectedTags, onClick }) => {

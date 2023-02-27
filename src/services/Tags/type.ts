@@ -1,10 +1,10 @@
-export interface ITags {
+export interface TagsResponse {
   id: string;
   name: string;
 }
 
-export interface IGetTagsRes extends Array<ITags> {}
+export interface GetTagsResponse extends Array<TagsResponse> {}
 
-export interface ICreateTagReq {
+export interface CreateTagBody {
   name: string;
 }

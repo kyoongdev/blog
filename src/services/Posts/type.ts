@@ -1,24 +1,26 @@
 import { PagingQuery } from 'services/type';
 
-export interface IGetPostsRes {
+export interface GetPostsResponse {
   id: string;
   title: string;
   thumbnail: string;
   description: string;
+  viewCount: number;
   createdAt: Date;
   tags: Array<string>;
 }
 
-export interface IGetPostRes extends IGetPostsRes {
+export interface GetPostResponse extends GetPostsResponse {
   content: string;
   keywords: Array<string>;
   updatedAt: Date;
 }
 
-export interface IGetPostsQuery extends PagingQuery {
+export interface IGetPostsParams extends PagingQuery {
   tags?: string[];
 }
 
-export interface CreatePostReq extends Omit<IGetPostRes, 'id' | 'createdAt' | 'updatedAt'> {}
+export interface CreatePostBody
+  extends Omit<GetPostResponse, 'id' | 'createdAt' | 'updatedAt' | 'viewCount'> {}
 
-export interface IUpdatePostReq extends Partial<CreatePostReq> {}
+export interface UpdatePostBody extends Partial<CreatePostBody> {}

@@ -5,17 +5,16 @@ import styles from './categories.module.scss';
 import { tags } from '../state';
 
 import { Tags } from 'components';
-import { IGetTagsRes, ITags } from 'services/Tags/type';
-import { TAGS } from 'utils';
+import { GetTagsResponse, TagsResponse } from 'services/Tags/type';
 
 interface Props {
-  data: IGetTagsRes;
+  data: GetTagsResponse;
 }
 
 const Categorires: React.FC<Props> = ({ data }) => {
   const [selectedTags, setSelectedTags] = useRecoilState(tags);
 
-  const onClick = React.useCallback((tag: ITags) => {
+  const onClick = React.useCallback((tag: TagsResponse) => {
     return () => {
       setSelectedTags((prev) => {
         if (prev.indexOf(tag.id) === -1) return [...prev, tag.id];

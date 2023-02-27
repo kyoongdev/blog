@@ -1,8 +1,8 @@
 import cx from 'classnames';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import React, { CSSProperties } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import React from 'react';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 
 import styles from './post.module.scss';
@@ -10,22 +10,17 @@ import styles from './post.module.scss';
 import '@uiw/react-md-editor/markdown-editor.css';
 import { Button, Tags } from 'components';
 import Markdown from 'components/Markdown';
+import type { Form, Keywords } from 'interface/post.interface';
 import { uploadFile } from 'services/File';
 import { createPost } from 'services/Posts';
-import { CreatePostReq } from 'services/Posts/type';
+import { CreatePostBody } from 'services/Posts/type';
 import { getTags } from 'services/Tags';
-import { ITags } from 'services/Tags/type';
+import { TagsResponse } from 'services/Tags/type';
 import { getEditor, getTextWidth } from 'utils';
 
 const Editor = dynamic(() => import('@uiw/react-md-editor'), {
   ssr: false,
 });
-
-interface Form extends Omit<CreatePostReq, 'thumbnail' | 'tags'> {}
-interface Keywords {
-  name: string;
-  width: number;
-}
 
 const initForm: Form = {
   title: '',
@@ -60,7 +55,7 @@ const PostPage: React.FC = () => {
   const onBlur = React.useCallback(() => setInView(true), []);
 
   const onClickTags = React.useCallback(
-    (tag: ITags) => () => {
+    (tag: TagsResponse) => () => {
       setTags((prev) =>
         prev.includes(tag.id) ? prev.filter((t) => t !== tag.id) : [...prev, tag.id],
       );
@@ -79,10 +74,10 @@ const PostPage: React.FC = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<Form> = async (data, e) => {
+  const onSubmit: SubmitHandler<Form> = async (data) => {
     if (!thumbnail) return;
     const thumbnailUrl = await uploadFile({ file: thumbnail });
-    const req: CreatePostReq = {
+    const req: CreatePostBody = {
       ...data,
       thumbnail: thumbnailUrl,
       tags,

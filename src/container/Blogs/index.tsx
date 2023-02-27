@@ -7,12 +7,11 @@ import styles from './blogs.module.scss';
 import { Tags } from 'components';
 import HeadMeta from 'components/HeadMeta';
 import Markdown from 'components/Markdown';
-import { IGetPostRes } from 'services/Posts/type';
-
-const URL_PREFIX = 'https://kyoongdev.github.io';
+import { API_URL } from 'config';
+import { GetPostResponse } from 'services/Posts/type';
 
 interface Props {
-  blog: IGetPostRes | null;
+  blog: GetPostResponse | null;
 }
 
 const Page: React.FC<Props> = ({ blog }) => {
@@ -22,7 +21,7 @@ const Page: React.FC<Props> = ({ blog }) => {
     <section className={styles.container}>
       <HeadMeta
         title={blog.title}
-        url={`${URL_PREFIX}/blogs/${blog.id}`}
+        url={`${API_URL}/blogs/${blog.id}`}
         description={blog.description}
         keywords={blog.keywords}
       />

@@ -1,7 +1,7 @@
-export interface IUploadFileReq {
+export interface UploadFileBody {
   file: File;
 }
 
-export interface IUploadFileRes {
+export interface UploadFileResponse {
   url: string;
 }

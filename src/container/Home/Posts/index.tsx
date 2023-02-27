@@ -12,9 +12,9 @@ import { tags } from '../state';
 import { Tags } from 'components';
 import { PagingRes } from 'services';
 import { getPosts } from 'services/Posts';
-import { IGetPostsRes } from 'services/Posts/type';
+import { GetPostsResponse } from 'services/Posts/type';
 
-interface PostProps extends IGetPostsRes {
+interface PostProps extends GetPostsResponse {
   onRoute: () => void;
 }
 
@@ -41,7 +41,7 @@ const Post: React.FC<PostProps> = React.memo(
 );
 
 interface Props {
-  data: PagingRes<IGetPostsRes>;
+  data: PagingRes<GetPostsResponse>;
 }
 
 const Posts: React.FC<Props> = ({ data }) => {
@@ -53,7 +53,7 @@ const Posts: React.FC<Props> = ({ data }) => {
     data: posts,
     fetchNextPage,
     hasNextPage,
-  } = useInfiniteQuery<PagingRes<IGetPostsRes>, any, PagingRes<IGetPostsRes>>(
+  } = useInfiniteQuery<PagingRes<GetPostsResponse>, any, PagingRes<GetPostsResponse>>(
     ['getPosts', selectedTags],
     async ({ pageParam: page = 1 }) =>
       getPosts({ page, limit: 20, tags: selectedTags }).then((res) => res.data),
