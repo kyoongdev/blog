@@ -4,7 +4,6 @@ import apiClient from 'services/apiClient';
 import { IResponseWithId, PagingRes } from 'services/type';
 
 export const getPosts = (params: IGetPostsQuery) => {
-  console.log(params);
   return apiClient.get<PagingRes<IGetPostsRes>>('posts', { params });
 };
 
