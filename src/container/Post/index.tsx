@@ -2,20 +2,20 @@ import cx from 'classnames';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { type SubmitHandler, useForm } from 'react-hook-form';
+import { useFieldArray, useForm, type SubmitHandler } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 
 import styles from './post.module.scss';
 
-import { Button, Tags } from 'components';
-import Markdown from 'components/Markdown';
-import type { Form, Keywords } from 'interface/post.interface';
+import { Button, Keywords, Markdown, Tags } from 'components';
+import type { FormArray } from 'interface/keywords.interface';
+import type { Form } from 'interface/post.interface';
 import { uploadFile } from 'services/File';
 import { createPost } from 'services/Posts';
-import { CreatePostBody } from 'services/Posts/type';
+import type { CreatePostBody } from 'services/Posts/type';
 import { getTags } from 'services/Tags';
-import { TagsResponse } from 'services/Tags/type';
-import { getEditor, getTextWidth } from 'utils';
+import type { TagsResponse } from 'services/Tags/type';
+import { getEditor } from 'utils';
 
 import '@uiw/react-md-editor/markdown-editor.css';
 
@@ -28,6 +28,7 @@ const initForm: Form = {
   description: '',
   content: '',
   keywords: [],
+  tags: [],
 };
 
 const PostPage: React.FC = () => {
@@ -41,15 +42,29 @@ const PostPage: React.FC = () => {
   });
   const [inView, setInView] = React.useState<boolean>(true);
   const [thumbnail, setThumbnail] = React.useState<File | null>(null);
-  const [tags, setTags] = React.useState<string[]>([]);
-  const [keywords, setKeywords] = React.useState<Keywords[]>([]);
 
-  const commands = React.useMemo(() => getEditor('italic', 'bold', 'image'), []);
-
-  const { register, handleSubmit, watch, setValue } = useForm<Form>({
+  const { register, handleSubmit, watch, setValue, control } = useForm<Form>({
     defaultValues: initForm,
   });
+  const {
+    fields: keywords,
+    append: appendKeyword,
+    remove: removeKeyword,
+  } = useFieldArray<Form, any, keyof FormArray>({
+    control,
+    name: 'keywords',
+  });
+  const {
+    fields: tags,
+    append: appendTag,
+    remove: removeTag,
+  } = useFieldArray<Form, any, keyof TagsResponse>({
+    control,
+    name: 'tags',
+    keyName: 'name',
+  });
 
+  const commands = React.useMemo(() => getEditor('italic', 'bold', 'image'), []);
   const preview = thumbnail && URL.createObjectURL(thumbnail);
 
   const onFocus = React.useCallback(() => setInView(false), []);
@@ -57,23 +72,22 @@ const PostPage: React.FC = () => {
 
   const onClickTags = React.useCallback(
     (tag: TagsResponse) => () => {
-      setTags((prev) =>
-        prev.includes(tag.id) ? prev.filter((t) => t !== tag.id) : [...prev, tag.id],
-      );
+      const tagIdx = tags.findIndex(({ id }) => id === tag.id);
+      if (tagIdx === -1) {
+        appendTag(tag);
+      } else {
+        removeTag(tagIdx);
+      }
     },
-    [],
+    [tags],
   );
 
-  const onKeywordInputKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
-    const { value: name } = e.currentTarget;
-    if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
-      e.preventDefault();
-      setKeywords((prev) => [...prev, { name, width: getTextWidth(name) + 24 }]);
-      e.currentTarget.value = '';
-    } else if (e.key === 'Backspace' && name.length === 0) {
-      setKeywords((prev) => prev.slice(0, prev.length - 1));
-    }
-  };
+  const onAddKeyword = React.useCallback((keyword: FormArray) => {
+    appendKeyword(keyword);
+  }, []);
+  const onRemoveKeyword = React.useCallback(() => {
+    removeKeyword(keywords.length - 1);
+  }, [keywords]);
 
   const onSubmit: SubmitHandler<Form> = async (data) => {
     if (!thumbnail) return;
@@ -81,8 +95,8 @@ const PostPage: React.FC = () => {
     const req: CreatePostBody = {
       ...data,
       thumbnail: thumbnailUrl,
-      tags,
-      keywords: keywords.map(({ name }) => name),
+      tags: data.tags.map(({ id }) => id),
+      keywords: data.keywords.map(({ name }) => name),
     };
     createPostApi(req);
   };
@@ -127,23 +141,17 @@ const PostPage: React.FC = () => {
             tags={tagData?.data ?? []}
             isSecondary
             onClick={onClickTags}
-            selectedTags={tags}
+            selectedTags={tags.map((tag) => tag.id)}
           />
         </div>
         <div className={styles.keywordWrapper}>
           <h2>Keywords</h2>
-          <div className={styles.keywords}>
-            <ul>
-              {keywords.map(({ name }) => (
-                <li>{name}</li>
-              ))}
-            </ul>
-            <input
-              name='keyword'
-              placeholder='키워드를 입력해주세요.'
-              onKeyDown={onKeywordInputKeyDown}
-            />
-          </div>
+          <Keywords
+            keywords={keywords}
+            name='keywords'
+            onAddKeyword={onAddKeyword}
+            onRemoveKeyword={onRemoveKeyword}
+          />
         </div>
         <section className={styles.edit}>
           <p

@@ -4,9 +4,8 @@ import React from 'react';
 
 import styles from './blogs.module.scss';
 
-import { Tags } from 'components';
+import { Markdown, Tags } from 'components';
 import HeadMeta from 'components/HeadMeta';
-import Markdown from 'components/Markdown';
 import { API_URL } from 'config';
 import { GetPostResponse } from 'services/Posts/type';
 

@@ -1,7 +1,7 @@
 import {
   CreatePostBody,
   GetPostResponse,
-  IGetPostsParams,
+  GetPostsParams,
   GetPostsResponse,
   UpdatePostBody,
 } from './type';
@@ -9,7 +9,7 @@ import {
 import apiClient from 'services/apiClient';
 import { ResponseWithId, PagingRes } from 'services/type';
 
-export const getPosts = (params: IGetPostsParams) => {
+export const getPosts = (params: GetPostsParams) => {
   return apiClient.get<PagingRes<GetPostsResponse>>('posts', { params });
 };
 

@@ -4,7 +4,7 @@ import { useFieldArray, useForm } from 'react-hook-form';
 
 import styles from './form.module.scss';
 
-import { ProjectForm } from 'interface/proejct.interface';
+import { ProjectForm } from 'interface/project.interface';
 import { getEditor, getTextWidth } from 'utils';
 
 import '@uiw/react-md-editor/markdown-editor.css';

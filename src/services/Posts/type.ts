@@ -16,7 +16,7 @@ export interface GetPostResponse extends GetPostsResponse {
   updatedAt: Date;
 }
 
-export interface IGetPostsParams extends PagingQuery {
+export interface GetPostsParams extends PagingQuery {
   tags?: string[];
 }
 

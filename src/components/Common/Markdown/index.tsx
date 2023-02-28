@@ -46,4 +46,4 @@ const Markdown: React.FC<Props> = ({ className, content }) => {
   );
 };
 
-export default Markdown;
+export default React.memo(Markdown);

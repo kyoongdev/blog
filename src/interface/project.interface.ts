@@ -1,9 +1,6 @@
-import { CreateProjectRequest } from 'services/Project/type';
+import type { FormArray } from './keywords.interface';
 
-interface FormArray {
-  name: string;
-  width: number;
-}
+import type { CreateProjectRequest } from 'services/Project/type';
 
 export interface ProjectForm extends Omit<CreateProjectRequest, 'skills' | 'roles'> {
   skills: FormArray[];

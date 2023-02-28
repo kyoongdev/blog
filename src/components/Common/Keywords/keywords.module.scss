@@ -1,0 +1,35 @@
+@use 'src/styles/constants' as c;
+@use 'src/styles/mixins' as m;
+
+.wrapper {
+  width: 100%;
+  @include m.flex(flex-start);
+
+  > ul {
+    column-gap: 4px;
+    margin-left: 4px;
+
+    @include m.flex(flex-start, center);
+
+    > li {
+      flex-grow: 1;
+      padding: 4px 8px 3px;
+      font-size: 14px;
+      font-weight: 500;
+      color: c.$C_PRIMARY;
+      white-space: nowrap;
+      list-style: none;
+      cursor: pointer;
+      border: 1px solid c.$C_PRIMARY;
+      border-radius: 12px;
+    }
+  }
+
+  input {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 0;
+    border-radius: 4px;
+  }
+}
