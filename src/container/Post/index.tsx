@@ -7,7 +7,6 @@ import { useMutation, useQuery } from 'react-query';
 
 import styles from './post.module.scss';
 
-import '@uiw/react-md-editor/markdown-editor.css';
 import { Button, Tags } from 'components';
 import Markdown from 'components/Markdown';
 import type { Form, Keywords } from 'interface/post.interface';
@@ -17,6 +16,8 @@ import { CreatePostBody } from 'services/Posts/type';
 import { getTags } from 'services/Tags';
 import { TagsResponse } from 'services/Tags/type';
 import { getEditor, getTextWidth } from 'utils';
+
+import '@uiw/react-md-editor/markdown-editor.css';
 
 const Editor = dynamic(() => import('@uiw/react-md-editor'), {
   ssr: false,

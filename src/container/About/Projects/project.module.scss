@@ -1,52 +1,6 @@
 @use 'src/styles/mixins' as m;
 @use 'src/styles/constants' as c;
 
-@mixin tag($color: c.$C_PRIMARY) {
-  height: 20px;
-  padding: 0 8px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 22px;
-  color: c.$C_WHITE;
-  text-align: center;
-  list-style: none;
-  cursor: pointer;
-  background-color: $color;
-  border-radius: 12px;
-
-  @include m.mobileOnly {
-    height: 16px;
-    font-size: 12px;
-    line-height: 18px;
-  }
-}
-
-.container {
-  margin-top: 24px;
-
-  @include m.tabletOnly {
-    padding: 0 12px;
-  }
-
-  > header {
-    @include m.flex(space-between);
-
-    > h1 {
-      @include m.fontH1(medium);
-    }
-
-    > button {
-      width: 80px;
-    }
-  }
-}
-
-.projects {
-  row-gap: 24px;
-  margin-top: 24px;
-  @include m.flex(flex-start, flex-start, column);
-}
-
 .project {
   column-gap: 24px;
   width: 100%;

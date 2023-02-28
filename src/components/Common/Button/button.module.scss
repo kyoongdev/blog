@@ -25,4 +25,8 @@
     background-color: c.$C_DARK_GRAY;
     opacity: 0.5;
   }
+
+  &:hover {
+    opacity: 0.8;
+  }
 }

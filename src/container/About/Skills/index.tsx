@@ -3,10 +3,7 @@ import React from 'react';
 
 import styles from './skills.module.scss';
 
-import ExpressLogo from 'assets/images/express.png';
-import NestLogo from 'assets/images/nestjs.png';
-import NextLogo from 'assets/images/nextjs.png';
-import ReactLogo from 'assets/images/react.png';
+import { ExpressLogo, JiraLogo, NestLogo, NextLogo, ReactLogo, SlackLogo } from 'assets/images';
 
 interface SkillProps {
   title: string;
@@ -59,6 +56,11 @@ const Skills: React.FC = () => {
             'MongoDB',
             'Socket',
           ]}
+        />
+        <Skill
+          title='Tools'
+          main={[SlackLogo, JiraLogo]}
+          sub={['Slack', 'Jira', 'Telegram', 'Dooray', 'Github', 'Bitbucket', 'Gitlab', 'Notion']}
         />
       </section>
     </section>

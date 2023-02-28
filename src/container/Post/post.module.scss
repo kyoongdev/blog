@@ -24,10 +24,10 @@
 }
 
 .title {
+  @include m.fontH2('medium');
   width: 100%;
   padding: 12px 12px 12px 0;
   margin: 12px 0 0;
-  @include m.fontH2('medium');
 }
 
 .description {

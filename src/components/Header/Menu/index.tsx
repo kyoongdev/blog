@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './menu.module.scss';
 
-import MenuIcon from 'assets/svg/menu.svg';
-import DrawerEventEmitter from 'components/Drawer/DrawerEventEmitter';
+import { MenuIcon } from 'assets/svg';
+import DrawerEventEmitter from 'components/Common/Drawer/DrawerEventEmitter';
 
 const Menu: React.FC = () => {
   const onClickIcon = React.useCallback(() => DrawerEventEmitter.add(), []);

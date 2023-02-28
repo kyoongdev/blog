@@ -16,4 +16,4 @@ const Button: React.FC<Props> = ({ className, children, styleType = 'primary' })
   return <button className={cx(className, styles.button, styles[styleType])}>{children}</button>;
 };
 
-export default Button;
+export default React.memo(Button);

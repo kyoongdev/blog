@@ -1,0 +1,117 @@
+@use 'src/styles/constants' as c;
+@use 'src/styles/mixins' as m;
+
+.wrapper {
+  width: 100%;
+  min-height: 80px;
+  padding: 20px;
+  margin-top: 24px;
+  border-radius: 4px;
+  box-shadow: 0 0 12px 4px c.$C_GRAY_7;
+}
+
+.form {
+  @include m.flex(flex-start, stretch, column);
+  row-gap: 8px;
+  width: 100%;
+
+  .thumbnail {
+    @include m.flex(flex-start);
+    column-gap: 16px;
+    cursor: pointer;
+
+    > h2 {
+      @include m.fontH2('medium');
+      flex-basis: 64px;
+    }
+
+    > input {
+      display: none;
+    }
+
+    > p {
+      margin-left: 8px;
+      color: c.$C_GRAY_4;
+    }
+
+    &.exist {
+      @include m.flex(flex-start, flex-start, column);
+
+      > img {
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .inputWrapper {
+    @include m.flex(flex-start);
+    column-gap: 16px;
+
+    > p {
+      flex-basis: 64px;
+      @include m.fontH2('medium');
+    }
+
+    > input {
+      @include m.fontH2('medium');
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 16px;
+      border: 0;
+      border-radius: 4px;
+    }
+  }
+
+  .tagWrapper {
+    column-gap: 12px;
+    width: 100%;
+    @include m.flex(flex-start, center, row);
+
+    > h2 {
+      @include m.fontH2('medium');
+      flex-basis: 64px;
+    }
+
+    .tags {
+      width: 100%;
+      @include m.flex(flex-start);
+
+      > ul {
+        column-gap: 4px;
+        margin-left: 4px;
+
+        @include m.flex(flex-start, center);
+
+        > li {
+          flex-grow: 1;
+          padding: 4px 8px 3px;
+          font-size: 14px;
+          font-weight: 500;
+          color: c.$C_PRIMARY;
+          white-space: nowrap;
+          list-style: none;
+          cursor: pointer;
+          border: 1px solid c.$C_PRIMARY;
+          border-radius: 12px;
+        }
+      }
+
+      input {
+        width: 100%;
+        padding: 8px 12px;
+        font-size: 16px;
+        border: 0;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .content {
+    > p {
+      @include m.fontH2('medium');
+      margin-bottom: 12px;
+    }
+  }
+}

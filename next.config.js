@@ -18,6 +18,7 @@ const nextConfig = {
 
     conf.module.rules.push({
       test: /\.svg$/,
+
       use: [
         {
           loader: '@svgr/webpack',
