@@ -18,9 +18,11 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <RecoilRoot>
       <QueryClientProvider client={client}>
-        <RootLayout>
-          <Component {...pageProps} />
-        </RootLayout>
+        <RecoilRoot>
+          <RootLayout>
+            <Component {...pageProps} />
+          </RootLayout>
+        </RecoilRoot>
       </QueryClientProvider>
     </RecoilRoot>
   );

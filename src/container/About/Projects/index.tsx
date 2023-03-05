@@ -11,17 +11,21 @@ import { isLocal } from 'utils/local';
 const Projects: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const onOpen = () => {
-    setIsOpen(true);
+  const onClick = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
     <section className={styles.container}>
       <header>
         <h1>Projects</h1>
-        {isLocal && <Button>추가</Button>}
+        {isLocal && (
+          <Button type='button' onClick={onClick}>
+            {isOpen ? '닫기' : '추가하기'}
+          </Button>
+        )}
       </header>
-      <Form />
+      <Form view={isOpen} />
       <ul className={styles.projects}>
         {projects.map((project) => (
           <Project key={project.title} {...project} />

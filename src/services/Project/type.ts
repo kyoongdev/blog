@@ -1,7 +1,7 @@
 export interface ProjectsResponse {
   id: string;
   title: string;
-  thumbnail: string;
+  thumbnail?: string;
   content: string;
   startDate: Date;
   endDate: Date;

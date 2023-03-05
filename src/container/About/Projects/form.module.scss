@@ -3,17 +3,33 @@
 
 .wrapper {
   width: 100%;
-  min-height: 80px;
-  padding: 20px;
-  margin-top: 24px;
+  max-height: 0;
+  overflow-y: scroll;
+  visibility: hidden;
   border-radius: 4px;
   box-shadow: 0 0 12px 4px c.$C_GRAY_7;
+  transition: all 0.3s ease-in-out;
+
+  &.isOpen {
+    max-height: 500px;
+    margin-top: 20px;
+    visibility: visible;
+  }
 }
 
 .form {
   @include m.flex(flex-start, stretch, column);
-  row-gap: 8px;
+  position: relative;
+  row-gap: 16px;
   width: 100%;
+  padding: 20px;
+
+  .submit {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 80px;
+  }
 
   .thumbnail {
     @include m.flex(flex-start);

@@ -1,5 +1,5 @@
 'use client';
-import cx from 'classnames';
+import cx from 'clsx';
 import Link from 'next/link';
 import React from 'react';
 

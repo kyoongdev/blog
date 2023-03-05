@@ -1,11 +1,20 @@
+import cx from 'clsx';
 import dynamic from 'next/dynamic';
 import React from 'react';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { type SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import { useRecoilValue } from 'recoil';
 
 import styles from './form.module.scss';
+import { selectedProjectState } from './state';
 
+import { Button } from 'components';
 import { ProjectForm } from 'interface/project.interface';
+import { uploadFile } from 'services/File';
+import { createProjectApi, updateProjectApi } from 'services/Project';
+import { UpdateProjectRequest } from 'services/Project/type';
 import { getEditor, getTextWidth } from 'utils';
+import { isLocal } from 'utils/local';
 
 import '@uiw/react-md-editor/markdown-editor.css';
 
@@ -13,9 +22,30 @@ const Editor = dynamic(() => import('@uiw/react-md-editor'), {
   ssr: false,
 });
 
-const Form: React.FC = () => {
+interface Props {
+  view: boolean;
+}
+
+const Form: React.FC<Props> = ({ view }) => {
   const [thumbnail, setThumbnail] = React.useState<File | null>(null);
-  const { register, setValue, getValues, handleSubmit, watch, control } = useForm<ProjectForm>();
+  const selectedProject = useRecoilValue(selectedProjectState);
+
+  const { mutateAsync: createProject } = useMutation(createProjectApi);
+  const { mutateAsync: updateProject } = useMutation((body: UpdateProjectRequest) =>
+    updateProjectApi('', body),
+  );
+
+  const { register, setValue, handleSubmit, watch, control } = useForm<ProjectForm>({
+    defaultValues: {
+      title: selectedProject?.title,
+      content: selectedProject?.content,
+      skills: selectedProject?.skills.map((skill) => ({ name: skill })),
+      roles: selectedProject?.roles.map((role) => ({ name: role })),
+      endDate: selectedProject?.endDate,
+      startDate: selectedProject?.startDate,
+      thumbnail: selectedProject?.thumbnail,
+    },
+  });
   const {
     fields: skills,
     append: appendSkills,
@@ -34,7 +64,32 @@ const Form: React.FC = () => {
   });
 
   const commands = React.useMemo(() => getEditor('italic', 'bold'), []);
-  const preview = thumbnail && URL.createObjectURL(thumbnail);
+  const preview = watch('thumbnail') ?? (thumbnail && URL.createObjectURL(thumbnail));
+
+  const onSubmit: SubmitHandler<ProjectForm> = async (data) => {
+    const { title, content, skills, roles, startDate, endDate } = data;
+    const body = {
+      title,
+      content,
+      skills: skills.map((skill) => skill.name),
+      roles: roles.map((role) => role.name),
+      startDate,
+      endDate,
+      thumbnail: thumbnail ? await uploadFile({ file: thumbnail }) : undefined,
+    };
+    if (selectedProject) {
+      await updateProject(body);
+    } else {
+      await createProject(body);
+    }
+  };
+
+  const onAddThumbnail: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { files } = e.currentTarget;
+    const file = files && files[0];
+    if (!file) return;
+    setThumbnail(file);
+  };
 
   const onKeywordInputKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     const { value: name, name: target } = e.currentTarget;
@@ -50,16 +105,20 @@ const Form: React.FC = () => {
       target === 'roles' ? removeRoles(roles.length - 1) : removeSkills(skills.length - 1);
     }
   };
+
+  if (!isLocal) return null;
+
   return (
-    <section className={styles.wrapper}>
-      <form className={styles.form}>
+    <section className={cx(styles.wrapper, { [styles.isOpen]: view })}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <Button className={styles.submit}>제출</Button>
         <label className={styles.inputWrapper}>
           <p>제목</p>
-          <input placeholder='제목을 입력해주세요.' />
+          <input placeholder='제목을 입력해주세요.' {...register('title')} />
         </label>
         <label className={styles.thumbnail}>
           <h2>썸네일</h2>
-          <input type='file' onChange={() => {}} />
+          <input type='file' onChange={onAddThumbnail} />
           {preview ? <img src={preview} alt='thumbnail' /> : <p>썸네일을 등록해주세요.</p>}
         </label>
         <div className={styles.tagWrapper}>

@@ -15,7 +15,7 @@ const Project: React.FC<ProjectData> = ({
   startedAt,
   endedAt,
   roles,
-  description,
+  content,
   skills,
   link,
   thumbnail,
@@ -52,7 +52,7 @@ const Project: React.FC<ProjectData> = ({
             <h2>ROLE</h2>
             <Tags className={styles.tags} tags={roles} isDark />
           </div>
-          {ReactHTMLParser(description)}
+          {ReactHTMLParser(content)}
         </article>
       </div>
     </li>
