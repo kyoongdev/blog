@@ -1,23 +1,10 @@
-type ProjectType = 'AGENCY' | 'PERSONAL' | 'COMPANY';
+import { ProjectsResponse } from 'services/Project/type';
 
-export type Project = {
-  title: string;
-  type: ProjectType;
-  startedAt: string;
-  endedAt: string;
-  roles: Array<string>;
-  content: string;
-  skills: Array<string>;
-  link?: string;
-  thumbnail?: string;
-};
-
-export const projects: Array<Project> = [
+export const projects: Array<Omit<ProjectsResponse & { link?: string }, 'id'>> = [
   {
     title: '(주)WATA',
-    type: 'AGENCY',
-    startedAt: '2023.02',
-    endedAt: '2023.4',
+    startDate: '2023.02',
+    endDate: '2023.4',
     roles: ['Frontend'],
     skills: ['Next.js', 'Typescript', 'React-Query', 'Recoil', 'SCSS', 'WebGL'],
     link: 'https://www.watanow.com/web/landing.do?lang=en',
@@ -27,9 +14,8 @@ export const projects: Array<Project> = [
   },
   {
     title: '(주)빗썸라이브',
-    type: 'AGENCY',
-    startedAt: '2022.08',
-    endedAt: '2022.10',
+    startDate: '2022.08',
+    endDate: '2022.10',
     roles: ['Frontend'],
     skills: ['Next.js', 'Typescript', 'React-Query', 'Recoil', 'SCSS'],
     link: 'https://www.bithumblive.com/',
@@ -39,9 +25,8 @@ export const projects: Array<Project> = [
   },
   {
     title: 'H2CARE',
-    type: 'AGENCY',
-    startedAt: '2022.03',
-    endedAt: '2022.09',
+    startDate: '2022.03',
+    endDate: '2022.09',
     roles: ['PM', 'Backend'],
     skills: ['Express', 'Typescript', 'Sequelize', 'MySQL'],
     link: 'https://play.google.com/store/apps/details?id=com.aviv.hicare&hl=ko&gl=US',
@@ -51,9 +36,8 @@ export const projects: Array<Project> = [
   },
   {
     title: '(주)메디스',
-    type: 'AGENCY',
-    startedAt: '2022.03',
-    endedAt: '2022.08',
+    startDate: '2022.03',
+    endDate: '2022.08',
     roles: ['Backend'],
     skills: ['Express', 'Prisma', 'Socket.io', 'MariaDB'],
     content:
@@ -61,9 +45,8 @@ export const projects: Array<Project> = [
   },
   {
     title: '(주)컬러버스',
-    type: 'AGENCY',
-    startedAt: '2022.03',
-    endedAt: '2022.06',
+    startDate: '2022.03',
+    endDate: '2022.06',
     roles: ['Frontend'],
     skills: ['React', 'React-Query', 'Recoil', 'Redux-toolkit', 'SCSS'],
     content:
@@ -73,9 +56,8 @@ export const projects: Array<Project> = [
   },
   {
     title: '마켓 프레고',
-    type: 'AGENCY',
-    startedAt: '2022.02',
-    endedAt: '2022.04',
+    startDate: '2022.02',
+    endDate: '2022.04',
     roles: ['Backend'],
     skills: ['Express', 'Prisma', 'MariaDB'],
     content:

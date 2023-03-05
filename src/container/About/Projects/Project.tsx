@@ -4,21 +4,28 @@ import Link from 'next/link';
 import React from 'react';
 import ReactHTMLParser from 'react-html-parser';
 
-import { type Project as ProjectData } from './data';
 import styles from './project.module.scss';
 
 import { LinkIcon } from 'assets/svg';
-import { Tags } from 'components';
+import { Button, Tags } from 'components';
+import { ProjectsResponse } from 'services/Project/type';
 
-const Project: React.FC<ProjectData> = ({
+interface Props extends ProjectsResponse {
+  onClickEdit: () => void;
+  onClickDelete: () => void;
+}
+
+const Project: React.FC<Props> = ({
   title,
-  startedAt,
-  endedAt,
   roles,
   content,
   skills,
   link,
   thumbnail,
+  endDate,
+  startDate,
+  onClickDelete,
+  onClickEdit,
 }) => {
   return (
     <li className={styles.project}>
@@ -32,15 +39,21 @@ const Project: React.FC<ProjectData> = ({
           <h1>{title}</h1>
           <div>
             <div className={styles.date}>
-              <span>{dayjs(startedAt).format('YYYY.MM')}</span>
+              <span>{dayjs(startDate).format('YYYY.MM')}</span>
               <span>~</span>
-              <span>{dayjs(endedAt).format('YYYY.MM')}</span>
+              <span>{dayjs(endDate).format('YYYY.MM')}</span>
             </div>
             {link && (
               <Link href={link} target='_blank' passHref className={styles.link}>
                 <LinkIcon />
               </Link>
             )}
+          </div>
+          <div className={styles.buttonWrapper}>
+            <Button onClick={onClickEdit}>수정</Button>
+            <Button styleType='secondary' onClick={onClickDelete}>
+              삭제
+            </Button>
           </div>
         </header>
         <article className={styles.skillWrapper}>

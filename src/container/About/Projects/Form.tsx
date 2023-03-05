@@ -12,7 +12,7 @@ import { Button } from 'components';
 import { ProjectForm } from 'interface/project.interface';
 import { uploadFile } from 'services/File';
 import { createProjectApi, updateProjectApi } from 'services/Project';
-import { UpdateProjectRequest } from 'services/Project/type';
+import { ProjectsResponse, UpdateProjectRequest } from 'services/Project/type';
 import { getEditor, getTextWidth } from 'utils';
 import { isLocal } from 'utils/local';
 
@@ -24,28 +24,18 @@ const Editor = dynamic(() => import('@uiw/react-md-editor'), {
 
 interface Props {
   view: boolean;
+  selectedProject: ProjectsResponse | null;
 }
 
-const Form: React.FC<Props> = ({ view }) => {
+const Form: React.FC<Props> = ({ view, selectedProject }) => {
   const [thumbnail, setThumbnail] = React.useState<File | null>(null);
-  const selectedProject = useRecoilValue(selectedProjectState);
 
   const { mutateAsync: createProject } = useMutation(createProjectApi);
   const { mutateAsync: updateProject } = useMutation((body: UpdateProjectRequest) =>
     updateProjectApi('', body),
   );
 
-  const { register, setValue, handleSubmit, watch, control } = useForm<ProjectForm>({
-    defaultValues: {
-      title: selectedProject?.title,
-      content: selectedProject?.content,
-      skills: selectedProject?.skills.map((skill) => ({ name: skill })),
-      roles: selectedProject?.roles.map((role) => ({ name: role })),
-      endDate: selectedProject?.endDate,
-      startDate: selectedProject?.startDate,
-      thumbnail: selectedProject?.thumbnail,
-    },
-  });
+  const { register, setValue, handleSubmit, watch, control, reset } = useForm<ProjectForm>();
   const {
     fields: skills,
     append: appendSkills,
@@ -82,6 +72,7 @@ const Form: React.FC<Props> = ({ view }) => {
     } else {
       await createProject(body);
     }
+    reset();
   };
 
   const onAddThumbnail: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -105,6 +96,26 @@ const Form: React.FC<Props> = ({ view }) => {
       target === 'roles' ? removeRoles(roles.length - 1) : removeSkills(skills.length - 1);
     }
   };
+
+  React.useEffect(() => {
+    if (!selectedProject) {
+      reset();
+      return;
+    }
+    setValue('title', selectedProject.title);
+    setValue('content', selectedProject.content);
+    setValue(
+      'skills',
+      selectedProject.skills.map((skill) => ({ name: skill })),
+    );
+    setValue(
+      'roles',
+      selectedProject.roles.map((role) => ({ name: role })),
+    );
+    setValue('startDate', selectedProject.startDate);
+    setValue('endDate', selectedProject.endDate);
+    setValue('thumbnail', selectedProject.thumbnail);
+  }, [selectedProject]);
 
   if (!isLocal) return null;
 

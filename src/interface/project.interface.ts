@@ -6,3 +6,5 @@ export interface ProjectForm extends Omit<CreateProjectRequest, 'skills' | 'role
   skills: FormArray[];
   roles: FormArray[];
 }
+
+export type ClickProjectType = 'delete' | 'edit';
