@@ -63,7 +63,9 @@ const Form: React.FC<Props> = ({ view, selectedProject }) => {
       roles: roles.map((role) => role.name),
       startDate,
       endDate,
-      thumbnail: thumbnail ? await uploadFile({ file: thumbnail }) : undefined,
+      thumbnail:
+        selectedProject?.thumbnail ??
+        (thumbnail ? await uploadFile({ file: thumbnail }) : undefined),
     };
     if (selectedProject) {
       await updateProject(body);
@@ -82,7 +84,7 @@ const Form: React.FC<Props> = ({ view, selectedProject }) => {
 
   const onKeywordInputKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     const { value: name, name: target } = e.currentTarget;
-    if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
+    if (e.key === 'Enter' && !e.nativeEvent.isComposing && name.length !== 0) {
       e.preventDefault();
       const data = {
         name,
@@ -130,11 +132,15 @@ const Form: React.FC<Props> = ({ view, selectedProject }) => {
           <input type='file' onChange={onAddThumbnail} />
           {preview ? <img src={preview} alt='thumbnail' /> : <p>썸네일을 등록해주세요.</p>}
         </label>
+        <label className={styles.inputWrapper}>
+          <p>링크</p>
+          <input placeholder='링크를 입력해주세요.' {...register('link')} />
+        </label>
         <div className={styles.tagWrapper}>
           <h2>스킬</h2>
           <div className={styles.tags}>
             <ul>
-              {roles.map(({ name }) => (
+              {skills.map(({ name }) => (
                 <li>{name}</li>
               ))}
             </ul>
@@ -159,6 +165,11 @@ const Form: React.FC<Props> = ({ view, selectedProject }) => {
               onKeyDown={onKeywordInputKeyDown}
             />
           </div>
+        </div>
+        <div className={styles.datePicker}>
+          <p>기간</p>
+          <input placeholder='시작 기간' type='month' {...register('startDate')} />
+          <input placeholder='종료 기간' type='month' {...register('endDate')} />
         </div>
         <label className={styles.content}>
           <p>내용</p>

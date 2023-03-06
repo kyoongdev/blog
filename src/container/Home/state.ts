@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
 export const tags = atom<string[]>({
-  key: '#selected_tags',
+  key: '#posts/selectedTags',
   default: [],
 });

@@ -61,13 +61,27 @@
     }
   }
 
+  .datePicker {
+    @include m.flex(flex-start);
+    column-gap: 16px;
+
+    > p {
+      @include m.fontH2('medium');
+      flex-basis: 64px;
+    }
+
+    > input {
+      padding: 8px 12px;
+    }
+  }
+
   .inputWrapper {
     @include m.flex(flex-start);
     column-gap: 16px;
 
     > p {
-      flex-basis: 64px;
       @include m.fontH2('medium');
+      flex-basis: 64px;
     }
 
     > input {
