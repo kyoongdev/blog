@@ -1,12 +1,10 @@
 import React from 'react';
 import { useMutation } from 'react-query';
-import { useSetRecoilState } from 'recoil';
 
 import { projects } from './data';
 import Form from './Form';
 import Project from './Project';
 import styles from './projects.module.scss';
-import { selectedProjectState } from './state';
 
 import { Button } from 'components';
 import { ClickProjectType } from 'interface/project.interface';

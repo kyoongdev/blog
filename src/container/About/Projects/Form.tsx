@@ -1,12 +1,10 @@
 import cx from 'clsx';
 import dynamic from 'next/dynamic';
 import React from 'react';
-import { type SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
+import { useFieldArray, useForm, type SubmitHandler } from 'react-hook-form';
 import { useMutation } from 'react-query';
-import { useRecoilValue } from 'recoil';
 
 import styles from './form.module.scss';
-import { selectedProjectState } from './state';
 
 import { Button } from 'components';
 import { ProjectForm } from 'interface/project.interface';
