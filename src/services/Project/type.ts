@@ -4,8 +4,8 @@ export interface ProjectsResponse {
   thumbnail?: string;
   link?: string;
   content: string;
-  startDate: string;
-  endDate: string;
+  startDate: Date | string;
+  endDate: Date | string;
   skills: string[];
   roles: string[];
 }

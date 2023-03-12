@@ -50,7 +50,9 @@ const Posts: React.FC<Props> = ({ data }) => {
   const { ref, inView } = useInView({ threshold: 0.8 });
 
   const {
-    data: posts,
+    data: blogs,
+    isSuccess,
+    isLoading,
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery<PagingRes<GetPostsResponse>, any, PagingRes<GetPostsResponse>>(
@@ -70,17 +72,20 @@ const Posts: React.FC<Props> = ({ data }) => {
   const onRoute = (id: string) => () => router.push(`/blogs/${id}`);
 
   React.useEffect(() => {
-    if (inView) {
+    if (inView || !isLoading) {
       fetchNextPage();
     }
-  }, [inView]);
+  }, [inView, isLoading]);
 
   return (
     <section className={styles.container}>
       <ul key={'blogs'} className={styles.listWrapper}>
-        {posts?.pages.at(-1)?.data.map((blog, index) => (
-          <Post key={`blog-${blog.id}-${index}`} {...blog} onRoute={onRoute(blog.id)} />
-        ))}
+        {isSuccess &&
+          blogs.pages
+            .at(-1)
+            ?.data.map((blog, index) => (
+              <Post key={`blog-${blog.id}-${index}`} {...blog} onRoute={onRoute(blog.id)} />
+            ))}
       </ul>
       {hasNextPage && <div ref={ref} />}
     </section>

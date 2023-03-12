@@ -143,5 +143,13 @@
       @include m.fontH2('medium');
       margin-bottom: 12px;
     }
+
+    .body {
+      height: 400px !important;
+
+      > div:nth-child(2) {
+        padding: 12px;
+      }
+    }
   }
 }

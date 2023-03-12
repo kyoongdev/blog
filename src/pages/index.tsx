@@ -12,7 +12,9 @@ interface Props {
   tags: GetTagsResponse;
 }
 export const getStaticProps: GetStaticProps = async () => {
-  const { data: posts } = await axios.get<GetPostsResponse>(`${API_URL}/posts?page=1&limit=20`);
+  const { data: posts } = await axios.get<GetPostsResponse>(`${API_URL}/posts?page=1&limit=20`, {
+    withCredentials: true,
+  });
   const { data: tags } = await axios.get<GetTagsResponse>(`${API_URL}/tags`);
   return {
     props: {

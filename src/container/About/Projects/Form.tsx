@@ -61,11 +61,12 @@ const Form: React.FC<Props> = ({ view, selectedProject }) => {
       content,
       skills: skills.map((skill) => skill.name),
       roles: roles.map((role) => role.name),
-      startDate,
-      endDate,
-      thumbnail:
-        selectedProject?.thumbnail ??
-        (thumbnail ? await uploadFile({ file: thumbnail }) : undefined),
+      startDate: new Date(startDate),
+      endDate: new Date(endDate),
+      // thumbnail:
+      //   selectedProject?.thumbnail ??
+      //   (thumbnail ? await uploadFile({ file: thumbnail }) : undefined),
+      thumbnail: 'https://sgp1.vultrobjects.com/kyoongdev-blog/images/frego.jpeg',
     };
     if (selectedProject) {
       await updateProject(body);
@@ -175,7 +176,7 @@ const Form: React.FC<Props> = ({ view, selectedProject }) => {
           <p>내용</p>
           <Editor
             className={styles.body}
-            preview={'edit'}
+            // preview={'preview'}
             onChange={(value) => setValue('content', value || '')}
             value={watch('content')}
             commands={commands}
