@@ -73,8 +73,10 @@
   }
 
   > footer {
+    @include m.flex(flex-start);
     position: absolute;
     bottom: 16px;
+    column-gap: 20px;
     color: c.$C_GRAY_6;
   }
 }

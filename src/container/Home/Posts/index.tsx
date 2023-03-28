@@ -19,7 +19,7 @@ interface PostProps extends GetPostsResponse {
 }
 
 const Post: React.FC<PostProps> = React.memo(
-  ({ title, createdAt, thumbnail, description, tags, onRoute }) => {
+  ({ title, createdAt, thumbnail, description, tags, viewCount, onRoute }) => {
     return (
       <li className={styles.listItem} onClick={onRoute}>
         <Image
@@ -34,7 +34,10 @@ const Post: React.FC<PostProps> = React.memo(
           <Tags className={styles.tags} tags={tags} />
         </header>
         <p className={styles.description}>{description}</p>
-        <footer>{dayjs(createdAt).format('YYYY.MM.DD')}</footer>
+        <footer>
+          <p>{dayjs(createdAt).format('YYYY.MM.DD')}</p>
+          <p>조회수 {viewCount}</p>
+        </footer>
       </li>
     );
   },
@@ -76,6 +79,7 @@ const Posts: React.FC<Props> = ({ data }) => {
       fetchNextPage();
     }
   }, [inView, isLoading]);
+  console.log({ blogs });
 
   return (
     <section className={styles.container}>

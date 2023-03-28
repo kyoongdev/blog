@@ -58,11 +58,12 @@
   h5,
   h6 {
     position: relative;
-    padding: 0;
+    padding: 0 0 0 12px;
     margin: 32px 0 16px;
     font-weight: bold;
     cursor: text;
     -webkit-font-smoothing: antialiased;
+    border-left: 6px solid #7e57c2;
   }
 
   h1:hover a.anchor,
@@ -206,7 +207,11 @@
   }
 
   li {
-    margin: 0;
+    font-size: 18px;
+  }
+
+  li + li {
+    margin-top: 8px;
   }
 
   ul,
@@ -475,5 +480,6 @@
 
   strong {
     font-weight: bold;
+    color: #4d2b90;
   }
 }
