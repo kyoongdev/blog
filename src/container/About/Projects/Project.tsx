@@ -49,12 +49,14 @@ const Project: React.FC<Props> = ({
               </Link>
             )}
           </div>
-          <div className={styles.buttonWrapper}>
-            <Button onClick={onClickEdit}>수정</Button>
-            <Button styleType='secondary' onClick={onClickDelete}>
-              삭제
-            </Button>
-          </div>
+          {process.env.NODE_ENV === 'development' && (
+            <div className={styles.buttonWrapper}>
+              <Button onClick={onClickEdit}>수정</Button>
+              <Button styleType='secondary' onClick={onClickDelete}>
+                삭제
+              </Button>
+            </div>
+          )}
         </header>
         <article className={styles.skillWrapper}>
           <h2>Skills</h2>
