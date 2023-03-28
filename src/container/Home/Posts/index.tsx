@@ -79,7 +79,6 @@ const Posts: React.FC<Props> = ({ data }) => {
       fetchNextPage();
     }
   }, [inView, isLoading]);
-  console.log({ blogs });
 
   return (
     <section className={styles.container}>
