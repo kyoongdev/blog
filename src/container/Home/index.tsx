@@ -15,6 +15,7 @@ interface Props {
 }
 
 const HomePage: React.FC<Props> = ({ posts, tags }) => {
+  console.log({ tags });
   return (
     <>
       <HeadMeta />
