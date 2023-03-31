@@ -91,6 +91,13 @@ video {
   vertical-align: baseline;
   border: 0;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s;
+  -webkit-text-fill-color: #000000 !important;
+}
 /* HTML5 display-role reset for older browsers */
 article,
 aside,

@@ -24,6 +24,14 @@
       "@assets": ["public/assets"]
     }
   },
-  "include": ["src", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "public"],
+  "include": [
+    "custom.d.ts",
+    "src/**/*.ts",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "public"
+  ],
   "exclude": ["node_modules", "sitemap.config.js"]
 }

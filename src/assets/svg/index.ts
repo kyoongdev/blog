@@ -6,3 +6,4 @@ export { default as MenuIcon } from './menu.svg';
 export { default as PhoneIcon } from './phone.svg';
 export { default as SchoolIcon } from './school.svg';
 export { default as DateIcon } from './date.svg';
+export { default as UserIcon } from './user.svg';

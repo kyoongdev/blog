@@ -1,0 +1,22 @@
+@use 'src/styles/constants' as c;
+@use 'src/styles/mixins' as m;
+
+.wrapper {
+  @include m.flex;
+  height: 100vh;
+}
+
+.form {
+  @include m.flex(center, center, column);
+  row-gap: 12px;
+  width: 320px;
+
+  > h1 {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .input {
+    width: 100%;
+  }
+}
