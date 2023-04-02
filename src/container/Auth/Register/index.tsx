@@ -6,6 +6,7 @@ import { useMutation } from 'react-query';
 import styles from './register.module.scss';
 
 import { Button, Input } from 'components';
+import { useMe } from 'hooks';
 import { type ApiError, isAxiosError } from 'services';
 import { registerApi } from 'services/Auth';
 import { RegisterReq } from 'services/Auth/type';
@@ -21,6 +22,7 @@ const Register: React.FC = () => {
 
   const { mutateAsync } = useMutation(registerApi);
   const router = useRouter();
+  const { getMe } = useMe();
 
   const onSubmit = handleSubmit(async (data) => {
     const result = await mutateAsync(data);
@@ -34,6 +36,7 @@ const Register: React.FC = () => {
       }
     }
     setTokens(result.data);
+    await getMe();
     router.replace('/');
   });
 

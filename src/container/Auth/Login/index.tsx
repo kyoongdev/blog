@@ -7,6 +7,7 @@ import { useMutation } from 'react-query';
 import styles from './login.module.scss';
 
 import { Button, Input } from 'components';
+import { useMe } from 'hooks';
 import { type ApiError, isAxiosError } from 'services';
 import { loginApi } from 'services/Auth';
 import type { LoginReq } from 'services/Auth/type';
@@ -21,6 +22,7 @@ const Login: React.FC = () => {
   } = useForm<LoginReq>({});
   const { mutateAsync } = useMutation(loginApi);
   const router = useRouter();
+  const { getMe } = useMe();
 
   const onSubmit = handleSubmit(async (data) => {
     const result = await mutateAsync(data);
@@ -35,7 +37,9 @@ const Login: React.FC = () => {
         alert('오류가 발생했습니다.');
       }
     }
+
     setTokens(result.data);
+    await getMe();
     router.replace('/');
   });
 

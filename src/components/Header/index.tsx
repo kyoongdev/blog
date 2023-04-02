@@ -1,17 +1,34 @@
 'use client';
 import cx from 'clsx';
+import { useAtom, useAtomValue } from 'jotai';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import styles from './header.module.scss';
 import Menu from './Menu';
 
 import { Button } from 'components/Common';
-import { useMe } from 'hooks';
+import { meState } from 'container/state';
+import { clearTokens } from 'utils';
 
 const Header: React.FC = () => {
+  const router = useRouter();
+  const [me, setMe] = useAtom(meState);
   const [visible, setVisible] = React.useState<boolean>(true);
   const beforeScroll = React.useRef<number>(0);
+
+  const onClickLogin = () => {
+    if (me) {
+      const res = confirm('로그아웃 하시겠습니까?');
+      if (res) {
+        clearTokens();
+        setMe(null);
+      }
+    } else {
+      router.push('/auth/login');
+    }
+  };
 
   React.useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -38,12 +55,9 @@ const Header: React.FC = () => {
         <h1>
           <Link href='/'>Kyoongdev Village</Link>
         </h1>
-        <Link href='/auth/login'>
-          <Button className={styles.login}>
-            <p>로그인</p>
-          </Button>
-        </Link>
-
+        <Button className={styles.login} onClick={onClickLogin}>
+          <p>{me ? `${me.name ?? me.userId}님` : '로그인'}</p>
+        </Button>
         <Menu />
       </div>
     </header>
