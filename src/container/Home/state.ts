@@ -1,6 +1,3 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
-export const tags = atom<string[]>({
-  key: '#posts/selectedTags',
-  default: [],
-});
+export const tagsState = atom<string[]>([]);

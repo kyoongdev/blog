@@ -1,8 +1,8 @@
+import { useAtom } from 'jotai';
 import React from 'react';
-import { useRecoilState } from 'recoil';
 
 import styles from './categories.module.scss';
-import { tags } from '../state';
+import { tagsState } from '../state';
 
 import { Tags } from 'components';
 import { GetTagsResponse, TagsResponse } from 'services/Tags/type';
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const Categorires: React.FC<Props> = ({ data }) => {
-  const [selectedTags, setSelectedTags] = useRecoilState(tags);
+  const [selectedTags, setSelectedTags] = useAtom(tagsState);
 
   const onClick = React.useCallback((tag: TagsResponse) => {
     return () => {

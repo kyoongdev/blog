@@ -3,7 +3,7 @@ import axios, { AxiosError } from 'axios';
 import { ApiError } from './type';
 
 import { API_URL } from 'config';
-import { clearTokens } from 'utils';
+import { clearTokens, getTokens } from 'utils';
 
 export const isAxiosError = <E>(err: unknown | AxiosError<E>): err is AxiosError<E> => {
   return axios.isAxiosError(err);
@@ -15,6 +15,12 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use(async (config) => {
+  const tokens = getTokens();
+
+  if (tokens) {
+    config.headers.Authorization = `Bearer ${tokens.accessToken}`;
+  }
+
   return config;
 });
 

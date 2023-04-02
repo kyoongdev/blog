@@ -7,6 +7,7 @@ import styles from './header.module.scss';
 import Menu from './Menu';
 
 import { Button } from 'components/Common';
+import { useMe } from 'hooks';
 
 const Header: React.FC = () => {
   const [visible, setVisible] = React.useState<boolean>(true);
@@ -14,6 +15,7 @@ const Header: React.FC = () => {
 
   React.useEffect(() => {
     if (typeof window === 'undefined') return;
+
     const onFitAnimation = (): FrameRequestCallback => () => {
       const currentScrollY = window.scrollY;
 

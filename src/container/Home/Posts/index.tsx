@@ -1,13 +1,13 @@
 import dayjs from 'dayjs';
+import { useAtomValue } from 'jotai';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useInfiniteQuery } from 'react-query';
-import { useRecoilValue } from 'recoil';
 
 import styles from './posts.module.scss';
-import { tags } from '../state';
+import { tagsState } from '../state';
 
 import { Tags } from 'components';
 import { PagingRes } from 'services';
@@ -48,7 +48,7 @@ interface Props {
 }
 
 const Posts: React.FC<Props> = ({ data }) => {
-  const selectedTags = useRecoilValue(tags);
+  const selectedTags = useAtomValue(tagsState);
   const router = useRouter();
   const { ref, inView } = useInView({ threshold: 0.8 });
 

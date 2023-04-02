@@ -34,7 +34,6 @@ const Register: React.FC = () => {
       }
     }
     setTokens(result.data);
-
     router.replace('/');
   });
 
