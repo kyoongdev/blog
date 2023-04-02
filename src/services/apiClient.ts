@@ -1,5 +1,7 @@
 import axios, { AxiosError } from 'axios';
 
+import { ApiError } from './type';
+
 import { API_URL } from 'config';
 import { clearTokens } from 'utils';
 
@@ -21,14 +23,13 @@ apiClient.interceptors.response.use(
     return response;
   },
   (err) => {
-    if (isAxiosError<{ statusCode: number; message: string }>(err)) {
-      // console.error(err);
-      // if (err.response?. === 401) {
-      //   clearTokens();
-      // }
+    if (isAxiosError<ApiError>(err)) {
+      if (err.response?.data.statusCode === 401) {
+        clearTokens();
+      }
     }
 
-    return Promise.reject(err);
+    return err;
   },
 );
 

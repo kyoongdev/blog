@@ -3,13 +3,18 @@
 
 .wrapper {
   @include m.flex(flex-start, flex-start, column);
+  row-gap: 8px;
   font-weight: 700;
   color: c.$C_BLACK;
 
   & > span {
     position: relative;
     display: block;
-    margin-bottom: 12px;
+  }
+
+  .errorText {
+    font-size: 12px;
+    color: c.$C_RED;
   }
 
   &:has(input:required) {
@@ -47,6 +52,13 @@
       background-color: c.$C_GRAY_1;
       border: 0;
       caret-color: c.$C_BLUE_GRAY_1;
+    }
+  }
+
+  &.error {
+    > input {
+      color: c.$C_RED;
+      border: 2px solid c.$C_RED;
     }
   }
 }

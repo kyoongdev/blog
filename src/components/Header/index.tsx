@@ -6,7 +6,7 @@ import React from 'react';
 import styles from './header.module.scss';
 import Menu from './Menu';
 
-import { UserIcon } from 'assets/svg';
+import { Button } from 'components/Common';
 
 const Header: React.FC = () => {
   const [visible, setVisible] = React.useState<boolean>(true);
@@ -37,7 +37,9 @@ const Header: React.FC = () => {
           <Link href='/'>Kyoongdev Village</Link>
         </h1>
         <Link href='/auth/login'>
-          <UserIcon className={styles.user} />
+          <Button className={styles.login}>
+            <p>로그인</p>
+          </Button>
         </Link>
 
         <Menu />

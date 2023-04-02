@@ -64,8 +64,15 @@
     list-style: none;
   }
 
-  .user {
-    margin-right: 8px;
-    cursor: pointer;
+  .login {
+    height: 32px;
+    margin-right: 12px;
+    color: c.$C_BLACK;
+    background-color: c.$C_WHITE;
+    border-radius: 12px;
+
+    > p {
+      font-weight: 700;
+    }
   }
 }
