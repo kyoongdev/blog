@@ -4,12 +4,17 @@ import MyInfo from './MyInfo';
 import Projects from './Projects';
 import Skills from './Skills';
 
-const AboutPage: React.FC = () => {
+import { ProjectsResponse } from 'services/Project/type';
+interface Props {
+  projects: ProjectsResponse[];
+}
+
+const AboutPage: React.FC<Props> = ({ projects }) => {
   return (
     <>
       <MyInfo />
       <Skills />
-      <Projects />
+      <Projects projects={projects} />
     </>
   );
 };

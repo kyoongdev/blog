@@ -1,18 +1,23 @@
 import React from 'react';
 import { useMutation } from 'react-query';
 
-import { projects } from './data';
+import { projects as projectData } from './data';
 import Form from './Form';
 import Project from './Project';
 import styles from './projects.module.scss';
 
 import { Button } from 'components';
+import { useMe } from 'hooks';
 import { ClickProjectType } from 'interface/project.interface';
 import { deleteProjectApi } from 'services/Project';
 import { ProjectsResponse } from 'services/Project/type';
-import { isLocal } from 'utils/local';
 
-const Projects: React.FC = () => {
+interface Props {
+  projects: ProjectsResponse[];
+}
+
+const Projects: React.FC<Props> = ({ projects }) => {
+  const { isAdmin } = useMe();
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedProject, setSelectedProject] = React.useState<ProjectsResponse | null>(null);
 
@@ -37,7 +42,7 @@ const Projects: React.FC = () => {
     <section className={styles.container}>
       <header>
         <h1>Projects</h1>
-        {isLocal && (
+        {isAdmin && (
           <Button type='button' onClick={onClick}>
             {isOpen ? '닫기' : '추가하기'}
           </Button>
@@ -45,10 +50,11 @@ const Projects: React.FC = () => {
       </header>
       <Form view={isOpen} selectedProject={selectedProject} />
       <ul className={styles.projects}>
-        {projects.map((project, index) => (
+        {[...projects, ...projectData].map((project, index) => (
           <Project
             key={project.title}
             {...project}
+            isAdmin={isAdmin}
             id={`${index}`}
             onClickEdit={onClickProject('edit', { ...project, id: `${index}` })}
             onClickDelete={onClickProject('delete', { ...project, id: `${index}` })}

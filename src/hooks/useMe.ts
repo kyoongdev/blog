@@ -7,10 +7,12 @@ import { clearTokens } from 'utils';
 
 const useMe = () => {
   const [me, setMe] = useAtom(meState);
+  const isAdmin = me?.userType === 'ADMIN';
 
   const { isSuccess, refetch } = useQuery(['getMe'], () => getMeApi().then((res) => res.data), {
     enabled: false,
     staleTime: Infinity,
+    refetchInterval: 0,
   });
 
   const logout = () => {
@@ -31,6 +33,7 @@ const useMe = () => {
 
   return {
     me,
+    isAdmin,
     getMe,
     logout,
     isSuccess,

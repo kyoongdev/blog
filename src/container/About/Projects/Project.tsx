@@ -7,10 +7,11 @@ import ReactHTMLParser from 'react-html-parser';
 import styles from './project.module.scss';
 
 import { LinkIcon } from 'assets/svg';
-import { Button, Tags } from 'components';
+import { Button, Markdown, Tags } from 'components';
 import { ProjectsResponse } from 'services/Project/type';
 
 interface Props extends ProjectsResponse {
+  isAdmin: boolean;
   onClickEdit: () => void;
   onClickDelete: () => void;
 }
@@ -24,6 +25,7 @@ const Project: React.FC<Props> = ({
   thumbnail,
   endDate,
   startDate,
+  isAdmin,
   onClickDelete,
   onClickEdit,
 }) => {
@@ -49,7 +51,7 @@ const Project: React.FC<Props> = ({
               </Link>
             )}
           </div>
-          {process.env.NODE_ENV === 'development' && (
+          {isAdmin && (
             <div className={styles.buttonWrapper}>
               <Button onClick={onClickEdit}>수정</Button>
               <Button styleType='secondary' onClick={onClickDelete}>
@@ -67,8 +69,8 @@ const Project: React.FC<Props> = ({
             <h2>ROLE</h2>
             <Tags className={styles.tags} tags={roles} isDark />
           </div>
-          {ReactHTMLParser(content)}
         </article>
+        <Markdown className={'project'} content={content} />
       </div>
     </li>
   );

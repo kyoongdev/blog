@@ -8,10 +8,11 @@ import { useMount } from 'react-use';
 import styles from './drawer.module.scss';
 import DrawerEventEmitter from './DrawerEventEmitter';
 
-import { useCSR, useWindowSize } from 'hooks';
-import { MENU } from 'utils';
+import { useCSR, useMe, useWindowSize } from 'hooks';
+import { getMenus, MENU } from 'utils';
 
 const DrawerComponent: React.FC = () => {
+  const { isAdmin } = useMe();
   const rippleRef = React.useRef<HTMLLIElement[]>([]);
   const nodeRef = React.useRef<HTMLDivElement>(null);
 
@@ -83,7 +84,7 @@ const DrawerComponent: React.FC = () => {
           </h1>
           <nav className={styles.nav}>
             <ul className={styles.navItemWrapper}>
-              {MENU.map((menu, index) => (
+              {getMenus(isAdmin).map((menu, index) => (
                 <li
                   key={`${menu.name}-${index}`}
                   ref={(el) => {

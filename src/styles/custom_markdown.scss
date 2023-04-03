@@ -482,4 +482,12 @@
     font-weight: bold;
     color: #4d2b90;
   }
+
+  &.project {
+    margin-top: 0px;
+    > p {
+      margin: 0;
+      font-size: 18px;
+    }
+  }
 }

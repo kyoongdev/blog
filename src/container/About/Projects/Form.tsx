@@ -63,10 +63,9 @@ const Form: React.FC<Props> = ({ view, selectedProject }) => {
       roles: roles.map((role) => role.name),
       startDate: new Date(startDate),
       endDate: new Date(endDate),
-      // thumbnail:
-      //   selectedProject?.thumbnail ??
-      //   (thumbnail ? await uploadFile({ file: thumbnail }) : undefined),
-      thumbnail: 'https://sgp1.vultrobjects.com/kyoongdev-blog/images/frego.jpeg',
+      thumbnail:
+        selectedProject?.thumbnail ??
+        (thumbnail ? await uploadFile({ file: thumbnail }) : undefined),
     };
     if (selectedProject) {
       await updateProject(body);
