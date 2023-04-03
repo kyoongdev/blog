@@ -57,13 +57,17 @@ const MyInfo: React.FC = () => {
           <li>
             <Link target={'_blank'} href={'https://github.com/kyoongdev'}>
               <Github />
-              <p>Github</p>
+              <p>
+                Github<span>https://github.com/kyoongdev</span>
+              </p>
             </Link>
           </li>
           <li>
             <Link href={'mailto:9898junjun2@gmail.com'}>
               <Gmail />
-              <p>Gmail</p>
+              <p>
+                Gmail<span>9898junjun2@gmail.com</span>
+              </p>
             </Link>
           </li>
           <li>

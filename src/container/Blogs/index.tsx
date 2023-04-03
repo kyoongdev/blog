@@ -1,12 +1,15 @@
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import React from 'react';
+import { useMutation } from 'react-query';
 
 import styles from './blogs.module.scss';
 
 import { Markdown, Tags } from 'components';
 import HeadMeta from 'components/HeadMeta';
 import { API_URL } from 'config';
+import { useMe } from 'hooks';
+import { increaseViewCountApi } from 'services/Posts';
 import { GetPostResponse } from 'services/Posts/type';
 
 interface Props {
@@ -14,6 +17,14 @@ interface Props {
 }
 
 const Page: React.FC<Props> = ({ blog }) => {
+  const { mutateAsync } = useMutation(increaseViewCountApi);
+
+  React.useEffect(() => {
+    if (!blog) return;
+
+    mutateAsync(blog.id);
+  }, []);
+
   if (!blog) return <div>Not Found</div>;
 
   return (

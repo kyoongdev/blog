@@ -14,6 +14,10 @@ export const getPosts = (params: GetPostsParams) => {
 };
 
 export const getPost = (id: string) => apiClient.get<GetPostResponse>(`posts/${id}/detail`);
+export const increaseViewCountApi = (id: string) =>
+  apiClient.post<GetPostResponse>(`posts/${id}/viewCount`, undefined, {
+    withCredentials: true,
+  });
 
 export const createPost = (body: CreatePostBody) => apiClient.post<ResponseWithId>('posts', body);
 
