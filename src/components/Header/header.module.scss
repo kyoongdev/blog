@@ -11,7 +11,6 @@
   color: c.$C_WHITE;
   background-color: c.$C_BLACK;
   opacity: 0.9;
-  transition: transform 0.2s ease-in-out;
 
   &:not(.visible) {
     pointer-events: none;

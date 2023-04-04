@@ -11,11 +11,14 @@ import Menu from './Menu';
 import { Button } from 'components/Common';
 import { meState } from 'container/state';
 import { clearTokens } from 'utils';
+const HEIGHT = 72;
+const OFFSET = 2;
 
 const Header: React.FC = () => {
   const router = useRouter();
   const [me, setMe] = useAtom(meState);
   const [visible, setVisible] = React.useState<boolean>(true);
+  const [scrollTop, setScrollTop] = React.useState<number>(0);
   const beforeScroll = React.useRef<number>(0);
 
   const onClickLogin = () => {
@@ -37,9 +40,19 @@ const Header: React.FC = () => {
       const currentScrollY = window.scrollY;
 
       if (beforeScroll.current < currentScrollY) {
-        setVisible(false);
+        setScrollTop((prev) => {
+          if (currentScrollY > HEIGHT && prev < -HEIGHT) {
+            return -HEIGHT;
+          } else {
+            return prev + OFFSET;
+          }
+        });
       } else {
-        setVisible(true);
+        setScrollTop((prev) => {
+          if (prev === 0) return 0;
+          else if (prev > HEIGHT) return HEIGHT;
+          else return prev - OFFSET;
+        });
       }
       beforeScroll.current = currentScrollY;
     };
@@ -50,7 +63,10 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className={cx(styles.header, { [styles.visible]: visible })}>
+    <header
+      className={cx(styles.header, { [styles.visible]: visible })}
+      style={{ top: `-${scrollTop}px` }}
+    >
       <div>
         <h1>
           <Link href='/'>Kyoongdev Village</Link>
