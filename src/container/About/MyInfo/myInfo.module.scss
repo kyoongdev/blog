@@ -9,7 +9,7 @@
   border-bottom: 1px solid c.$C_GRAY_7;
 
   @include m.tabletOnly {
-    padding: 72px 12px 48px;
+    padding: 72px 12px 20px;
     @include m.flex(flex-start, flex-start, column);
   }
 
@@ -111,7 +111,10 @@
     @include m.flex(flex-start, center);
     gap: 8px;
     list-style: none;
-    cursor: pointer;
+
+    &:has(a) {
+      cursor: pointer;
+    }
 
     @include m.mobileOnly {
       flex-wrap: wrap;

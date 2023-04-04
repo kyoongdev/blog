@@ -8,7 +8,7 @@ import { useMount } from 'react-use';
 import styles from './drawer.module.scss';
 import DrawerEventEmitter from './DrawerEventEmitter';
 
-import { useCSR, useMe, useWindowSize } from 'hooks';
+import { useCSR, useMe } from 'hooks';
 import { getMenus, MENU } from 'utils';
 
 const DrawerComponent: React.FC = () => {
@@ -17,7 +17,7 @@ const DrawerComponent: React.FC = () => {
   const nodeRef = React.useRef<HTMLDivElement>(null);
 
   const router = useRouter();
-  const { height } = useWindowSize();
+
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const [isSettled, setIsSettled] = React.useState<boolean>(false);
 
@@ -78,7 +78,7 @@ const DrawerComponent: React.FC = () => {
     >
       <div className={styles.wrapper} ref={nodeRef}>
         <div className={styles.overlay} role='button' tabIndex={0} onClick={onClose} />
-        <aside className={styles.drawer} aria-label='menu' style={{ height }}>
+        <aside className={styles.drawer} aria-label='menu'>
           <h1 className={styles.title}>
             <Link href='/'>Kyoongdev Village</Link>
           </h1>
