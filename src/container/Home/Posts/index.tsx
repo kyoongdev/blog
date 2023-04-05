@@ -72,7 +72,6 @@ const Posts: React.FC<Props> = ({ data }) => {
       refetchOnMount: true,
     },
   );
-  console.log({ blogs });
 
   const onRoute = (id: string) => () => router.push(`/blogs/${id}`);
 
