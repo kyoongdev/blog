@@ -66,8 +66,9 @@
   .index {
     @include m.flex(flex-start, flex-start, column);
     position: sticky;
-    top: 50px;
+    top: 90px;
     flex-grow: 1;
+    min-width: 160px;
     padding: 20px;
     margin-top: 12px;
     list-style: none;
@@ -95,6 +96,10 @@
         }
       }
 
+      .h1Tags + .h1Tags {
+        margin-top: 8px;
+      }
+
       .h2Tags {
         padding-left: 8px;
         margin-top: 8px;
@@ -106,6 +111,14 @@
           color: c.$C_GRAY_5;
         }
       }
+    }
+
+    > li + li {
+      margin-top: 12px;
+    }
+
+    @include m.mobileOnly {
+      display: none;
     }
   }
 }
