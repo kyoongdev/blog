@@ -1,0 +1,187 @@
+@use 'src/styles/mixins' as m;
+@use 'src/styles/constants' as c;
+
+.wrapper {
+  margin-top: 32px;
+
+  > form {
+    width: 100%;
+    @include m.flex(flex-start, flex-start, column);
+
+    > input,
+    > textarea {
+      border: 0;
+    }
+
+    > hr {
+      width: 80px;
+      height: 10px;
+      margin-bottom: 12px;
+      background-color: c.$C_PRIMARY;
+      border: 0;
+    }
+  }
+}
+
+.title {
+  @include m.fontH2('medium');
+  width: 100%;
+  padding: 12px 12px 12px 0;
+  margin: 12px 0 0;
+}
+
+.description {
+  width: 100%;
+  height: 120px;
+  padding: 12px 12px 12px 0;
+  font-size: 20px;
+  resize: none;
+}
+
+.thumbnail {
+  margin-top: 16px;
+
+  > label {
+    cursor: pointer;
+    @include m.flex(flex-start);
+
+    > h2 {
+      @include m.fontH2('medium');
+    }
+
+    > input {
+      display: none;
+    }
+
+    > p {
+      margin-left: 12px;
+      color: c.$C_GRAY_4;
+    }
+  }
+
+  &.exist {
+    > label {
+      @include m.flex(flex-start, flex-start, column);
+
+      > img {
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.tagWrapper {
+  @include m.flex(flex-start, center);
+  column-gap: 12px;
+
+  > h2 {
+    @include m.fontH2('medium');
+  }
+
+  .tags {
+    gap: 4px;
+    margin: 20px 0;
+  }
+}
+
+.keywordWrapper {
+  column-gap: 12px;
+  width: 100%;
+  @include m.flex(flex-start, center);
+
+  > h2 {
+    @include m.fontH2('medium');
+  }
+
+  .keywords {
+    width: 100%;
+    @include m.flex(flex-start);
+
+    > ul {
+      column-gap: 4px;
+      margin-left: 4px;
+
+      @include m.flex(flex-start, center);
+
+      > li {
+        flex-grow: 1;
+        padding: 4px 8px 3px;
+        font-size: 14px;
+        font-weight: 500;
+        color: c.$C_PRIMARY;
+        white-space: nowrap;
+        list-style: none;
+        cursor: pointer;
+        border: 1px solid c.$C_PRIMARY;
+        border-radius: 12px;
+      }
+    }
+
+    input {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 16px;
+      border: 0;
+      border-radius: 4px;
+    }
+  }
+}
+
+.body {
+  min-height: 720px;
+  box-shadow: none;
+}
+
+.edit {
+  position: relative;
+  display: grid;
+  flex-grow: 1;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  margin-top: 24px;
+
+  .placeholder {
+    position: absolute;
+    top: 72px;
+    left: 12px;
+    z-index: 10;
+    color: c.$C_GRAY_6;
+    visibility: visible;
+    @include m.fontH3('medium');
+
+    &:not(.view) {
+      visibility: hidden;
+    }
+  }
+
+  > div > div:first-of-type {
+    background-color: c.$C_BLUE_GRAY_6;
+    border-radius: 0;
+
+    > ul:last-of-type {
+      display: none;
+    }
+  }
+
+  > div {
+    border: 0;
+    box-shadow: none;
+  }
+
+  .markdown {
+    height: 720px;
+    padding: 10px 10px 72px;
+    margin-top: 0;
+    overflow-y: scroll;
+    border-left: 1px solid c.$C_GRAY_7;
+  }
+}
+
+.submitButton {
+  min-width: 120px;
+  padding: 12px;
+  margin: 32px 0 0 auto;
+  font-size: 20px;
+}

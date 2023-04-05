@@ -20,7 +20,6 @@ interface PostProps extends GetPostsResponse {
 
 const Post: React.FC<PostProps> = React.memo(
   ({ title, createdAt, thumbnail, description, tags, viewCount, onRoute }) => {
-    console.log({ viewCount });
     return (
       <li className={styles.listItem} onClick={onRoute}>
         <Image
@@ -73,6 +72,7 @@ const Posts: React.FC<Props> = ({ data }) => {
       refetchOnMount: true,
     },
   );
+  console.log({ blogs });
 
   const onRoute = (id: string) => () => router.push(`/blogs/${id}`);
 

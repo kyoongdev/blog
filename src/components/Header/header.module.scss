@@ -12,11 +12,6 @@
   background-color: c.$C_BLACK;
   opacity: 0.9;
 
-  &:not(.visible) {
-    pointer-events: none;
-    transform: translateY(-100%);
-  }
-
   > div {
     width: 100%;
     height: 72px;

@@ -2,7 +2,7 @@
 @use 'src/styles/constants' as c;
 
 .container {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 24px auto 0;
 }
 
@@ -13,6 +13,7 @@
 }
 
 .header {
+  position: relative;
   padding-bottom: 28px;
   margin-top: 12px;
   border-bottom: 1px solid c.$C_GRAY_7;
@@ -44,8 +45,67 @@
     }
   }
 
+  .update {
+    position: absolute;
+    right: 0;
+    bottom: 12px;
+    width: 80px;
+  }
+
   .tags {
     gap: 12px;
     margin-top: 12px;
+  }
+}
+
+.body {
+  @include m.flex(flex-start, flex-start);
+  position: relative;
+  column-gap: 12px;
+
+  .index {
+    @include m.flex(flex-start, flex-start, column);
+    position: sticky;
+    top: 50px;
+    flex-grow: 1;
+    padding: 20px;
+    margin-top: 12px;
+    list-style: none;
+
+    > li {
+      cursor: pointer;
+
+      .preTags {
+        font-size: 14px;
+        font-weight: 500;
+        color: c.$C_GRAY_3;
+
+        &:hover {
+          color: c.$C_GRAY_5;
+        }
+      }
+
+      .h1Tags {
+        font-size: 16px;
+        font-weight: 500;
+        color: c.$C_GRAY_2;
+
+        &:hover {
+          color: c.$C_GRAY_5;
+        }
+      }
+
+      .h2Tags {
+        padding-left: 8px;
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        color: c.$C_GRAY_3;
+
+        &:hover {
+          color: c.$C_GRAY_5;
+        }
+      }
+    }
   }
 }
