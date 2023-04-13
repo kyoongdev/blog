@@ -5,16 +5,8 @@ import styles from './home.module.scss';
 import Posts from './Posts';
 
 import { HeadMeta } from 'components';
-import { PagingRes } from 'services';
-import { GetPostsResponse } from 'services/Posts/type';
-import { GetTagsResponse } from 'services/Tags/type';
 
-interface Props {
-  posts: PagingRes<GetPostsResponse>;
-  tags: GetTagsResponse;
-}
-
-const HomePage: React.FC<Props> = ({ posts, tags }) => {
+const HomePage: React.FC = () => {
   return (
     <>
       <HeadMeta />
@@ -23,8 +15,8 @@ const HomePage: React.FC<Props> = ({ posts, tags }) => {
         <p>KyoongDev의 기술 블로그</p>
       </article>
       <section className={styles.body}>
-        <Posts data={posts} />
-        <Categories data={tags} />
+        <Posts />
+        <Categories />
       </section>
     </>
   );

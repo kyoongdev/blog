@@ -14,6 +14,12 @@ export const getPosts = (params: GetPostsParams) => {
 };
 
 export const getPost = (id: string) => apiClient.get<GetPostResponse>(`posts/${id}/detail`);
+export const getPostSSR = async (id: string) => {
+  const response = await fetch(`posts/${id}/detail`);
+
+  const data = (await response.json()) as GetPostResponse;
+  return data;
+};
 export const increaseViewCountApi = (id: string) =>
   apiClient.post<GetPostResponse>(`posts/${id}/viewCount`, undefined, {
     withCredentials: true,

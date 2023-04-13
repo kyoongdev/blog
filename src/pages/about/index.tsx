@@ -1,27 +1,29 @@
 import axios from 'axios';
-import type { GetStaticProps, NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
+import { dehydrate, QueryClient } from 'react-query';
 
 import { API_URL } from 'config';
 import { AboutPage } from 'container';
-import { getProjectsApi } from 'services/Project';
 import { ProjectsResponse } from 'services/Project/type';
 
-interface Props {
-  projects: ProjectsResponse[];
-}
+export const getServerSideProps: GetServerSideProps = async () => {
+  const queryClient = new QueryClient();
 
-export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await axios.get<ProjectsResponse[]>(`${API_URL}/projects`);
+  await queryClient.prefetchQuery({
+    queryKey: ['getProjects'],
+    queryFn: async () =>
+      axios.get<ProjectsResponse[]>(`${API_URL}/projects`).then((res) => res.data),
+  });
 
   return {
     props: {
-      projects: data,
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
   };
 };
 
-const Page: NextPage<Props> = ({ projects }) => {
-  return <AboutPage projects={projects} />;
+const Page: NextPage = () => {
+  return <AboutPage />;
 };
 
 export default Page;

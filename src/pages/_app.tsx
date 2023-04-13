@@ -1,9 +1,13 @@
 import type { AppProps } from 'next/app';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { DehydratedState, Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 
 import RootLayout from 'components/Layout';
 
 import '../styles/global.scss';
+
+export interface Props {
+  dehydratedState: DehydratedState;
+}
 
 const client = new QueryClient({
   defaultOptions: {
@@ -13,12 +17,15 @@ const client = new QueryClient({
   },
 });
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps }: AppProps<Props>) => {
+  console.log('dehydratedState', pageProps.dehydratedState);
   return (
     <QueryClientProvider client={client}>
-      <RootLayout>
-        <Component {...pageProps} />
-      </RootLayout>
+      <Hydrate state={pageProps.dehydratedState}>
+        <RootLayout>
+          <Component {...pageProps} />
+        </RootLayout>
+      </Hydrate>
     </QueryClientProvider>
   );
 };

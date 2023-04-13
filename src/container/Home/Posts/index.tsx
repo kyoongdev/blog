@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useInfiniteQuery } from 'react-query';
+import { useMount } from 'react-use';
 
 import styles from './posts.module.scss';
 import { tagsState } from '../state';
@@ -43,13 +44,10 @@ const Post: React.FC<PostProps> = React.memo(
   },
 );
 
-interface Props {
-  data: PagingRes<GetPostsResponse>;
-}
-
-const Posts: React.FC<Props> = ({ data }) => {
+const Posts: React.FC = () => {
   const selectedTags = useAtomValue(tagsState);
   const router = useRouter();
+
   const { ref, inView } = useInView({ threshold: 0.8 });
 
   const {
@@ -68,7 +66,7 @@ const Posts: React.FC<Props> = ({ data }) => {
         if (paging.hasNext) return paging.page + 1;
         return undefined;
       },
-      initialData: { pageParams: [1], pages: [data] },
+
       refetchOnMount: true,
     },
   );
@@ -81,11 +79,16 @@ const Posts: React.FC<Props> = ({ data }) => {
     }
   }, [inView, isLoading]);
 
+  useMount(() => {
+    router.prefetch('/blogs/[id]');
+    blogs?.pages.at(-1)?.data.forEach((blog, index) => {});
+  });
+
   return (
     <section className={styles.container}>
       <ul key={'blogs'} className={styles.listWrapper}>
         {isSuccess &&
-          blogs.pages
+          blogs?.pages
             .at(-1)
             ?.data.map((blog, index) => (
               <Post key={`blog-${blog.id}-${index}`} {...blog} onRoute={onRoute(blog.id)} />

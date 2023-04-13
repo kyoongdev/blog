@@ -3,7 +3,7 @@ import { useSetAtom } from 'jotai';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useRef } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 
 import styles from './blogs.module.scss';
 
@@ -12,15 +12,10 @@ import HeadMeta from 'components/HeadMeta';
 import { API_URL } from 'config';
 import { updatePostState } from 'container/state';
 import { useMe } from 'hooks';
-import { increaseViewCountApi } from 'services/Posts';
-import { GetPostResponse } from 'services/Posts/type';
+import { getPost, increaseViewCountApi } from 'services/Posts';
 import { getHeaderNodes, HeaderNodes } from 'utils';
 
-interface Props {
-  blog: GetPostResponse | null;
-}
-
-const Page: React.FC<Props> = ({ blog }) => {
+const Page: React.FC = () => {
   const bodyRef = useRef<HTMLDivElement>(null);
 
   const { isAdmin } = useMe();
@@ -28,6 +23,10 @@ const Page: React.FC<Props> = ({ blog }) => {
   const setUpdatePost = useSetAtom(updatePostState);
   const { mutateAsync } = useMutation(increaseViewCountApi);
   const [headerNodes, setHeaderNodes] = React.useState<HeaderNodes[]>([]);
+
+  const { data: blog } = useQuery(['getPost', router.query.id], async () =>
+    getPost(router.query.id as string).then((res) => res.data),
+  );
 
   const onClickRoute = () => {
     if (!blog) return;
@@ -43,7 +42,7 @@ const Page: React.FC<Props> = ({ blog }) => {
   React.useEffect(() => {
     if (!blog) return;
 
-    mutateAsync(blog.id);
+    mutateAsync(blog?.id);
   }, []);
 
   React.useEffect(() => {
@@ -53,29 +52,27 @@ const Page: React.FC<Props> = ({ blog }) => {
     setHeaderNodes(getHeaderNodes(markdownNode));
   }, []);
 
-  if (!blog) return <div>Not Found</div>;
-
   return (
     <section className={styles.container}>
       <HeadMeta
-        title={blog.title}
-        url={`${API_URL}/blogs/${blog.id}`}
-        description={blog.description}
-        keywords={blog.keywords}
+        title={blog?.title}
+        url={`${API_URL}/blogs/${blog?.id}`}
+        description={blog?.description}
+        keywords={blog?.keywords}
       />
       <Image
         className={styles.thumbnail}
-        src={`${blog.thumbnail}`}
+        src={`${blog?.thumbnail}`}
         alt='thumbnail'
         width={240}
         height={240}
       />
       <header className={styles.header}>
         <div className={styles.title}>
-          <h1>{blog.title}</h1>
-          <p>{dayjs(blog.createdAt).format('YYYY.MM.DD')}</p>
+          <h1>{blog?.title}</h1>
+          <p>{dayjs(blog?.createdAt).format('YYYY.MM.DD')}</p>
         </div>
-        <Tags className={styles.tags} tags={blog.tags} />
+        <Tags className={styles.tags} tags={blog?.tags ?? []} />
         {isAdmin && (
           <Button className={styles.update} onClick={onClickRoute}>
             수정
@@ -83,7 +80,7 @@ const Page: React.FC<Props> = ({ blog }) => {
         )}
       </header>
       <article ref={bodyRef} className={styles.body}>
-        <Markdown content={blog.content} />
+        <Markdown content={blog?.content || ''} />
         <ul className={styles.index}>
           {headerNodes.map((node) => {
             return (

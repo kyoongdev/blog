@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 
 import { projects as projectData } from './data';
 import Form from './Form';
@@ -9,19 +9,19 @@ import styles from './projects.module.scss';
 import { Button } from 'components';
 import { useMe } from 'hooks';
 import { ClickProjectType } from 'interface/project.interface';
-import { deleteProjectApi } from 'services/Project';
+import { deleteProjectApi, getProjectsApi } from 'services/Project';
 import { ProjectsResponse } from 'services/Project/type';
 
-interface Props {
-  projects: ProjectsResponse[];
-}
-
-const Projects: React.FC<Props> = ({ projects }) => {
+const Projects: React.FC = () => {
   const { isAdmin } = useMe();
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedProject, setSelectedProject] = React.useState<ProjectsResponse | null>(null);
 
   const { mutateAsync } = useMutation(deleteProjectApi);
+
+  const { data: projects } = useQuery(['getProjects'], () =>
+    getProjectsApi().then((res) => res.data),
+  );
 
   const onClick = () => {
     setIsOpen(!isOpen);
@@ -50,7 +50,7 @@ const Projects: React.FC<Props> = ({ projects }) => {
       </header>
       <Form view={isOpen} selectedProject={selectedProject} />
       <ul className={styles.projects}>
-        {[...projects, ...projectData].map((project, index) => (
+        {[...(projects ?? []), ...projectData].map((project, index) => (
           <Project
             key={project.title}
             {...project}
