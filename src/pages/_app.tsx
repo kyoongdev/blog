@@ -18,7 +18,6 @@ const client = new QueryClient({
 });
 
 const App = ({ Component, pageProps }: AppProps<Props>) => {
-  console.log('dehydratedState', pageProps.dehydratedState);
   return (
     <QueryClientProvider client={client}>
       <Hydrate state={pageProps.dehydratedState}>

@@ -55,8 +55,8 @@ const Page: React.FC = () => {
   return (
     <section className={styles.container}>
       <HeadMeta
-        title={blog?.title}
-        url={`${API_URL}/blogs/${blog?.id}`}
+        title={`Kyoongdev Villlage | ${blog?.title}`}
+        url={`https://blog.kyoongdev.com/blogs/${blog?.id}`}
         description={blog?.description}
         keywords={blog?.keywords}
       />
