@@ -13,7 +13,8 @@
     "public/",
     ".vscode",
     "next.config.js",
-    "sitemap.config.js"
+    "sitemap.config.js",
+    "sitemap"
   ],
   "env": {
     "browser": true,

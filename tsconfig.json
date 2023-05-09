@@ -33,5 +33,5 @@
     ".next/types/**/*.ts",
     "public"
   ],
-  "exclude": ["node_modules", "sitemap.config.js"]
+  "exclude": ["node_modules", "sitemap.config.js", "sitemap"]
 }
