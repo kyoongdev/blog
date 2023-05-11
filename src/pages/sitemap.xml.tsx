@@ -2,7 +2,7 @@ import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import { getServerSideSitemapLegacy } from 'next-sitemap';
 
-import { API_URL } from 'config';
+import { API_URL, HOST_URL } from 'config';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const posts = await axios.get(`${API_URL}/posts/all`);
@@ -10,13 +10,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const defaultFields = [
     {
-      loc: process.env.URL,
+      loc: HOST_URL,
       changefreq: 'daily',
       priority: '0.8',
       lastmod,
     },
     {
-      loc: `${process.env.URL}/about`,
+      loc: `${HOST_URL}/about`,
       changefreq: 'daily',
       priority: '0.8',
       lastmod,
@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   ];
 
   const postFields = posts.data.map(({ id }: { id: string }) => ({
-    loc: `${process.env.URL}/${id}`,
+    loc: `${HOST_URL}/${id}`,
     changefreq: 'daily',
     priority: '0.9',
     lastmod,
