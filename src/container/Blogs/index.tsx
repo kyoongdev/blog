@@ -13,9 +13,14 @@ import { API_URL } from 'config';
 import { updatePostState } from 'container/state';
 import { useMe } from 'hooks';
 import { getPost, increaseViewCountApi } from 'services/Posts';
+import { GetPostResponse } from 'services/Posts/type';
 import { getHeaderNodes, HeaderNodes } from 'utils';
 
-const Page: React.FC = () => {
+interface Props {
+  blog: GetPostResponse | null;
+}
+
+const Page: React.FC<Props> = ({ blog: blogProps }) => {
   const bodyRef = useRef<HTMLDivElement>(null);
 
   const { isAdmin } = useMe();
@@ -24,8 +29,12 @@ const Page: React.FC = () => {
   const { mutateAsync } = useMutation(increaseViewCountApi);
   const [headerNodes, setHeaderNodes] = React.useState<HeaderNodes[]>([]);
 
-  const { data: blog } = useQuery(['getPost', router.query.id], async () =>
-    getPost(router.query.id as string).then((res) => res.data),
+  const { data: blog } = useQuery(
+    ['getPost', router.query.id],
+    async () => getPost(router.query.id as string).then((res) => res.data),
+    {
+      initialData: blogProps,
+    },
   );
 
   const onClickRoute = () => {
