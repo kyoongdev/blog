@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import Categories from './Categories';
 import styles from './home.module.scss';
@@ -15,8 +15,12 @@ const HomePage: React.FC = () => {
         <p>KyoongDev의 기술 블로그</p>
       </article>
       <section className={styles.body}>
-        <Posts />
-        <Categories />
+        <Suspense fallback={<></>}>
+          <Posts />
+        </Suspense>
+        <Suspense fallback={<></>}>
+          <Categories />
+        </Suspense>
       </section>
     </>
   );
