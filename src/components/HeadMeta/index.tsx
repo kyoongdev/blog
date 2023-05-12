@@ -20,7 +20,7 @@ const HeadMeta: React.FC<Props> = ({ title, description, url, image, keywords })
       <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       <meta property='og:title' content={title || 'Kyoongdev Village'} />
       <meta property='og:type' content='website' />
-      <meta property='og:url' content={url || 'https://kyoongdev.github.io/'} />
+      <meta property='og:url' content={url || 'https://blog.kyoongdev.com/'} />
       <meta
         property='og:image'
         content={image || 'https://sgp1.vultrobjects.com/kyoongdev-blog/images/me.jpg'}

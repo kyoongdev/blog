@@ -2,7 +2,7 @@
   "name": "blog",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://kyoongdev.github.io/",
+  "homepage": "http://blog.kyoongdev.com/",
   "scripts": {
     "dev": "next dev",
     "local": "next local",
