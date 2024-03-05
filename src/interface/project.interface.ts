@@ -1,10 +1,12 @@
-import type { FormArray } from './keywords.interface';
-
-import type { CreateProjectRequest } from 'services/Project/type';
-
-export interface ProjectForm extends Omit<CreateProjectRequest, 'skills' | 'roles'> {
-  skills: FormArray[];
-  roles: FormArray[];
+export interface Project {
+  title: string;
+  startDate: string;
+  endDate: string;
+  roles: string[];
+  skills: string[];
+  link?: string;
+  content: string;
+  thumbnail?: string;
 }
 
 export type ClickProjectType = 'delete' | 'edit';

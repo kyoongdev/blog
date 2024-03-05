@@ -1,6 +1,6 @@
-import { ProjectsResponse } from 'services/Project/type';
+import type { Project } from 'interface/project.interface';
 
-export const projects: Array<Omit<ProjectsResponse & { link?: string }, 'id'>> = [
+export const projects: Project[] = [
   {
     title: '(주)WATA',
     startDate: '2023.02',

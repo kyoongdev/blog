@@ -2,19 +2,14 @@ import dayjs from 'dayjs';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import ReactHTMLParser from 'react-html-parser';
 
 import styles from './project.module.scss';
 
 import { LinkIcon } from 'assets/svg';
-import { Button, Markdown, Tags } from 'components';
-import { ProjectsResponse } from 'services/Project/type';
+import { Markdown, Tags } from 'components';
+import { Project as ProjectType } from 'interface/project.interface';
 
-interface Props extends ProjectsResponse {
-  isAdmin: boolean;
-  onClickEdit: () => void;
-  onClickDelete: () => void;
-}
+interface Props extends ProjectType {}
 
 const Project: React.FC<Props> = ({
   title,
@@ -25,9 +20,6 @@ const Project: React.FC<Props> = ({
   thumbnail,
   endDate,
   startDate,
-  isAdmin,
-  onClickDelete,
-  onClickEdit,
 }) => {
   return (
     <li className={styles.project}>
@@ -51,14 +43,6 @@ const Project: React.FC<Props> = ({
               </Link>
             )}
           </div>
-          {isAdmin && (
-            <div className={styles.buttonWrapper}>
-              <Button onClick={onClickEdit}>수정</Button>
-              <Button styleType='secondary' onClick={onClickDelete}>
-                삭제
-              </Button>
-            </div>
-          )}
         </header>
         <article className={styles.skillWrapper}>
           <h2>Skills</h2>
