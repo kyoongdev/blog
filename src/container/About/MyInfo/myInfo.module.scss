@@ -27,6 +27,16 @@
   }
 }
 
+.profile {
+  margin-bottom: 24px;
+
+  > img {
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+}
+
 .myInfo {
   width: 100%;
 

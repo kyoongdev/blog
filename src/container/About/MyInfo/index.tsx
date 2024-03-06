@@ -1,8 +1,10 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 import styles from './myInfo.module.scss';
 
+import { ProfileImage } from 'assets/images';
 import Building from 'assets/svg/building.svg';
 import Github from 'assets/svg/github.svg';
 import Gmail from 'assets/svg/gmail.svg';
@@ -12,6 +14,9 @@ const MyInfo: React.FC = () => {
   return (
     <section className={styles.container}>
       <section>
+        <figure className={styles.profile}>
+          <Image src={ProfileImage} alt='프로필 사진' width={140} height={140} />
+        </figure>
         <article className={styles.myInfo}>
           <h1>안녕하세요.</h1>
           <div>
