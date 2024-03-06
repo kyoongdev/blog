@@ -22,8 +22,6 @@
 }
 
 .container {
-  margin-top: 24px;
-
   @include m.tabletOnly {
     padding: 0 12px;
   }
@@ -48,6 +46,7 @@
 }
 
 .project {
+  @include m.flex(flex-start, center, row);
   column-gap: 24px;
   width: 100%;
   min-height: 80px;
@@ -55,7 +54,6 @@
   list-style: none;
   border-radius: 4px;
   box-shadow: 0 0 12px 4px c.$C_GRAY_7;
-  @include m.flex(flex-start, center, row);
 
   @include m.mobileOnly {
     flex-direction: column;

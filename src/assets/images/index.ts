@@ -5,3 +5,4 @@ export { default as MainLogo } from './logo.png';
 export { default as NestLogo } from './nestjs.png';
 export { default as ReactLogo } from './react.png';
 export { default as SlackLogo } from './slack.jpeg';
+export { default as ProfileImage } from './profile-image.jpg';

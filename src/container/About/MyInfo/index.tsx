@@ -6,7 +6,6 @@ import styles from './myInfo.module.scss';
 import Building from 'assets/svg/building.svg';
 import Github from 'assets/svg/github.svg';
 import Gmail from 'assets/svg/gmail.svg';
-import Phone from 'assets/svg/phone.svg';
 import School from 'assets/svg/school.svg';
 
 const MyInfo: React.FC = () => {
@@ -28,54 +27,34 @@ const MyInfo: React.FC = () => {
             <span /> 그리고
             <strong>Self-Feedback</strong>
           </p>
-          <p>을 할 수 있는 능력 갖추는 개발자가 되겠습니다.</p>
+          <p>을 통해 꾸준히 발전하는 개발자가 되겠습니다.</p>
         </article>
       </section>
       <article className={styles.aboutMe}>
         <ul>
           <li className={styles.career}>
             <School />
-            <p>Konkuk Univ. Industrial Engineerging & Smart ICT Convergence</p>
+            <p>Konkuk Univ. Industrial Engineerging</p>
           </li>
           <li className={styles.career}>
             <Building />
-            <p>Huemonelab - FE/BE (2020.09 ~ 2021.04)</p>
+            <p>(주) 휴몬랩 - 인턴 (2020.09 ~ 2021.04)</p>
           </li>
           <li className={styles.career}>
             <Building />
-            <p>Fuseble (with Freelancer) - FE/BE / Co-Founder (2021.11 ~ 2022.10)</p>
-          </li>
-          <li className={styles.career}>
-            <Building />
-            <p>MayB (Sole Proprietorship) - BE / BE Tutor (2022.10 ~ )</p>
-          </li>
-          <li className={styles.career}>
-            <Building />
-            <p>CodeStates - FE Tutor (2023.01 ~ 2023.04)</p>
+            <p>(주) 퓨저블 - BE Developer (2022.03 ~ 2022.10)</p>
           </li>
           <hr />
           <li>
             <Link target={'_blank'} href={'https://github.com/kyoongdev'}>
               <Github />
-              <p>
-                Github<span>https://github.com/kyoongdev</span>
-              </p>
+              <p>Github</p>
             </Link>
           </li>
           <li>
             <Link href={'mailto:9898junjun2@gmail.com'}>
               <Gmail />
-              <p>
-                Gmail<span>9898junjun2@gmail.com</span>
-              </p>
-            </Link>
-          </li>
-          <li>
-            <Link href={'tel:010-4059-7883'}>
-              <Phone />
-              <p>
-                Phone<span>010-4059-7883</span>
-              </p>
+              <p>Gmail</p>
             </Link>
           </li>
         </ul>

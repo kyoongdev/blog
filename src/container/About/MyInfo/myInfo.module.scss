@@ -5,8 +5,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  padding: 102px 0 72px;
-  border-bottom: 1px solid c.$C_GRAY_7;
+  padding: 102px 0 0;
 
   @include m.tabletOnly {
     padding: 72px 12px 20px;

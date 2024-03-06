@@ -1,0 +1,9 @@
+@use 'src/styles/constants' as c;
+@use 'src/styles/mixins' as m;
+
+.divider {
+  height: 1px;
+  margin: 48px 0;
+  background-color: c.$C_GRAY_7;
+  border: 0;
+}
