@@ -17,7 +17,7 @@
 
   .careers {
     @include m.flex(flex-start, flex-start, column);
-    row-gap: 12px;
+    row-gap: 24px;
     list-style: none;
   }
 
@@ -59,7 +59,7 @@
   }
 }
 
-.fusebleCareer {
+.careerDetail {
   @include m.flex(flex-start, flex-start, column);
   row-gap: 12px;
   margin-top: 24px;

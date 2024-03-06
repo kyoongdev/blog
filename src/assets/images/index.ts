@@ -6,3 +6,6 @@ export { default as NestLogo } from './nestjs.png';
 export { default as ReactLogo } from './react.png';
 export { default as SlackLogo } from './slack.jpeg';
 export { default as ProfileImage } from './profile-image.jpg';
+export { default as SpringBootImage } from './spring-boot.png';
+export { default as AwsImage } from './aws.png';
+export { default as NaverCloudImage } from './naver-cloud.png';
