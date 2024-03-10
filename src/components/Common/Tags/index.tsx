@@ -11,7 +11,7 @@ interface Props {
   selectedTags?: string[];
 }
 
-const Tags: React.FC<Props> = ({ tags, className, isDark, isSecondary, selectedTags, onClick }) => {
+const Tags: React.FC<Props> = ({ tags, className, isDark, isSecondary, selectedTags }) => {
   return (
     <ul
       className={cx(styles.tags, className, {
@@ -22,11 +22,8 @@ const Tags: React.FC<Props> = ({ tags, className, isDark, isSecondary, selectedT
       {tags.map((tag, index) => {
         return (
           <li
-            className={cx({
-              [styles.selected]: selectedTags && selectedTags.indexOf(tagId) !== -1,
-            })}
             key={`${tag}-${index}`}
-            {...(onClick && typeof tag !== 'string' && { onClick: onClick(tag) })}
+            // {...(onClick && typeof tag !== 'string' && { onClick: onClick(tag) })}
           >
             {tag}
           </li>

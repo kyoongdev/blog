@@ -18,13 +18,13 @@ const Projects: React.FC = () => {
       </header>
 
       <ul className={styles.projects}>
-        {teamProjects.map((project, index) => (
-          <Project key={project.title} {...project} />
+        {teamProjects.map((project) => (
+          <Project key={project.title} {...project} isTeam />
         ))}
-        {humonlabProjects.map((project, index) => (
+        {humonlabProjects.map((project) => (
           <Project ref={setHumonlabRef} key={project.title} {...project} />
         ))}
-        {fusebleProjects.map((project, index) => (
+        {fusebleProjects.map((project) => (
           <Project ref={setFusebleRef} key={project.title} {...project} />
         ))}
       </ul>

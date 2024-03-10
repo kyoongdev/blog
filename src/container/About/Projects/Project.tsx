@@ -12,7 +12,7 @@ import { Project as ProjectType } from 'interface/project.interface';
 interface Props extends ProjectType {}
 
 const Project = forwardRef<HTMLLIElement, Props>(
-  ({ title, roles, content, skills, link, endDate, startDate, hardPoints, image }, ref) => {
+  ({ title, roles, content, skills, link, endDate, startDate, hardPoints, image, isTeam }, ref) => {
     return (
       <li className={styles.project} ref={ref}>
         {image && (
@@ -22,7 +22,10 @@ const Project = forwardRef<HTMLLIElement, Props>(
         )}
         <div className={styles.mainInfo}>
           <header className={styles.header}>
-            <h1>{title}</h1>
+            <h1>
+              {title}
+              {isTeam && <p>팀 프로젝트</p>}
+            </h1>
             <div>
               <div className={styles.date}>
                 <span>{dayjs(startDate).format('YYYY.MM')}</span>

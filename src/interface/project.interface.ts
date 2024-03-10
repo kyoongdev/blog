@@ -15,6 +15,7 @@ export interface Project {
   content: string;
   image?: StaticImageData;
   hardPoints?: HardPointItem[];
+  isTeam?: boolean;
 }
 
 export type ClickProjectType = 'delete' | 'edit';
