@@ -9,3 +9,6 @@ export { default as ProfileImage } from './profile-image.jpg';
 export { default as SpringBootImage } from './spring-boot.png';
 export { default as AwsImage } from './aws.png';
 export { default as NaverCloudImage } from './naver-cloud.png';
+export { default as CodingTestImage } from './coding-test.png';
+export { default as PaletteImage } from './palette.png';
+export { default as RoofLupinImage } from './roof-lupin.png';

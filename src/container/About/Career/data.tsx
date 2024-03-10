@@ -13,7 +13,7 @@ export const CAREERS: Career[] = [
     children: (
       <ul className={styles.careerDetail}>
         <li>
-          <h4>코딩 교육 업무 지원</h4>
+          <strong>코딩 교육 업무 지원</strong>
           <p>
             코딩 교육에 필요한 자료인 C, Java, Python에 대한 기본 문법 자료를 만들어 카페에
             기재하였으며,
@@ -23,7 +23,7 @@ export const CAREERS: Career[] = [
           </p>
         </li>
         <li>
-          <h4>개발자 유형찾기 페이지 개발 지원</h4>
+          <strong>개발자 유형찾기 페이지 개발 지원</strong>
           <p>
             당시 유행했던 MBTI 열풍에 맞춰, 개발자 유형 찾기 페이지 개발 업무를 지원하게 되었습니다.
             <br />
@@ -43,7 +43,7 @@ export const CAREERS: Career[] = [
     children: (
       <ul className={styles.careerDetail}>
         <li>
-          <h4>BE 외주 개발</h4>
+          <strong>BE 외주 개발</strong>
           <p>
             기존 구축된 DB가 있다면, 기획 혹은 요구 명세서에 맞는 API 개발 업무를 담당하였으며,
             <br />
@@ -54,7 +54,7 @@ export const CAREERS: Career[] = [
           </p>
         </li>
         <li>
-          <h4>사내 자체 라이브러리 개발</h4>
+          <strong>사내 자체 라이브러리 개발</strong>
           <p>
             업무를 진행하다보면 같은 기능을 계속해서 개발을 해야하는 소요가 발생하거나,
             <br />

@@ -1,12 +1,15 @@
+import { useSetAtom } from 'jotai';
 import React from 'react';
 
-import { projects as projectData } from './data';
+import { fusebleProjects, humonlabProjects, teamProjects } from './data';
 import Project from './Project';
 import styles from './projects.module.scss';
 
 import { ClickProjectType, Project as ProjectType } from 'interface/project.interface';
+import { fusbleRef } from 'state/project';
 
 const Projects: React.FC = () => {
+  const setFusebleRef = useSetAtom(fusbleRef);
   const [isOpen, setIsOpen] = React.useState(false);
 
   const onClick = () => {
@@ -25,8 +28,26 @@ const Projects: React.FC = () => {
       </header>
 
       <ul className={styles.projects}>
-        {projectData.map((project, index) => (
-          <Project key={project.title} {...project} />
+        {teamProjects.map((project, index) => (
+          <Project
+            ref={(ref) => index == 0 && setFusebleRef(ref)}
+            key={project.title}
+            {...project}
+          />
+        ))}
+        {fusebleProjects.map((project, index) => (
+          <Project
+            ref={(ref) => index == 0 && setFusebleRef(ref)}
+            key={project.title}
+            {...project}
+          />
+        ))}
+        {humonlabProjects.map((project, index) => (
+          <Project
+            ref={(ref) => index == 0 && setFusebleRef(ref)}
+            key={project.title}
+            {...project}
+          />
         ))}
       </ul>
     </section>

@@ -69,7 +69,7 @@
     @include m.flex(flex-start, flex-start, column);
     row-gap: 8px;
 
-    > h4 {
+    > strong {
       @include m.fontH3(bold);
 
       &::before {

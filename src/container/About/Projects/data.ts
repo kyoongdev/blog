@@ -1,67 +1,101 @@
+import { CodingTestImage, PaletteImage, RoofLupinImage } from 'assets/images';
 import type { Project } from 'interface/project.interface';
 
-export const projects: Project[] = [
+export const fusebleProjects: Project[] = [
   {
-    title: '(주)WATA',
-    startDate: '2023.02',
-    endDate: '2023.4',
-    roles: ['Frontend'],
-    skills: ['Next.js', 'Typescript', 'React-Query', 'Recoil', 'SCSS', 'WebGL'],
-    link: 'https://www.watanow.com/web/landing.do?lang=en',
-    content:
-      '기존의 Javascript 및 Redux로 구성된 Mono Repo FE 프로젝트와 Unity 통신 방식이 원할하지 않아 메모리를 많이 사용하는 상태였습니다.\n\n이에 우선 언어를 Typescript로 교체하고, Redux보다 가볍고 React-Query와의 궁합이 좋은 Recoil을 도입했습니다.\n\n기존의 Event Emitter 방식에 메모리 유수가 많아 필요할 때만 등록하고 제거할 수 있도록 custom hook으로 교체하였습니다.',
-    thumbnail: 'https://kyoongdev-blog.sgp1.vultrobjects.com/images/wata.png',
-  },
-  {
-    title: '(주)빗썸라이브',
+    title: '(주) **라이브',
     startDate: '2022.08',
     endDate: '2022.10',
-    roles: ['Frontend'],
+    roles: ['FrontEnd'],
     skills: ['Next.js', 'Typescript', 'React-Query', 'Recoil', 'SCSS'],
-    link: 'https://www.bithumblive.com/',
     content:
-      '웹페이지의 개발 및 리뉴얼을 진행하였으며 샵바이 프리미엄을 통한 커머스 시스템 Frontend를 개발하였습니다.\n\n최대한 모바일에서 작동이 어색하지 않도록 bottom sheet를 활용해서 앱과 비슷한 UI를 구현하였습니다.\n\n다크모드를 지원하는 디자인을 개발하기 위해 SCSS의 mixin 및 constants를 적극 활용하였습니다.',
-    thumbnail: 'https://sgp1.vultrobjects.com/kyoongdev-blog/images/bithumb.png',
+      '웹페이지의 개발 및 리뉴얼을 진행하였으며 샵바이 프리미엄을 통한 커머스 시스템 FrontEnd를 개발하였습니다.\n\n최대한 모바일에서 작동이 어색하지 않도록 bottom sheet를 활용해서 앱과 비슷한 UI를 구현하였습니다.\n\n다크모드를 지원하는 디자인을 개발하기 위해 SCSS의 mixin 및 constants를 적극 활용하였습니다.',
   },
   {
-    title: 'H2CARE',
+    title: '**CARE',
     startDate: '2022.03',
     endDate: '2022.09',
-    roles: ['PM', 'Backend'],
+    roles: ['PM', 'BackEnd'],
     skills: ['Express', 'Typescript', 'Sequelize', 'MySQL'],
-    link: 'https://play.google.com/store/apps/details?id=com.aviv.hicare&hl=ko&gl=US',
     content:
       '서비스 전반적인 백엔드 개발 및 DB설계를 총괄하였습니다.\n\n서비스 규모가 크고, 대규모 데이터를 이관하는 과정이 있어 서비스 설계 시, 도메인 단위 설계 및 Transaction을 통한 쿼리 관리를 진행했습니다.\n\n결제 서비스가 있는 만큼 SQL이 Dead Lock 상태 등에 빠지지 않도록 하기 위해 Lock을 사용하여 격리 상태를 구분하였습니다.\n\n일부 Message 기능의 경우에는 Service로 구성하지 않고 Event Emitter를 사용하여 AOP로 구성하였습니다.',
-    thumbnail: 'https://sgp1.vultrobjects.com/kyoongdev-blog/images/h2care.jpeg',
   },
   {
-    title: '(주)메디스',
+    title: '(주) *디스',
     startDate: '2022.03',
     endDate: '2022.08',
-    roles: ['Backend'],
+    roles: ['BackEnd'],
     skills: ['Express', 'Prisma', 'Socket.io', 'MariaDB'],
     content:
       '의사와 약사, 그리고 환자를 매칭하는 서비스입니다.\n\nMVP 서비스 개발을 담당하여, ERD 설계부터 백엔드 개발까지 담당하였습니다. 사용자 경험을 개선하기 위해 일부 기능을 Socket 통신으로 개발하였습니다.',
   },
+];
+
+export const humonlabProjects: Project[] = [
   {
-    title: '(주)컬러버스',
-    startDate: '2022.03',
-    endDate: '2022.06',
-    roles: ['Frontend'],
-    skills: ['React', 'React-Query', 'Recoil', 'Redux-toolkit', 'SCSS'],
+    title: '개발자 유형찾기',
+    startDate: '2020.09',
+    endDate: '2020.11',
+    roles: ['FrontEnd', 'BackEnd'],
+    skills: ['React', 'Styled-Components', 'MongoDB', 'mongoose', 'Koa', 'TypeScript'],
     content:
-      '서비스 되었던 게임을 리뉴얼하는 프로젝트입니다.\n\n리뉴얼하는 프로젝트인 만큼 최대한 라이프 사이클을 조절하여 사용자 경험을 최대화 시켰습니다.\n\n아이템을 선정 및 검색하는 기능이 많아 Recoil을 사용하여 상태를 관리하였으며, CSS의 최적화를 위해 Reflow & Repaint를 최소화하는 CSS를 적용했습니다.',
-    thumbnail: 'https://sgp1.vultrobjects.com/kyoongdev-blog/images/colorverse.png',
-    link: 'https://www.puppyred.com/',
+      'MBTI 질문을 기반으로 사용자의 개발자 유형을 찾아주는 프로젝트입니다.\n\n개발의 모든 과정에 참여하진 않았으나, 백엔드 개발 과정에는 대부분 참여하여 성공적으로 프로젝트를 마쳤습니다.\n\nGit을 관리하는 방법, 이슈 정리, 요구사항 요청 등 개발팀으로서 협력하는 기본적인 방법을 배웠습니다.',
+    image: CodingTestImage,
+    hardPoints: [
+      {
+        cause:
+          '개발자의 유형을 찾는 문제를 풀고 해당 문제에 대한 정답에 따라 유형을 도출해야 과정에서\n 문제 유형별로 정답에 가중치를 계산해야하는 문제가 있었습니다.',
+        solution:
+          '각 문제 별로 조건문을 통해 선택한 정답에 대한 가중치를 더하거나 빼는 방식으로 결과를 도출하였으나,\n 해당 방법은 코드의 가독성이 떨어지므로, 정답과 유형별 결과를 저장할 수 있는 해시를 사용하여 미리 데이터를 저장해두고 각 값에 맞는 결과를 보여주는 것이 더 좋은 해결책이 될 수 있습니다.',
+      },
+    ],
+  },
+];
+
+export const teamProjects: Project[] = [
+  {
+    title: '루프루팡',
+    startDate: '2023.03',
+    endDate: '2023.11',
+    roles: ['BackEnd'],
+    image: RoofLupinImage,
+    skills: ['Nest.js', 'Typescript', 'Prisma', 'MySQL', 'AWS EC2', 'S3'],
+    content:
+      '옥상 공간 대여 중개 서비스로 숙박업소 대여 서비스와 유사한 기능을 가지고 있습니다. 팀 프로젝트로서 BackEnd 개발과 기획에 참여하였습니다.\n\n백엔드의 100%를 개발하였으며, 결제 모듈 연동, 푸시 알림, API 개발 등을 담당하였습니다. 처음으로 팀 프로젝트로서 앱스토어에 출시를 해보는 경험을 해보았습니다.\n\n이전까지 다뤄오던 프로젝트보다 많은 도메인을 혼자 개발하였기 때문에 자신의 코드에 매몰되지 않도록 객관적으로 코드를 바라보기 위해 노력을 기울였습니다.',
+    hardPoints: [
+      {
+        cause:
+          '검색 기능을 도입할 때, 기존에 사용하던 Prisma ORM을 통해서는 여러 테이블에 걸쳐 검색 필터를 적용할 수 없는 이슈가 있었습니다.',
+        solution:
+          '검색에 필요한 SQL Class를 NestJs 컨테이너에 등록하여 MySQL Query를 통해 검색이 가능하도록 구현하였으며, 이로 인해 ORM을 사용하는 방식보다 조회 시간을 단축시킬 수 있었습니다.',
+      },
+      {
+        cause:
+          '해당 프로젝트 이전의 프로젝트의 경우 에러 필터링 과정의 경우 에러가 규격화 되어있지 않아, 개발자 별로 다른 에러 형식을 사용할 수 밖에 없었습니다.',
+        solution:
+          '에러 관련 interface를 구현하여 에러 Class가 해당 interface를 implements한 기본 에러 Class를 상속받아 사용할 수 있도록 수정하여 일관된 에러를 반환할 수 있었습니다.',
+      },
+      {
+        cause:
+          '상품을 구매할 때, FrontEnd가 PG사 기능을 사용하기 위해 데이터를 가공하게 될 경우 일부 데이터의 경우 DB를 조회 해야하는 이슈가 있어 네트워크 I/O가 추가적으로 발생했습니다.',
+        solution:
+          'BackEnd에서 PG사에 payload로 보내야하는 데이터를 가공하여 전달해주는 API를 개발하여 네트워크 I/O를 줄였습니다.',
+      },
+    ],
   },
   {
-    title: '마켓 프레고',
-    startDate: '2022.02',
-    endDate: '2022.04',
-    roles: ['Backend'],
-    skills: ['Express', 'Prisma', 'MariaDB'],
-    content: `마켓컬리와 유사한 식품 전자상거래 서비스입니다.\n\n전자상거래 서비스 특징 상 보안 및 DB 원자성이 필수이기 때문에 토큰 및 bcrypt를 통한 데이터 통신 및 보안에 힘쓰고 transaction을 통해 쿼리 결과를 보존하였습니다.`,
-    thumbnail: 'https://sgp1.vultrobjects.com/kyoongdev-blog/images/frego.jpeg',
-    link: 'https://marketfrego.modoo.at/',
+    title: '팔레트',
+    startDate: '2023.08',
+    roles: ['PM', 'BackEnd'],
+    image: PaletteImage,
+    skills: ['Spring Boot', 'JPA', 'Java', 'MySQL', 'NestJs', 'Typescript', 'Prisma'],
+    content: '',
+    hardPoints: [
+      {
+        cause:
+          'Prisma ORM의 경우에는 Spring Boot와 다르게 Transactional 어노테이션(데코레이터)가 존재하지 않아 트랜잭션을 사용하게 되면 코드의 가독성이 떨어지는 문제가 존재했습니다.',
+        solution: '',
+      },
+    ],
   },
 ];

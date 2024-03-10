@@ -1,3 +1,4 @@
+import cx from 'clsx';
 import Image, { StaticImageData } from 'next/image';
 import React from 'react';
 
@@ -35,7 +36,10 @@ const Skill: React.FC<SkillProps> = ({ title, main, sub }) => {
         </ul>
         <ul className={styles.sub}>
           {sub.map((item) => (
-            <li key={typeof item == 'string' ? item : item[0]}>
+            <li
+              className={cx({ [styles.isBar]: typeof item !== 'string' })}
+              key={typeof item == 'string' ? item : item[0]}
+            >
               {typeof item == 'string' ? item : item[0]}
               {typeof item !== 'string' && (
                 <div className={styles.progress}>
