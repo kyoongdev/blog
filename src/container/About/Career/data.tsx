@@ -4,6 +4,7 @@ import { Career } from 'interface/career.interface';
 
 export const CAREERS: Career[] = [
   {
+    dataKey: 'humonlab',
     title: '(주) 휴몬랩',
     startAt: '2020.09',
     endAt: '2021.04',
@@ -35,6 +36,7 @@ export const CAREERS: Career[] = [
     ),
   },
   {
+    dataKey: 'fuseble',
     title: '(주) 퓨저블',
     startAt: '2022.03',
     endAt: '2022.10',

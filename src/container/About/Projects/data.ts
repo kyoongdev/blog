@@ -89,12 +89,31 @@ export const teamProjects: Project[] = [
     roles: ['PM', 'BackEnd'],
     image: PaletteImage,
     skills: ['Spring Boot', 'JPA', 'Java', 'MySQL', 'NestJs', 'Typescript', 'Prisma'],
-    content: '',
+    content:
+      '음악인이 음원부터 믹스마스터링까지의 과정을 서로 구매할 수 있는 서비스입니다.\n\n동아리장으로 있는 개발 동아리원들과 함께 개발을 진행했으며 저는 일정 관리 및 일부 BackEnd 개발에 참여하였습니다.\n\n추후 개선이 필요한 기능이 있어 개인적으로 NestJs를 통해 개선점을 반영하여 다시 프로젝트를 개발하기도 하였습니다.',
     hardPoints: [
       {
         cause:
+          '첫 기획 내용에서는 각 상품 카테고리 마다의 테이블가 독립적으로 존재하였기 때문에 기획이 변경되며 전체 검색 기능을 위해서는 여러 테이블에 걸쳐 조회를 실시해야하는 이슈가 있었습니다.',
+        solution:
+          'Spring Boot 프로젝트에서는 테이블 Relation을 수정하는 것이 가장 좋은 해결방안이나, 일정 상 수정이 불가하였습니다. 따라서 개인적으로 진행한 프로젝트에서는 테이블 간의 Relation을 반영하여 조회가 가능하도록 조치하였습니다.',
+      },
+      {
+        cause: '기존의 JPA의 기능으로는 조회가 어려운 기능이 존재하였습니다.',
+        solution:
+          'JpaQueryFactory를 사용하여 Custom Repository를 만들고 기존의 Repository를 상속받게 하여 좀 더 복잡한 로직을 수행할 수 있게 개발하였습니다.',
+      },
+      {
+        cause:
+          'Request Header의 JWT를 통해 검증된 user 정보를 사용하기 위해 Security Context에서 해당 값을 불러오는 코드가 중복적으로 사용되고 있었습니다.',
+        solution:
+          'GetUserInfo라는 어노테이션을 만든 뒤, HandlerMethodArgumentResolver를 사용하여 해당 어노테이션이 붙어있을 경우 Security Context에서 유저 정보를 불러올 수 있도록 구현하였습니다. 이로 인해 재사용이 가능한 코드로 만들고 더욱 직관적으로 이해하기 쉬운 코드를 작성할 수 있었습니다.',
+      },
+      {
+        cause:
           'Prisma ORM의 경우에는 Spring Boot와 다르게 Transactional 어노테이션(데코레이터)가 존재하지 않아 트랜잭션을 사용하게 되면 코드의 가독성이 떨어지는 문제가 존재했습니다.',
-        solution: '',
+        solution:
+          'Async Local Storage기반의 라이브러리인 nestjs-cls라는 라이브러리와 Toss에서 개발한 AOP의 아이디어를 차용하여 Request가 발생하면 Request 객체마다 Context를 생성하고 Prisma 객체를 저장합니다.\n만약 Request로 인해 실행되는 Method가 Transactional 데코레이터를 사용 중이라면 Context에 저장된 Prisma 객체를 Prisma Transaction 객체로 교환하는 방식으로 구현하였습니다.',
       },
     ],
   },

@@ -10,9 +10,14 @@
 
   > h2 {
     @include m.fontH1(medium);
-    @include m.flex(flex-start, center, row);
-    column-gap: 8px;
+    @include m.flex(flex-start, flex-end, row);
+    column-gap: 12px;
     margin-bottom: 24px;
+
+    > p {
+      @include m.fontB12(regular);
+      color: c.$C_GRAY_5;
+    }
   }
 
   .careers {
@@ -36,6 +41,7 @@
       padding-bottom: 12px;
       margin-bottom: 12px;
       color: c.$C_GRAY_2;
+      cursor: pointer;
       border-bottom: 1px solid c.$C_GRAY_7;
       @include m.mobileOnly {
         font-size: 20px;

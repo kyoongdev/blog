@@ -5,21 +5,11 @@ import { fusebleProjects, humonlabProjects, teamProjects } from './data';
 import Project from './Project';
 import styles from './projects.module.scss';
 
-import { ClickProjectType, Project as ProjectType } from 'interface/project.interface';
-import { fusbleRef } from 'state/project';
+import { fusbleRef, humonlabRef } from 'state/project';
 
 const Projects: React.FC = () => {
   const setFusebleRef = useSetAtom(fusbleRef);
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  const onClick = () => {
-    setIsOpen(!isOpen);
-  };
-  const onClickProject = (type: ClickProjectType, project: ProjectType) => {
-    return () => {
-      setIsOpen(true);
-    };
-  };
+  const setHumonlabRef = useSetAtom(humonlabRef);
 
   return (
     <section className={styles.container}>
@@ -29,25 +19,13 @@ const Projects: React.FC = () => {
 
       <ul className={styles.projects}>
         {teamProjects.map((project, index) => (
-          <Project
-            ref={(ref) => index == 0 && setFusebleRef(ref)}
-            key={project.title}
-            {...project}
-          />
-        ))}
-        {fusebleProjects.map((project, index) => (
-          <Project
-            ref={(ref) => index == 0 && setFusebleRef(ref)}
-            key={project.title}
-            {...project}
-          />
+          <Project key={project.title} {...project} />
         ))}
         {humonlabProjects.map((project, index) => (
-          <Project
-            ref={(ref) => index == 0 && setFusebleRef(ref)}
-            key={project.title}
-            {...project}
-          />
+          <Project ref={setHumonlabRef} key={project.title} {...project} />
+        ))}
+        {fusebleProjects.map((project, index) => (
+          <Project ref={setFusebleRef} key={project.title} {...project} />
         ))}
       </ul>
     </section>
