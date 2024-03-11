@@ -12,7 +12,10 @@ import { Project as ProjectType } from 'interface/project.interface';
 interface Props extends ProjectType {}
 
 const Project = forwardRef<HTMLLIElement, Props>(
-  ({ title, roles, content, skills, link, endDate, startDate, hardPoints, image, isTeam }, ref) => {
+  (
+    { title, roles, content, skills, links, endDate, startDate, hardPoints, image, isTeam },
+    ref,
+  ) => {
     return (
       <li className={styles.project} ref={ref}>
         {image && (
@@ -32,11 +35,19 @@ const Project = forwardRef<HTMLLIElement, Props>(
                 <span>~</span>
                 <span>{dayjs(endDate).format('YYYY.MM')}</span>
               </div>
-              {link && (
-                <Link href={link} target='_blank' passHref className={styles.link}>
-                  <LinkIcon />
-                </Link>
-              )}
+              {links &&
+                links.map((link) => (
+                  <Link
+                    href={link.link}
+                    target='_blank'
+                    passHref
+                    style={{ '--hover': 'test' } as any}
+                    className={styles.link}
+                  >
+                    <LinkIcon />
+                    <p>{link.hover}</p>
+                  </Link>
+                ))}
             </div>
           </header>
           <article className={styles.skillWrapper}>

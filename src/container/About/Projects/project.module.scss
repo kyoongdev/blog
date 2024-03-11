@@ -13,7 +13,7 @@
   box-shadow: 0 0 12px 4px c.$C_GRAY_7;
 
   &:not(:has(.image)) {
-    @include m.flex(flex-start, flex-start, row);
+    @include m.flex(flex-start, flex-start, column);
   }
 
   .image {
@@ -119,10 +119,38 @@
     }
 
     .link {
+      position: relative;
       width: 20px;
       height: 20px;
       margin-left: 8px;
       cursor: pointer;
+
+      > p {
+        position: absolute;
+        top: -20px;
+        left: 0;
+        width: auto;
+        padding: 4px 8px 3px;
+        font-size: 14px;
+        font-weight: 500;
+        color: c.$C_WHITE;
+        word-break: keep-all;
+        white-space: nowrap;
+        list-style: none;
+        cursor: pointer;
+        visibility: hidden;
+        background-color: c.$C_PRIMARY;
+        border-radius: 12px;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+      }
+
+      &:hover {
+        > p {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
     }
 
     .buttonWrapper {
@@ -195,6 +223,7 @@
     @include m.flex(flex-start, flex-start, column);
     grid-column: 1 / 3;
     row-gap: 20px;
+    width: 100%;
     margin-top: 18px;
     list-style: none;
 

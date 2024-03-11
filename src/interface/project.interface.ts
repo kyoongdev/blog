@@ -5,13 +5,18 @@ export interface HardPointItem {
   solution: string;
 }
 
+export interface ProjectLink {
+  link: string;
+  hover: string;
+}
+
 export interface Project {
   title: string;
   startDate: string;
   endDate?: string;
   roles: string[];
   skills: string[];
-  link?: string;
+  links?: ProjectLink[];
   content: string;
   image?: StaticImageData;
   hardPoints?: HardPointItem[];

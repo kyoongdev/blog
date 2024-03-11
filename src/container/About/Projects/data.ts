@@ -9,7 +9,14 @@ export const fusebleProjects: Project[] = [
     roles: ['FrontEnd'],
     skills: ['Next.js', 'Typescript', 'React-Query', 'Recoil', 'SCSS'],
     content:
-      '웹페이지의 개발 및 리뉴얼을 진행하였으며 샵바이 프리미엄을 통한 커머스 시스템 FrontEnd를 개발하였습니다.\n\n최대한 모바일에서 작동이 어색하지 않도록 bottom sheet를 활용해서 앱과 비슷한 UI를 구현하였습니다.\n\n다크모드를 지원하는 디자인을 개발하기 위해 SCSS의 mixin 및 constants를 적극 활용하였습니다.',
+      '웹페이지의 개발 및 리뉴얼을 진행하였으며 샵바이 프리미엄을 통한 커머스 시스템 FrontEnd를 개발하였습니다.',
+    hardPoints: [
+      {
+        cause: '서비스 출시를 앞두고 다크 모드 기능을 새롭게 도입해야했습니다.',
+        solution:
+          'scss의 함수 Mixin과 useTheme이라는 커스텀 훅을 개발했습니다. useTheme은 모든 노드를 순회하며 data-theme이라는 attribute를 삽입합니다.\n\n하지만 해당 방식은 효율성이 떨어지기 때문에 root 노드에만 data-theme을 적용하고 css variable을 통해 색을 변경하는 방법으로 변경하였습니다.',
+      },
+    ],
   },
   {
     title: '**CARE',
@@ -17,8 +24,14 @@ export const fusebleProjects: Project[] = [
     endDate: '2022.09',
     roles: ['PM', 'BackEnd'],
     skills: ['Express', 'Typescript', 'Sequelize', 'MySQL'],
-    content:
-      '서비스 전반적인 백엔드 개발 및 DB설계를 총괄하였습니다.\n\n서비스 규모가 크고, 대규모 데이터를 이관하는 과정이 있어 서비스 설계 시, 도메인 단위 설계 및 Transaction을 통한 쿼리 관리를 진행했습니다.\n\n결제 서비스가 있는 만큼 SQL이 Dead Lock 상태 등에 빠지지 않도록 하기 위해 Lock을 사용하여 격리 상태를 구분하였습니다.\n\n일부 Message 기능의 경우에는 Service로 구성하지 않고 Event Emitter를 사용하여 AOP로 구성하였습니다.',
+    content: '서비스 전반적인 DB 리뉴얼 및 API 개발을 담당하였습니다.',
+    hardPoints: [
+      {
+        cause: '초성을 통해 검색을 할 수 있는 기능이 있었습니다.',
+        solution:
+          '검색된 결과에서 한글을 파싱하여 초성이 일치하는 값을 결과로 응답하는 방식을 선택했으나, MySQL RLIKE 기능을 통해 구현한다면 조회 속도를 빠르게 수정이 가능하기 때문에 추후 비슷한 기능의 경우 활용 예정입니다.',
+      },
+    ],
   },
   {
     title: '(주) *디스',
@@ -27,7 +40,15 @@ export const fusebleProjects: Project[] = [
     roles: ['BackEnd'],
     skills: ['Express', 'Prisma', 'Socket.io', 'MariaDB'],
     content:
-      '의사와 약사, 그리고 환자를 매칭하는 서비스입니다.\n\nMVP 서비스 개발을 담당하여, ERD 설계부터 백엔드 개발까지 담당하였습니다. 사용자 경험을 개선하기 위해 일부 기능을 Socket 통신으로 개발하였습니다.',
+      '의사와 약사, 그리고 환자를 매칭하는 서비스입니다.\n\nMVP 서비스 개발을 담당하여, ERD 설계부터 백엔드 개발까지 담당하였습니다.',
+    hardPoints: [
+      {
+        cause:
+          '진료 승인과 거절 등을 socket을 통해 구현했으나, 소켓에 접속하지 않은 유저의 경우 승인과 거절 결과를 알 수 없었습니다.',
+        solution:
+          '유저가 소켓에 접속해있지 않을 때에는 푸시 알림을 통해 승인과 거절 결과를 알 수 있는 페이지로 이동을 시키는 방식을 사용했습니다.',
+      },
+    ],
   },
 ];
 
@@ -60,6 +81,12 @@ export const teamProjects: Project[] = [
     roles: ['BackEnd'],
     image: RoofLupinImage,
     skills: ['Nest.js', 'Typescript', 'Prisma', 'MySQL', 'AWS EC2', 'S3'],
+    links: [
+      {
+        link: 'https://github.com/kyoongdev/roof-lupin-server',
+        hover: 'Github',
+      },
+    ],
     content:
       '옥상 공간 대여 중개 서비스로 숙박업소 대여 서비스와 유사한 기능을 가지고 있습니다. 팀 프로젝트로서 BackEnd 개발과 기획에 참여하였습니다.\n\n백엔드의 100%를 개발하였으며, 결제 모듈 연동, 푸시 알림, API 개발 등을 담당하였습니다. 처음으로 팀 프로젝트로서 앱스토어에 출시를 해보는 경험을 해보았습니다.\n\n이전까지 다뤄오던 프로젝트보다 많은 도메인을 혼자 개발하였기 때문에 자신의 코드에 매몰되지 않도록 객관적으로 코드를 바라보기 위해 노력을 기울였습니다.',
     hardPoints: [
@@ -89,6 +116,10 @@ export const teamProjects: Project[] = [
     roles: ['PM', 'BackEnd'],
     image: PaletteImage,
     skills: ['Spring Boot', 'JPA', 'Java', 'MySQL', 'NestJs', 'Typescript', 'Prisma'],
+    links: [
+      { link: 'https://github.com/kyoongdev/palette-server-nestjs', hover: 'Github(NestJS)' },
+      { link: 'https://github.com/kyoongdev/palette-server', hover: 'Github(Spring Boot)' },
+    ],
     content:
       '음악인이 음원부터 믹스마스터링까지의 과정을 서로 구매할 수 있는 서비스입니다.\n\n동아리장으로 있는 개발 동아리원들과 함께 개발을 진행했으며 저는 일정 관리 및 일부 BackEnd 개발에 참여하였습니다.\n\n추후 개선이 필요한 기능이 있어 개인적으로 NestJs를 통해 개선점을 반영하여 다시 프로젝트를 개발하기도 하였습니다.',
     hardPoints: [

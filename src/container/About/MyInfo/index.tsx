@@ -15,7 +15,7 @@ const MyInfo: React.FC = () => {
     <section className={styles.container}>
       <section>
         <figure className={styles.profile}>
-          <Image src={ProfileImage} alt='프로필 사진' width={140} height={140} />
+          <Image src={ProfileImage} alt='프로필 사진' width={180} height={180} />
         </figure>
         <article className={styles.myInfo}>
           <h1>안녕하세요.</h1>
