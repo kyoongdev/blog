@@ -12,3 +12,5 @@ export { default as NaverCloudImage } from './naver-cloud.png';
 export { default as CodingTestImage } from './coding-test.png';
 export { default as PaletteImage } from './palette.png';
 export { default as RoofLupinImage } from './roof-lupin.png';
+export { default as BikeImage } from './bike.png';
+export { default as KyoongdevNestJSImage } from './kyoongdev-nestjs.png';

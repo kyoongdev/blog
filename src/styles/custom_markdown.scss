@@ -489,5 +489,8 @@
       margin: 0;
       font-size: 18px;
     }
+    > p + p {
+      margin-top: 12px;
+    }
   }
 }

@@ -13,7 +13,7 @@ interface Props extends ProjectType {}
 
 const Project = forwardRef<HTMLLIElement, Props>(
   (
-    { title, roles, content, skills, links, endDate, startDate, hardPoints, image, isTeam },
+    { title, roles, content, skills, links, endDate, startDate, hardPoints, image, isTeam, isSolo },
     ref,
   ) => {
     return (
@@ -28,12 +28,13 @@ const Project = forwardRef<HTMLLIElement, Props>(
             <h1>
               {title}
               {isTeam && <p>팀 프로젝트</p>}
+              {isSolo && <p>개인 프로젝트</p>}
             </h1>
             <div>
               <div className={styles.date}>
                 <span>{dayjs(startDate).format('YYYY.MM')}</span>
                 <span>~</span>
-                <span>{dayjs(endDate).format('YYYY.MM')}</span>
+                {endDate && <span>{dayjs(endDate).format('YYYY.MM')}</span>}
               </div>
               {links &&
                 links.map((link) => (

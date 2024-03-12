@@ -97,7 +97,7 @@ const Skills: React.FC = () => {
         />
         <Skill
           title='Infra'
-          main={[AwsImage, NaverCloudImage]}
+          main={[AwsImage]}
           sub={[
             ['EC2', 5],
             ['RDS (+ Aurora)', 5],
@@ -105,7 +105,7 @@ const Skills: React.FC = () => {
             ['ALB', 4],
             ['S3', 5],
             ['Cloud Front', 4],
-            ['NAVER Server', 3],
+            ['Code Deploy', 4],
           ]}
         />
         <Skill

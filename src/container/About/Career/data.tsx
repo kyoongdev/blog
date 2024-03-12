@@ -62,10 +62,9 @@ export const CAREERS: Career[] = [
             <br />
             팀의 방향성에 어긋나는 라이브러리가 발견되는 경우가 있습니다.
             <br />
-            이때, 팀의 업무 효율성 증대를 위해 Swagger Generator, 공통 기능(소셜 로그인, JWT) 등을
-            포함한 라이브러리를 개발하여
-            <br />
-            초기 프로젝트 세팅 및 진행 중 개발의 질을 향상시켰습니다.
+            이때, 팀의 업무 효율성 증대를 위해 FrontEnd의 경우 기본 React 컴포넌트, BackEnd는
+            Express 기반 Swagger Generator를 제작하여 초기 프로젝트 세팅 및 진행 중 개발의 질을
+            향상시켰습니다.
           </p>
         </li>
       </ul>

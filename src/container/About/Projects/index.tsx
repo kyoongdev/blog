@@ -1,7 +1,7 @@
 import { useSetAtom } from 'jotai';
 import React from 'react';
 
-import { fusebleProjects, humonlabProjects, teamProjects } from './data';
+import { fusebleProjects, humonlabProjects, soloProjects, teamProjects } from './data';
 import Project from './Project';
 import styles from './projects.module.scss';
 
@@ -18,6 +18,9 @@ const Projects: React.FC = () => {
       </header>
 
       <ul className={styles.projects}>
+        {soloProjects.map((project) => (
+          <Project key={project.title} {...project} isSolo />
+        ))}
         {teamProjects.map((project) => (
           <Project key={project.title} {...project} isTeam />
         ))}
