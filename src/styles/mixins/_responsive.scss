@@ -77,7 +77,7 @@
 }
 
 @mixin desktopOnly() {
-  @media only screen and (min-width: getMinBreakpoint(SD)) {
+  @media only screen and (min-width: getMinBreakpoint(MD)) {
     @content;
   }
 }

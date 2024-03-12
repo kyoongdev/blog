@@ -46,6 +46,7 @@ const Project = forwardRef<HTMLLIElement, Props>(
                     className={styles.link}
                   >
                     <LinkIcon />
+                    <span>Link</span>
                     <p>{link.hover}</p>
                   </Link>
                 ))}

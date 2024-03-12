@@ -96,6 +96,10 @@
     @include m.flex(flex-start, flex-start, column);
   }
 
+  > ul {
+    width: 100%;
+  }
+
   .career {
     @include m.mobileOnly {
       > svg {
