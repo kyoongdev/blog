@@ -9,7 +9,7 @@ import type { Project } from 'interface/project.interface';
 
 export const fusebleProjects: Project[] = [
   {
-    title: '(주) **라이브',
+    title: '(주) 빗썸라이브',
     startDate: '2022.08',
     endDate: '2022.10',
     roles: ['FrontEnd'],
@@ -26,7 +26,7 @@ export const fusebleProjects: Project[] = [
     ],
   },
   {
-    title: '**CARE',
+    title: 'H2CARE',
     startDate: '2022.03',
     endDate: '2022.09',
     roles: ['PM', 'BackEnd'],
