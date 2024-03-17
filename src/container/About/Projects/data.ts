@@ -38,7 +38,7 @@ export const fusebleProjects: Project[] = [
         cause:
           '기존의 데이터베이스의 경우 통계 값을 계산할 때 거의 모든 테이블을 조회한 후 코드 레벨에서 계산을 하는 방식을 선택하고 있어, API 실행이 5초 이상 걸리는 현상이 있었습니다.',
         solution:
-          '데이터베이스를 리뉴얼하면서 통계 값을 저장할 수 있는 테이블을 따로 만들어 다른 테이블을 조회하지 않아도 통계값을 산출할 수 있도록 개선하여 기존 실행 시간에서 절반으로 단축하여 다른 API들과 비슷한 실행 속도를 보장하였습니다.',
+          '데이터베이스를 리뉴얼하면서 통계 값을 저장할 수 있는 테이블을 따로 만들어 다른 테이블을 조회하지 않아도 통계값을 산출할 수 있도록 개선하여 기존 실행 시간에서 절반으로 단축해 다른 API들과 비슷한 실행 속도를 보장하였습니다.',
       },
       {
         cause: '초성을 통해 검색을 할 수 있는 기능이 있었습니다.',
@@ -62,7 +62,7 @@ export const humonlabProjects: Project[] = [
     hardPoints: [
       {
         cause:
-          '개발자의 유형을 찾는 문제를 풀고 해당 문제에 대한 정답에 따라 유형을 도출해야 과정에서\n 문제 유형별로 정답에 가중치를 계산해야하는 문제가 있었습니다.',
+          '개발자의 유형을 찾는 문제를 풀고 해당 문제에 대한 정답에 따라 유형을 도출해야 과정에서 문제 유형별로 정답에 가중치를 계산해야하는 문제가 있었습니다.',
         solution:
           '각 문제 별로 조건문을 통해 선택한 정답에 대한 가중치를 더하거나 빼는 방식으로 결과를 도출하였으나,\n 해당 방법은 코드의 가독성이 떨어지므로, 정답과 유형별 결과를 저장할 수 있는 해시를 사용하여 미리 데이터를 저장해두고 각 값에 맞는 결과를 보여주는 것이 더 좋은 해결책이 될 수 있습니다.',
       },
@@ -93,7 +93,7 @@ export const soloProjects: Project[] = [
     skills: ['NestJS'],
     image: KyoongdevNestJSImage,
     content:
-      'Nestjs를 이용한 프로젝트를 진행하다보니, 프로젝트마다 반복적으로 들어가는 코드가 있어 간략하게 관리하고 싶은 생각과 nestjs-swagger 모듈에 추가적인 기능을 부여하고 싶은 생각이 들었습니다.\n\n\n\n기존의 라이브러리는 개인적으로 사용하기에 기능이 분산되어있었기에 기능을 통합하고 최대한 코드를 간략하게 작성할 수 있도록 구성을 해두었습니다.\n\n특히 swagger의 경우 기본적으로 nullable : true를 설정하여도 example 칸에서는 nullable한지 알 수 없는 문제가 있었습니다.해당 부분을 수정하여 nullable : true를 설정하면 example 칸에서 "string | null"과 같이 표기될 수 있도록 하였습니다.\n\n\n\n추가로, 자주 사용하는 기능인 소셜 로그인, JWT, 에러 핸들링 등의 기능을 common 폴더에 미리 구현을 해둬 프로젝트를 진행하면서 해당 기능을 구현하는데 드는 시간적 비용을 비약적으로 단축시켰습니다.',
+      'Nestjs를 이용한 프로젝트를 진행하다보니, 프로젝트마다 반복적으로 들어가는 코드가 있어 간략하게 관리하고 싶은 생각과 nestjs-swagger 모듈에 추가적인 기능을 부여하고 싶은 생각이 들었습니다.\n\n\n\n기존의 라이브러리들(nestjs/swagger, class-validator)은 기능이 분산되어있었기에 기능을 통합하고 최대한 코드를 간략하게 작성할 수 있도록 구성을 해두었습니다.\n\n특히 swagger의 경우 기본적으로 nullable : true를 설정하여도 example 칸에서는 nullable한지 알 수 없는 문제가 있었습니다. 해당 부분을 수정하여 nullable : true 를 설정하면 example 칸에서 "string | null"과 같이 표기될 수 있도록 하였습니다.\n\n\n\n추가로, 자주 사용하는 기능인 소셜 로그인, JWT, 에러 핸들링 등의 기능을 common 폴더에 미리 구현을 해둬 프로젝트를 진행하면서 해당 기능을 구현하는데 드는 시간적 비용을 비약적으로 단축시켰습니다.',
     links: [
       {
         hover: 'npm 링크',
@@ -160,7 +160,7 @@ export const teamProjects: Project[] = [
           'Spring Boot 프로젝트에서는 테이블 Relation을 수정하는 것이 가장 좋은 해결방안이나, 일정 상 수정이 불가하였습니다. 따라서 개인적으로 진행한 프로젝트에서는 테이블 간의 Relation을 반영하여 조회가 가능하도록 조치하였습니다.\n\n테이블의 수정으로 모든 테이블을 조회하는 것에 비해 DB에 보내는 쿼리의 수가 5분의 1로 줄어들 수 있었습니다.',
       },
       {
-        cause: '검색의 경우 기본적인 JPA의 메소드으로는 조회가 어려운 기능이었습니다.',
+        cause: '검색의 경우 기본적인 JPA의 메소드로는 조회가 어려운 기능이었습니다.',
         solution:
           'JpaQueryFactory를 사용하여 Custom Repository를 만들고 기존의 Repository를 상속받게 하여 좀 더 복잡한 로직을 수행할 수 있게 개발하였습니다.',
       },
@@ -174,7 +174,7 @@ export const teamProjects: Project[] = [
         cause:
           'Prisma ORM의 경우에는 Spring Boot와 다르게 Transactional 어노테이션(데코레이터)가 존재하지 않아 트랜잭션을 사용하게 되면 코드의 가독성이 떨어지는 문제가 존재했습니다.',
         solution:
-          'Async Local Storage기반의 라이브러리인 nestjs-cls라는 라이브러리와 Toss에서 개발한 AOP의 아이디어를 차용하여 Request가 발생하면 Request 객체마다 Context를 생성하고 Prisma 객체를 저장합니다.\n만약 Request로 인해 실행되는 Method가 Transactional 데코레이터를 사용 중이라면 Context에 저장된 Prisma 객체를 Prisma Transaction 객체로 교환하는 방식으로 구현하였습니다.\n\n그 결과 트랜잭션이 필요한 로직에서 단순히 콜백에 활용되는 코드의 양을 줄여 가독성이 높아질 수 있게 되었습니다.',
+          'Async Local Storage기반의 라이브러리인 nestjs-cls라는 라이브러리와 Toss에서 개발한 AOP의 아이디어를 차용였습니다.\nRequest가 발생하면 Request 객체마다 Context를 생성하고 Prisma 객체를 저장합니다.\n만약 Request로 인해 실행되는 Method가 Transactional 데코레이터를 사용 중이라면 Context에 저장된 Prisma 객체를 Prisma Transaction 객체로 교환하는 방식으로 구현하였습니다.\n\n그 결과 트랜잭션이 필요한 로직에서 단순히 콜백에 활용되는 코드의 양을 줄여 가독성이 높아질 수 있게 되었으며, 매인 로직과 해당 코드를 분리하여 메소드의 책임을 분할할 수 있었습니다.',
       },
     ],
   },

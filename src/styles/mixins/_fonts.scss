@@ -24,7 +24,7 @@ $FONT_WEIGHT_MAP: (
 }
 
 @mixin fontH3($fw) {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: _getFontWeightValue($fw);
 }
 
