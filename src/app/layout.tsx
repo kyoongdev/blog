@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover',
   icons: {
     icon: [
-      { sizes: '32x32', url: '/favicon-32x32.png' },
-      { sizes: '16x16', url: '/favicon-16x16.png' },
+      { sizes: '32x32', url: '/favicon.ico' },
+      { sizes: '16x16', url: '/favicon.ico' },
     ],
   },
   keywords: '기술블로그, 포트폴리오, 블로그, kyoongdev, kyoongdev blog, 백엔드 블로그',

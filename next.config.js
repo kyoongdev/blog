@@ -6,7 +6,7 @@ const removeImports = require('next-remove-imports')();
 
 const nextConfig = {
   images: {
-    domains: ['sgp1.vultrobjects.com'],
+    domains: ['sgp1.vultrobjects.com', 'www.notion.so'],
     unoptimized: true,
   },
   reactStrictMode: true,

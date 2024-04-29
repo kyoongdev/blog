@@ -9,7 +9,7 @@ export const getClientDatabases = () => {
 
 export const getServerDatabases = async () => {
   const data = await fetchClient<QueryDatabaseResponse>('/api/notion', {
-    revalidate: 60 * 60 * 24,
+    revalidate: 1,
   });
   return data;
 };

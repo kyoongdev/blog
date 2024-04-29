@@ -5,7 +5,7 @@ import { notionDatabase } from 'common/notion';
 
 export async function GET(req: NextApiRequest) {
   const notion = await notionDatabase.databases.query({
-    database_id: 'e02ff0921682498b867276c5b99dfcb6',
+    database_id: 'b8da1d8f8acb499e96f0b17b861a8773',
     ...req.query,
   });
 
