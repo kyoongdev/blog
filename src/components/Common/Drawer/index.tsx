@@ -1,5 +1,6 @@
+'use client';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
@@ -16,7 +17,7 @@ const DrawerComponent: React.FC = () => {
   const nodeRef = React.useRef<HTMLDivElement>(null);
 
   const router = useRouter();
-
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const [isSettled, setIsSettled] = React.useState<boolean>(false);
 
@@ -30,7 +31,7 @@ const DrawerComponent: React.FC = () => {
       e.preventDefault();
       const id = (e.currentTarget as HTMLElement).id;
 
-      if (id !== router.pathname) {
+      if (id !== pathname) {
         setIsOpen(false);
         setIsSettled(false);
         router.push(id);

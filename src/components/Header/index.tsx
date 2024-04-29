@@ -51,7 +51,6 @@ const Header: React.FC = () => {
         <h1>
           <Link href='/'>Kyoongdev Village</Link>
         </h1>
-
         <Menu />
       </div>
     </header>
