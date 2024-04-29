@@ -1,10 +1,9 @@
 import cx from 'clsx';
 import Image, { StaticImageData } from 'next/image';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import styles from './skills.module.scss';
 
-import { getDatabases } from 'api/notion';
 import {
   AwsImage,
   ExpressLogo,
