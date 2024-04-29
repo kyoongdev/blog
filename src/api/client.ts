@@ -7,7 +7,7 @@ interface FetchOptions {
 }
 
 export const fetchClient = async <T>(url?: string, options?: FetchOptions): Promise<T> => {
-  const response = await fetch(`${url}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/${url}`, {
     next: { revalidate: options?.revalidate ?? 60 * 60 * 24, tags: options?.tags },
     cache: options?.cache,
   });

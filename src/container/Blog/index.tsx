@@ -1,9 +1,18 @@
-const BlogPage: React.FC = () => {
-  return (
-    <div>
-      <p></p>
-    </div>
-  );
-};
+import styles from './blogPage.module.scss';
+import Content from './Content';
 
-export default BlogPage;
+import { getServerDatabases } from 'api/notion';
+
+export default async function BlogPage() {
+  const data = await getServerDatabases();
+
+  return (
+    <>
+      <section className={styles.title}>
+        <h1>기술 블로그</h1>
+      </section>
+      <hr className={styles.divider} />
+      <Content data={data} />
+    </>
+  );
+}
