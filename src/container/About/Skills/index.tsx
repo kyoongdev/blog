@@ -1,6 +1,8 @@
+import { Client } from '@notionhq/client';
+import axios from 'axios';
 import cx from 'clsx';
 import Image, { StaticImageData } from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './skills.module.scss';
 
@@ -8,7 +10,6 @@ import {
   AwsImage,
   ExpressLogo,
   JiraLogo,
-  NaverCloudImage,
   NestLogo,
   NextLogo,
   ReactLogo,
@@ -21,8 +22,13 @@ interface SkillProps {
   main: Array<StaticImageData>;
   sub: Array<[string, number] | string>;
 }
+// https://kyoongdev.notion.site/study-eeb93c412e4f450b8ad00ed97b96ac77?pvs=4
 
 const Skill: React.FC<SkillProps> = ({ title, main, sub }) => {
+  useEffect(() => {
+    // const { results } = await response.json();
+  }, []);
+
   return (
     <article className={styles.skill}>
       <h1>{title}</h1>
