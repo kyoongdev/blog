@@ -19,16 +19,19 @@ const Content: React.FC<Props> = ({ data }) => {
           const property = result.properties as DatabaseProperty;
           const cover = result.cover as DatabaseCover;
           return (
-            <li id={result.id}>
-              <Image src={cover.external.url} alt='커버 이미지' width={160} height={200} />
-              <div>
+            <>
+              <li id={result.id} className={styles.content}>
+                <Image src={cover.external.url} alt='커버 이미지' width={160} height={200} />
                 <div>
-                  <h1>{property.Name.title[0].text.content}</h1>
-                  <Tags tags={property.Tags.multi_select.map((tag) => tag.name)} />
+                  <div className={styles.header}>
+                    <h3>{property.Name.title[0].text.content}</h3>
+                    <Tags tags={property.Tags.multi_select.map((tag) => tag.name)} />
+                  </div>
+                  <p className={styles.description}>{property.설명.rich_text[0].plain_text}</p>
                 </div>
-                <p>{property.설명.rich_text[0].plain_text}</p>
-              </div>
-            </li>
+              </li>
+              <hr className={styles.divider} />
+            </>
           );
         })}
       </ul>

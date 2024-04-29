@@ -16,49 +16,59 @@ $FONT_WEIGHT_MAP: (
 @mixin fontH1($fw) {
   font-size: 32px;
   font-weight: _getFontWeightValue($fw);
+  line-height: 1.3em;
 }
 
 @mixin fontH2($fw) {
   font-size: 24px;
   font-weight: _getFontWeightValue($fw);
+  line-height: 1.3em;
 }
 
 @mixin fontH3($fw) {
   font-size: 20px;
   font-weight: _getFontWeightValue($fw);
+  line-height: 1.3em;
 }
 
 @mixin fontB20($fw) {
   font-size: 20px;
   font-weight: _getFontWeightValue($fw);
+  line-height: 1.3em;
 }
 
 @mixin fontB18($fw) {
   font-size: 18px;
   font-weight: _getFontWeightValue($fw);
+  line-height: 1.3em;
 }
 
 @mixin fontB16($fw) {
   font-size: 16px;
   font-weight: _getFontWeightValue($fw);
+  line-height: 1.3em;
 }
 
 @mixin fontB15($fw) {
   font-size: 15px;
   font-weight: _getFontWeightValue($fw);
+  line-height: 1.3em;
 }
 
 @mixin fontB14($fw) {
   font-size: 14px;
   font-weight: _getFontWeightValue($fw);
+  line-height: 1.3em;
 }
 
 @mixin fontB13($fw) {
   font-size: 13px;
   font-weight: _getFontWeightValue($fw);
+  line-height: 1.3em;
 }
 
 @mixin fontB12($fw) {
   font-size: 12px;
   font-weight: _getFontWeightValue($fw);
+  line-height: 1.3em;
 }
