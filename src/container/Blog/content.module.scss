@@ -11,6 +11,7 @@
     .content {
       @include m.flex(flex-start, flex-start);
       max-height: 200px;
+      color: c.$C_BLACK;
 
       > div {
         @include m.flex(flex-start, flex-start, column);
