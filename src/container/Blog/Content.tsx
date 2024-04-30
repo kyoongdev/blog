@@ -1,5 +1,6 @@
 import { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import styles from './content.module.scss';
@@ -12,6 +13,12 @@ interface Props {
 }
 
 const Content: React.FC<Props> = ({ data }) => {
+  const router = useRouter();
+
+  const onClickResult: React.MouseEventHandler<HTMLLIElement> = (e) => {
+    const id = e.currentTarget.id;
+    router.push(`/blog/${id}`);
+  };
   return (
     <section className={styles.wrapper}>
       <ul className={styles.contents}>
@@ -20,7 +27,7 @@ const Content: React.FC<Props> = ({ data }) => {
           const cover = result.cover as DatabaseCover;
           return (
             <>
-              <li id={result.id} className={styles.content}>
+              <li id={result.id} className={styles.content} onClick={onClickResult}>
                 <Image src={cover.external.url} alt='커버 이미지' width={160} height={200} />
                 <div>
                   <div className={styles.header}>

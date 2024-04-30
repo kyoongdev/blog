@@ -36,7 +36,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         word-break: break-word;
-        -webkit-line-clamp: 5; // 원하는 라인수
+        -webkit-line-clamp: 5;
         -webkit-box-orient: vertical;
       }
     }
