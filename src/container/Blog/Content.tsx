@@ -19,6 +19,7 @@ const Content: React.FC<Props> = ({ data }) => {
         {data.results.map((result: any) => {
           const property = result.properties as DatabaseProperty;
           const cover = result.cover as DatabaseCover;
+          console.log(result);
           return (
             <>
               <Link href={`/blog/${result.id}`}>
