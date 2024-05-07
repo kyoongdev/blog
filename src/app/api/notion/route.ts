@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest } from 'next';
 import { NextResponse } from 'next/server';
 
 import { notionDatabase } from 'common/notion';
